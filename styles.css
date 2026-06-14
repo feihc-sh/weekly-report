@@ -1,0 +1,307 @@
+/* Hermes Weekly Report — Dark, dense, mobile-first */
+
+:root {
+  --bg: #0b0e14;
+  --bg-elev: #13161f;
+  --bg-elev2: #1a1e2a;
+  --border: #2a2f3d;
+  --text: #e4e6eb;
+  --text-dim: #9ba3b4;
+  --text-faint: #6b7280;
+  --primary: #6366f1;
+  --primary-dim: #4f46e5;
+  --p0: #ef4444;
+  --p1: #f59e0b;
+  --p2: #10b981;
+  --p3: #6b7280;
+  --active: #10b981;
+  --rolling: #3b82f6;
+  --stalled: #6b7280;
+  --closed: #4b5563;
+  --shadow: 0 2px 8px rgba(0,0,0,0.4);
+  --radius: 8px;
+  --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.55;
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ===== Top Header ===== */
+.top-header {
+  background: var(--bg-elev);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: var(--shadow);
+}
+
+.top-header h1 {
+  font-size: 22px;
+  font-weight: 600;
+  margin: 0;
+  padding: 18px 0 4px;
+  color: var(--text);
+}
+
+.date-range {
+  font-family: var(--mono);
+  color: var(--primary);
+  font-size: 13px;
+  margin-bottom: 8px;
+}
+
+.meta-summary {
+  font-size: 13px;
+  color: var(--text-dim);
+  padding-bottom: 12px;
+}
+
+/* ===== Section Nav ===== */
+.section-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 8px 0 10px;
+  border-top: 1px solid var(--border);
+  background: var(--bg-elev);
+}
+
+.section-nav a {
+  color: var(--text-dim);
+  text-decoration: none;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  transition: all 0.15s;
+}
+
+.section-nav a:hover {
+  background: var(--bg-elev2);
+  color: var(--text);
+}
+
+/* ===== Sections ===== */
+.section {
+  padding: 32px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.section:last-of-type { border-bottom: none; }
+
+.section h2 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: var(--text);
+}
+
+.section-sub {
+  font-size: 12px;
+  color: var(--text-faint);
+  margin-bottom: 18px;
+}
+
+/* ===== Tables ===== */
+.table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-elev);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+th, td {
+  text-align: left;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+th {
+  background: var(--bg-elev2);
+  color: var(--text-dim);
+  font-weight: 600;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  position: sticky;
+  top: 0;
+}
+
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover { background: var(--bg-elev2); }
+
+td.num, th.num { text-align: right; font-family: var(--mono); }
+
+/* ===== Cards ===== */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 12px;
+}
+
+.card {
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  transition: border-color 0.15s;
+}
+
+.card:hover { border-color: var(--primary-dim); }
+
+.card-title {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.card-desc {
+  font-size: 12px;
+  color: var(--text-dim);
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+.card-row {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  font-size: 12px;
+  margin-top: 8px;
+}
+
+.card-row .label {
+  color: var(--text-faint);
+  min-width: 60px;
+  flex-shrink: 0;
+  font-weight: 500;
+}
+
+.card-row .value {
+  color: var(--text);
+  flex: 1;
+}
+
+.card-row .value.phase {
+  font-family: var(--mono);
+  font-size: 11px;
+}
+
+/* ===== Status Badges ===== */
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-family: var(--mono);
+}
+
+.badge.active { background: rgba(16,185,129,0.15); color: var(--active); }
+.badge.rolling { background: rgba(59,130,246,0.15); color: var(--rolling); }
+.badge.stalled { background: rgba(107,114,128,0.15); color: var(--stalled); }
+.badge.closed { background: rgba(75,85,99,0.15); color: var(--closed); }
+
+/* ===== Priority Badges ===== */
+.prio {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  font-family: var(--mono);
+  min-width: 32px;
+  text-align: center;
+}
+
+.prio.p0 { background: rgba(239,68,68,0.15); color: var(--p0); }
+.prio.p1 { background: rgba(245,158,11,0.15); color: var(--p1); }
+.prio.p2 { background: rgba(16,185,129,0.15); color: var(--p2); }
+.prio.p3 { background: rgba(107,114,128,0.15); color: var(--p3); }
+
+/* ===== Hot Topics ===== */
+.hot-topics {
+  list-style: none;
+  padding: 0;
+}
+
+.hot-topics li {
+  padding: 8px 0 8px 20px;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+  position: relative;
+}
+
+.hot-topics li:last-child { border-bottom: none; }
+
+.hot-topics li::before {
+  content: "▸";
+  position: absolute;
+  left: 0;
+  color: var(--primary);
+  font-weight: 700;
+}
+
+/* ===== Footer ===== */
+.footer {
+  padding: 32px 0;
+  text-align: center;
+  color: var(--text-faint);
+  font-size: 12px;
+}
+
+.footer code {
+  font-family: var(--mono);
+  background: var(--bg-elev2);
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 11px;
+  color: var(--primary);
+}
+
+.footer-tip {
+  margin-top: 6px;
+  color: var(--text-faint);
+  font-size: 11px;
+}
+
+/* ===== Mobile ===== */
+@media (max-width: 640px) {
+  .container { padding: 0 14px; }
+  .top-header h1 { font-size: 18px; }
+  .section { padding: 24px 0; }
+  .section h2 { font-size: 16px; }
+  .card-grid { grid-template-columns: 1fr; }
+  th, td { padding: 8px 10px; font-size: 12px; }
+  .section-nav a { font-size: 11px; padding: 3px 8px; }
+}

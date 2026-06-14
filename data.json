@@ -1,0 +1,229 @@
+{
+  "meta": {
+    "title": "Hermes 团队周报",
+    "date_range": "2026-06-07 → 06-14",
+    "generated_at": "2026-06-14",
+    "owner": "fei",
+    "summary": {
+      "total_sessions": 551,
+      "profiles_active": 8,
+      "real_projects": 7,
+      "rolling_projects": 3,
+      "real_problems": 6,
+      "new_skills_count": 110
+    }
+  },
+  "overview": [
+    {"profile": "pm-for-claude", "sessions": 178, "focus": "kiddo-scoreboard PM + controller-roadmap-ppt + housekeeping"},
+    {"profile": "pm-2", "sessions": 165, "focus": "pm-for-claude mirror + cron 夜班"},
+    {"profile": "my-pm", "sessions": 72, "focus": "ECC/memory 自维护 + CC 委派 + PM 链式 A/B + PM marketplace 装库"},
+    {"profile": "qual-agent", "sessions": 58, "focus": "kiddo E2E + smoke + regression"},
+    {"profile": "research-agent", "sessions": 45, "focus": "link 归档 + AI 知识对比 + nand-flash/a-stock 调研"},
+    {"profile": "writing-agent", "sessions": 11, "focus": "controller-roadmap.html UI 调整 + frontend-slides"},
+    {"profile": "web-ui-designer", "sessions": 7, "focus": "Mecha UI 设计"},
+    {"profile": "code-agent", "sessions": 5, "focus": "kiddo 实施 (CC 跑)"}
+  ],
+  "real_projects": [
+    {
+      "id": "pm2-profile",
+      "name": "pm-2 profile 创建",
+      "description": "飞书 bot 阿拉蕾爱干活 独立 PM agent",
+      "progress": "完整 clone + 配对 + DM 接通 + free_response_chats race condition 修",
+      "phase": "Implementation → Testing",
+      "phase_emoji": "🛠",
+      "last_active": "2026-06-14",
+      "active_status": "active",
+      "problem": "SOUL.md 跟 pm-for-claude 几乎一样, 没真正形成分叉",
+      "solution": "写 SOUL 变体段, 让两个 PM 行为可观察地不同"
+    },
+    {
+      "id": "benefit-reminder",
+      "name": "benefit-reminder 微信小程序",
+      "description": "CloudBase 后端 + 微信开发者工具",
+      "progress": "解决 Lazy code loading 报错; CloudBase AppSecret 走云函数; 沉淀 2 个 pitfall",
+      "phase": "Deployed?",
+      "phase_emoji": "🚀",
+      "last_active": "2026-06-12",
+      "active_status": "rolling",
+      "problem": "T-103 blocked_on_user 4 天 (5 步手动操作)",
+      "solution": "fei 决策继续 / 暂停"
+    },
+    {
+      "id": "cc-err-debug",
+      "name": "CC proxy model returned no response debug",
+      "description": "调查 claude pm 报错的根因",
+      "progress": "定位 ≠ proxy 挂, 根因 = 多 PM 抢 DM + kiddo 上下文太大",
+      "phase": "Closed",
+      "phase_emoji": "🪦",
+      "last_active": "2026-06-13",
+      "active_status": "closed",
+      "problem": "free-claude-code proxy 没加 prompt >5KB retry 兜底",
+      "solution": "加 retry 逻辑 — 不紧急, workaround 能 cover"
+    },
+    {
+      "id": "pm-chain-ab",
+      "name": "PM 链式工作流 A/B 测试",
+      "description": "测试新 pm-execution/* 替代老 pm-workflow",
+      "progress": "3 老 skill 移 .archive/; 5 skill 加 Chain Mode 段; 新建 chain-mode skill",
+      "phase": "Testing",
+      "phase_emoji": "🧪",
+      "last_active": "2026-06-14",
+      "active_status": "active",
+      "problem": "真实 PM 任务还没用上",
+      "solution": "1-2 周内用 1 个真实 PM 任务验证"
+    },
+    {
+      "id": "kiddo-scoreboard",
+      "name": "kiddo-scoreboard",
+      "description": "家庭计分板 (CF Workers + D1 + Hono), 3 账户 + 任务 + Mecha UI; Health Checkin 正在做",
+      "progress": "PRs #27/#29/#30/#32/#34/#35 merged; Health Checkin M1 实施中 (RFC 720 行 v1.0)",
+      "phase": "Live + Health Checkin M1 in progress",
+      "phase_emoji": "🚀",
+      "last_active": "2026-06-14",
+      "active_status": "active",
+      "problem": "P0 pm-2 feishu 230002 (3 次 cron 投递失败); P1 INCIDENTS.md 缺 RCA 模板; P1 emoji spec drift 4 PR 反向打补丁",
+      "solution": "完整 6 行动项存 ~/.hermes/profiles/my-pm/cron/todo/kiddo-scoreboard-pm-action-items.md"
+    },
+    {
+      "id": "xianyu-bot",
+      "name": "xianyu-bot",
+      "description": "闲鱼 (Goofish) mtop 协议 + xianyu-bot MCP server",
+      "progress": "调研完成, xhs-browser/references/xianyu-variant.md 6KB; native-mcp skill 修; MCP tools None available",
+      "phase": "Discovery",
+      "phase_emoji": "🔬",
+      "last_active": "2026-06-07",
+      "active_status": "stalled",
+      "problem": "MCP tools 不可用, 没看到实施 trigger",
+      "solution": "fei 决策 (搁置 / MCP setup / 跳过 mtop 用 browser)"
+    },
+    {
+      "id": "controller-roadmap-ppt",
+      "name": "controller-roadmap-ppt",
+      "description": "半导体控制器路线图 HTML PPT (12 厂商 / 23 产品 / 多代工艺 / 时间轴)",
+      "progress": "v12 → v13 → v15; gen_controller_roadmap.py 重写 (subgrid 17-column); html-ppt skill 两天 v1.0→v1.10.1",
+      "phase": "Implementation",
+      "phase_emoji": "🛠",
+      "last_active": "2026-06-13",
+      "active_status": "rolling",
+      "problem": "节奏可能过快 (html-ppt 两天升 10 个版本)",
+      "solution": "看 v16 是否放慢节奏, 每个 pitfall 至少 1 个复用验证再升 v"
+    }
+  ],
+  "rolling_projects": [
+    {
+      "name": "PM 自维护 (memory + ECC + hermes profile)",
+      "progress": "102 ECC disabled; 4 profile config 同步; memory 84%→72%",
+      "active_status": "rolling",
+      "problem": "memory 反复涨回 80% — 无自动 decay 机制",
+      "solution": "加 ≥75% 提醒 + LRU 自动降权"
+    },
+    {
+      "name": "Skill CURATOR umbrella 整理",
+      "progress": "6 candidate 找出, 合并 1 个 (chain-mode)",
+      "active_status": "rolling",
+      "problem": "输出是 no-op audit, fei 没 review 过",
+      "solution": "改输出格式 1 推荐 + 1 action"
+    },
+    {
+      "name": "Research 归档",
+      "progress": "47 sessions — link 抓取/提取/归档 + AI 记忆项目对比",
+      "active_status": "rolling",
+      "problem": "无 dedup 审计",
+      "solution": "加 weekly dedup audit cron"
+    }
+  ],
+  "new_skills": {
+    "pm_marketplace": {
+      "category": "PM 能力全面升级",
+      "count": 68,
+      "trigger": "06-13 my-pm 一次性装 66 个 + 06-14 新创 2 个 (chain-mode, agent-status-summary)",
+      "impact": "从 1 个老 pm-workflow 升级到 68 skills marketplace, 触发 chain-mode 纪律 + A/B 测试"
+    },
+    "controller_ppt_visual": {
+      "category": "controller-roadmap-ppt 视觉套件",
+      "count": 5,
+      "trigger": "06-12/13 pm-for-claude + pm-2 装",
+      "impact": "支撑 v12→v15 视觉快速迭代, html-ppt skill 两天 v1.0→v1.10.1"
+    },
+    "hermes_maintenance": {
+      "category": "Hermes 平台维护",
+      "count": 5,
+      "trigger": "my-pm + pm-2 + pm-for-claude",
+      "impact": "标准化 PM 创建/调试/健康检查流程"
+    },
+    "cc_monitor": {
+      "category": "CC 监控/调试升级",
+      "count": 3,
+      "trigger": "06-13 pm-2 装",
+      "impact": "CC 委派可观测性 + 5-signal 诊断"
+    },
+    "kiddo_deploy": {
+      "category": "kidso 部署专用",
+      "count": 2,
+      "trigger": "06-11 pm-for-claude 装",
+      "impact": "kiddo 项目部署 + Wrangler/D1 测试坑沉淀"
+    },
+    "research_china": {
+      "category": "Research 国内平台调研",
+      "count": 4,
+      "trigger": "research-agent",
+      "impact": "国内平台调研 (小红书 CLI) + A 股/NAND 专题"
+    },
+    "writing_ppt": {
+      "category": "写作/PPT 通用能力",
+      "count": 3,
+      "trigger": "writing-agent + my-pm",
+      "impact": "PPT 通用能力, 配合 controller-roadmap-ppt"
+    },
+    "qa_tools": {
+      "category": "QA 工具",
+      "count": 3,
+      "trigger": "qual-agent",
+      "impact": "QA 报告标准化"
+    },
+    "cloudflare": {
+      "category": "Cloudflare 部署",
+      "count": 2,
+      "trigger": "pm-2 + pm-for-claude",
+      "impact": "CF 部署通用工具"
+    },
+    "wechat_mp": {
+      "category": "微信小程序",
+      "count": 1,
+      "trigger": "my-pm",
+      "impact": "沉淀 benefit-reminder CloudBase 真实坑 (v1.2.0)"
+    },
+    "image_gen": {
+      "category": "图像生成 (全员)",
+      "count": 2,
+      "trigger": "8 profile 同步装",
+      "impact": "全员图像生成"
+    },
+    "misc": {
+      "category": "杂项 PM 工具",
+      "count": 10,
+      "trigger": "各 profile 同步",
+      "impact": "工具栈补全 (memory-cleanup, cronjob-management, github-pr-workflow 等)"
+    }
+  },
+  "problems": [
+    {"priority": "P0", "project": "kiddo", "issue": "pm-2 feishu 230002 (4 次 cron 报告没送到)", "solution": "修 cron 投递目标", "time": "10 min"},
+    {"priority": "P1", "project": "kiddo", "issue": "INCIDENTS.md 缺 RCA 模板 (5 次 deploy 失败根因没沉淀)", "solution": "加 4 段 + 回填", "time": "30 min"},
+    {"priority": "P1", "project": "benefit", "issue": "T-103 blocked_on_user 4 天 (5 步手动操作)", "solution": "fei 决策继续/暂停", "time": "1 min"},
+    {"priority": "P1", "project": "PM-自维护", "issue": "memory 无自动 decay", "solution": "≥75% 提醒 + LRU", "time": "1 hr"},
+    {"priority": "P2", "project": "CURATOR", "issue": "输出 no-op", "solution": "改格式 1 推荐+1 action", "time": "20 min"},
+    {"priority": "P2", "project": "Research", "issue": "归档无 dedup", "solution": "weekly audit cron", "time": "30 min"},
+    {"priority": "P3", "project": "pm-2", "issue": "SOUL 没分叉", "solution": "写 SOUL 变体段", "time": "30 min"},
+    {"priority": "P3", "project": "xianyu", "issue": "stalled 7 天", "solution": "fei 决策优先级", "time": "1 min"},
+    {"priority": "P3", "project": "controller-roadmap", "issue": "skill 迭代过快", "solution": "看 v16 节奏", "time": "10 min"}
+  ],
+  "hot_topics": [
+    "P0 pm-2 feishu 230002 — 不修就一直没 kiddo cron 报告",
+    "my-pm 06-13 装了 66 个 PM skill — 影响: A/B 测试真实 PM 任务验证要排期",
+    "xianyu-bot stalled 7 天 — fei 决定优先级",
+    "benefit-reminder T-103 blocked — fei 5 步手动操作",
+    "Health Checkin RFC — 720 行 v1.0 draft 等 review",
+    "memory auto-decay — PM 长期可用性",
+    "html-ppt 两天 v1.0 → v1.10.1 — 是否过快?"
+  ]
+}
