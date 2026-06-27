@@ -1,488 +1,192 @@
 {
   "meta": {
     "title": "Hermes 团队周报",
-    "date_range": "2026-06-14 → 2026-06-21",
-    "generated_at": "2026-06-21",
+    "date_range": "2026-06-21 → 2026-06-28",
+    "generated_at": "2026-06-28",
     "owner": "fei",
     "summary": {
-      "total_sessions": 319,
-      "profiles_active": 7,
-      "real_projects": 13,
-      "rolling_projects": 5,
-      "real_problems": 9,
-      "new_skills_count": 80
+      "total_sessions": 12,
+      "profiles_active": 1,
+      "real_projects": 6,
+      "rolling_projects": 4,
+      "real_problems": 5,
+      "new_skills_count": 3
     }
   },
   "overview": [
     {
-      "profile": "pm-for-claude",
-      "sessions": 91,
-      "focus": "kiddo Item #006/#008/#011/#012 实施 + INCIDENTS 跟进 + spec drift 修复"
-    },
-    {
-      "profile": "pm-2",
-      "sessions": 72,
-      "focus": "travel-planning 清迈 7 天行程 + kiddo cron 夜班 + memory cleanup"
-    },
-    {
       "profile": "my-pm",
-      "sessions": 70,
-      "focus": "PM 能力验证 (74 skills) + hermes profile 健康 + feishu 修 + cc-err 修"
-    },
-    {
-      "profile": "research-agent",
-      "sessions": 38,
-      "focus": "PCIe 8.0/Gen8 SSD 调研 + xhs-browser/xiaohongshu-cli 集成 + 微信归档"
-    },
-    {
-      "profile": "writing-agent",
-      "sessions": 23,
-      "focus": "controller-roadmap-ppt v15 视觉 + html-ppt skill"
-    },
-    {
-      "profile": "qual-agent",
-      "sessions": 20,
-      "focus": "kiddo e2e + Item #006 验证 (12/12 pass) + PR #36/#39 回归"
-    },
-    {
-      "profile": "code-agent",
-      "sessions": 5,
-      "focus": "kiddo 实施 + sqlite-fts5 + sqlite pitfalls 沉淀"
+      "sessions": 12,
+      "focus": "agentmemory plugin 真相调查 (误判修) + headroom MCP 部署 (CC smoke test 4/4) + Feishu markdown debug (3 mode 对比) + memory 2 次手动 cleanup (78.6%→62.7%) + 百度网盘 25G 首全量 + gh CLI GitHub repo handoff"
     }
   ],
   "real_projects": [
     {
-      "id": "kiddo-scoreboard",
-      "name": "kiddo-scoreboard",
-      "description": "儿童积分看板 (CF Pages + D1)",
-      "progress": "Item #006 打卡日历 ✅ done (Qual 验证 12/12 e2e + 313/313 unit, 2026-06-20); Item #008 机甲 HUD 🔧 running (Stage 1 done 06-19); Item #011 跑步地图 🔧 running (Stage 2 done 06-19); Item #012 日历图标+tab 过滤 06-20 启动; Item #010 sprint modal ✅ done (06-16); PR #41 (coin shop N1 fold) merged; Health Checkin M1+M2 实施完成",
-      "phase": "🛠 Implementation → 🧪 Testing",
-      "phase_emoji": "🛠",
-      "last_active": "2026-06-21",
-      "active_status": "active",
-      "problem": "P0: 0007_coin_system.sql DROP score_events 触发 FK 约束 (4 次 6-11 deploy fail 同根因) — 治本 PR 提了吗? P1: 0007 修后 0008_health_events 才能 apply; P1: emoji spec drift 已修但根因 (palette 多源) 未根治",
-      "solution": "P0: 提 `fix(migration): 0007 defer FK constraint` PR (5 行 SQLite PRAGMA), 验证 wrangler d1 migrations apply --local; P1: 修后 0008 自动 unlock; P1: 提 palette single source of truth PR (emojis.ts 单一来源)"
-    },
-    {
-      "id": "controller-roadmap-ppt",
-      "name": "controller-roadmap-ppt",
-      "description": "Controller roadmap HTML deck + 视觉套件",
-      "progress": "writing-agent 11 sessions + my-pm/pm-2/pm-for-claude 12 sessions; html-ppt skill v1.10.1 (pm-for-claude 6-13 上), 视觉迭代 14→15; cloudflared tunnel 全挡 (writing-agent 环境 issue, my-pm 帮 @成功的J人项目经理 找 tunnel 方案)",
-      "phase": "🛠 Implementation → 🧪 Testing",
-      "phase_emoji": "🛠",
-      "last_active": "2026-06-20",
-      "active_status": "rolling",
-      "problem": "html-ppt skill 在不同 profile 版本漂移 — pm-2 还是 v1.1.0 (6-12), pm-for-claude 已 v1.10.1 (6-13) — writing-agent 也跟 pm-for-claude 不同步, 视觉产出 drift 风险",
-      "solution": "统一安装 latest v1.10.1 到所有 profile (write/manage) — 1 个 install event, 然后跑 visual diff regression; 后续写 skill 同步 cron (每周日 check version 一致性)"
-    },
-    {
-      "id": "cc-err-debug",
-      "name": "FreeCC proxy debug",
-      "description": "free-claude-code proxy 报错的根因排查 + 修复",
-      "progress": "06-14 root cause 找到 (大 prompt >5KB + 多 PM 抢同一 DM); free-claude-code v1.5.0 patched (token validation + retry 兜底); 06-21 web search 502 / Invalid Tool Parameters — 确认是 Claude Code 上游 issue #67756 (不是 FreeCC 独有), free-cc-websearch-fix.sh 写了 background proc",
-      "phase": "🛠 Implementation → 🧪 Testing",
-      "phase_emoji": "🛠",
-      "last_active": "2026-06-21",
-      "active_status": "active",
-      "problem": "P1: Web search 在 FreeCC 上无限 spin + 报 Invalid Tool Parameters — 根因是 Claude Code 自己的 bug (官方 issue #67756 closed), 但本地 proxy 加重了 (缺 retry 兜底 / timeout 调短); DM mutex 仍没加 (多 PM 抢同一 chat 仍可能丢消息)",
-      "solution": "P1: 加 WebSearch-specific timeout (10s) + fail-fast (返回 'web search unavailable, use latest training data'); DM mutex 提到 free-claude-code v1.6.0 (next sprint)"
-    },
-    {
-      "id": "travel-planning",
-      "name": "清迈+普吉 7 天家庭行程 (新)",
-      "description": "5 人 (2 老人 60+ + 夫妻 + 10 岁男孩) 上海 ⇄ 清迈+普吉 7 天, 06-26 出发",
-      "progress": "pm-2 集中跑 19 sessions (06-16~06-20); 家庭成员画像 + 行程节奏偏好 (3+3 day) 写进 family-travel-planning skill; Google Places + Google Weather + Aviationstack + Pricewin + 携程/fliggy (manual login) 5 个 travel skill 装上; 酒店区域建议 (Google Maps / AMap 同步) 落 todo + 飞书 DM",
-      "phase": "🔬 Discovery → 📋 Spec",
-      "phase_emoji": "📋",
-      "last_active": "2026-06-20",
-      "active_status": "rolling",
-      "problem": "session 已准备好完整 handoff (5 人 + 行程节奏 + 酒店区域), 但 fei 是否采用 + 实际预订还没动 — skill 写好了但没用上",
-      "solution": "fei 1 分钟决策: (a) 直接采用 handoff 自己订; (b) 跑 PM `chain-mode` 串完整 story → PRD → 实际 booking; (c) 暂停等出发前 1 周再跑"
-    },
-    {
-      "id": "benefit-reminder",
-      "name": "benefit-reminder 微信小程序",
-      "description": "公費醫療/医保提醒 微信小程序",
-      "progress": "06-15 跑 pm-memory-management 整理 benefit cron 状态; 06-17 fei 问 'Benefit 是你管吗' — 状态快照: Phase 1 MVP ✅, 43/43 测试过, E2E 通过; 06-20 commit `03873d0` test: t001 兼容 placeholder/真实 appid + env",
-      "phase": "🛠 Implementation → 🚀 Deployed (待 T-103 解锁)",
-      "phase_emoji": "🚀",
-      "last_active": "2026-06-20",
-      "active_status": "rolling",
-      "problem": "T-103 blocked_on_user 11+ 天 (5 步手动操作) — 比上周 (4+ 天) 又拖了 7 天, 价值在流失",
-      "solution": "fei 1 分钟决策: 继续 / 暂停 / 转其他 (ccpm-spawn 都不能跨沙箱, T-103 是 fei-only)"
-    },
-    {
-      "id": "taobao-killer",
-      "name": "taobao-killer 调研",
-      "description": "淘宝比价/反杀熟助手",
-      "progress": "06-14 pm-2 跑 2 sessions 调研小红书比价方案; xhs-browser skill 加 '工具选择' section (90% 调研用 xiaohongshu-cli, 10% 用 browser_navigate); 5-signal 诊断发现 CC 完全消失 (PID 5901 死), 临时 fallback to 公开信号",
-      "phase": "🔬 Discovery",
-      "phase_emoji": "🔬",
-      "last_active": "2026-06-14",
-      "active_status": "stalled",
-      "problem": "stalled 7 天, CC 在 pm-2 死过 1 次 (修好了), 但 taobao-killer 项目没继续 — 范围未明 (比价 vs 反杀熟 vs 自动下单?)",
-      "solution": "下周一跑 user-stories skill 拆 3 persona 故事, 再 decision 是否立项; 优先 (a) 比价 助手 vs (b) 杀熟证据收集 vs (c) 自动下单 — 不能全做"
-    },
-    {
-      "id": "xianyu-bot",
-      "name": "xianyu-bot",
-      "description": "闲鱼/Goofish mtop 协议 MCP bot",
-      "progress": "本周 0 active sessions (只在 06-14 my-pm cron 内被引用 1 次); 调研 06-08 沉淀后没新动作",
-      "phase": "🔬 Discovery (stalled)",
-      "phase_emoji": "🔬",
-      "last_active": "2026-06-14",
-      "active_status": "stalled",
-      "problem": "stalled 7+ 天, MCP tools 仍不可用 (auth cookie 没续), 没看到实施 trigger",
-      "solution": "fei 决策优先级 — 1 分钟决定: 继续 (换 cookie + 跑 mtop) / 暂停 / 转其他 (taobao-killer 合并?)"
-    },
-    {
-      "id": "browser-plugin-install",
-      "name": "MP 公众号插件装",
-      "description": "06-14 pm-2 装 mp.weixin.qq.com 推荐的浏览器插件",
-      "progress": "06-14 集中 5 sessions; 装完触发 cron `cc-forge-weekly-audit` (job id b7439d0f145c, 下周日 19:38 跑); patch 3 个 skill (free-claude-code, forge-guardrails-integration) + 1 个新 skill (ai-agent-guardrails)",
-      "phase": "✅ Implemented (1 day)",
+      "id": "agentmemory-plugin-debug",
+      "name": "agentmemory plugin sync 误判",
+      "description": "hermes 更新后 verify 6/21 报的 sync 问题 — 真假判定",
+      "progress": "06-22 verify 结论: sync **一直在 work**,6/21 是误判; Plugin activated 6/22 0:57 第一次出现 (老 bug 修了), sync_turn fire 6 次, /search 查到 5 条 obs 含 sync_turn 写入; 6/22 清 TEMP_DIAG block (15 行删掉, fresh-import verified clean); 6/22 save lesson lsn_2c2bfd3631d85702 (confidence 0.9, top 1 recall); 6/25 un-archive agentmemory-integration skill (从 .archive/agentmemory-integration-20260621-203248/ 移到 ~/.hermes/skills/agentmemory-integration/), my-pm 241 skills active",
+      "phase": "🛠 Implementation → ✅ Implemented",
       "phase_emoji": "✅",
-      "last_active": "2026-06-14",
-      "active_status": "closed",
-      "problem": "—",
-      "solution": "—"
+      "last_active": "2026-06-25",
+      "active_status": "rolling",
+      "problem": "P1: 6/21 误判 sync 不 work (根因: check 方式错, /api/observations 404 ≠ 没存, /search 才查得到) — lesson saved 但需 patch 进 hermes-agent 或 agentmemory-integration skill 防重犯",
+      "solution": "patch agentmemory-integration skill §'verify method' 段: '用 /search 查 obs,不用 /api/observations 404 判死' (1 行); patch hermes-agent profile health check 同段"
     },
     {
-      "id": "baidu-netdisk",
-      "name": "百度网盘 CLI 接入",
-      "description": "my-pm 跑 bypy + pty OAuth 接入",
-      "progress": "06-16/17 6 sessions; 解决 bypy `raw_input()` → EOFError 根因 (用 pty.fork() 注入 code); hermes-sandbox-pitfalls §9 加新坑; §9.1 加 segno QR fallback; 06-17 试连成功",
+      "id": "headroom-mcp",
+      "name": "headroom MCP 接入 (新)",
+      "description": "headroomlabs-ai/headroom 48,770★ Python 库 + proxy + MCP server 装到 CC",
+      "progress": "06-25 完成: PyPI 包 `headroom-ai` v0.27.0 (非 `headroom`),uv venv --python 3.11, headroom --version OK, 3 MCP tools (headroom_compress / headroom_retrieve / headroom_stats) JSON-RPC 跑通; CC .claude.json mcpServers 配好, smoke test v2 (bypassPermissions) 4/4 tool call success; 06-25 fei 拍板 放弃forge用headroom — 准备切流量链 (Forge :8081 → headroom :8787); acceptEdits 不 grant MCP tool 教训待存 (lesson 草稿已写,被打断)",
+      "phase": "🛠 Implementation → 🧪 Testing",
+      "phase_emoji": "🛠",
+      "last_active": "2026-06-25",
+      "active_status": "active",
+      "problem": "P0: Forge :8081 → headroom :8787 流量链拓扑未拍板 (3 选项: (a) headroom 接 free-cc (b) headroom 直连上游 (c) free-cc → headroom 串行); P0: headroom proxy 子命令参数 (端口/上游配置/env) 未查证; P1: acceptEdits 教训 lesson 未存",
+      "solution": "P0: fei 1 分钟决策 (a/b/c) → 改 ANTHROPIC_BASE_URL 指向 headroom,启动 `headroom proxy` 后台跑,smoke test 5KB+ 重复模式文本看 savings > 0%; P1: 跑 pm-save-lesson-checklist 把 acceptEdits 不 grant MCP tool lesson 存上"
+    },
+    {
+      "id": "feishu-markdown",
+      "name": "Feishu markdown mode 调研",
+      "description": "lark-cli --text / --markdown / --content 三个 mode 实际行为差异",
+      "progress": "06-24 跑 3 demo 验证 (msg_id 全 success); 结论: --text 走 text type, --markdown 走 post + tag:md (支持 inline markdown, **不**解析 table), --content + interactive 走 tag:table (真表格); 6/25 fei 拍板 demo2 (--markdown 走 post + tag:md) 是 \"另一个 agent 发不出\" 的正解; USER.md Feishu rule 更新 v10 (撤旧 fallback); save lesson \"tag:md 现状支持 markdown 表格 (vs 4/22 commit 8e18d1031 stale 假设)\"",
       "phase": "✅ Implemented",
       "phase_emoji": "✅",
-      "last_active": "2026-06-17",
-      "active_status": "rolling",
-      "problem": "不是真问题 — skill 已稳定, 6-17 试连成功, 后续按需用",
+      "last_active": "2026-06-25",
+      "active_status": "closed",
+      "problem": "— 调研完成 + 拍了板 (demo2 是正解), 不算问题",
       "solution": "—"
     },
     {
-      "id": "pm-marketplace",
-      "name": "PM 能力 marketplace 持续验证",
-      "description": "74 PM skills (上周装完) 本周开始实际跑",
-      "progress": "pm-execution 9 skills 本周新装 (agent-status-summary, chain-mode, communication-conventions, weekly-report, wwas, curator-review, manual-handoff, pm-save-lesson-checklist, summarize-meeting); 实际用上: weekly-report (本任务), chain-mode (3 PM 跑过), communication-conventions (patch 多次)",
-      "phase": "🛠 Implementation → 🧪 Testing",
-      "phase_emoji": "🛠",
-      "last_active": "2026-06-21",
-      "active_status": "active",
-      "problem": "P2: 80+ skills 装了, 真实任务用得还不够多 — travel-planning 是好测试场景, 但没跑 chain mode (PRD→Stories→Sprint→Backlog)",
-      "solution": "下周选 1 个新项目 (e.g. taobao-killer 立项) 跑完整 chain mode: user-stories → create-prd → sprint-plan, 对比老 pm-workflow 产出"
-    },
-    {
-      "id": "research-pcie8",
-      "name": "PCIe 8.0/Gen8 SSD 调研 (新)",
-      "description": "为 ssd-offloading-simulator 准备 Gen8 调研数据",
-      "progress": "research-agent 06-16 跑 5 子任务 (PCI-SIG 0.5 草案 / 头部厂商路线图 / NAND 接口 / 控制器 / SSD 整机); nand-flash-research skill 装; 部分内容归档 knowowl",
-      "phase": "🔬 Discovery",
-      "phase_emoji": "🔬",
-      "last_active": "2026-06-16",
+      "id": "baidu-netdisk-backup",
+      "name": "百度网盘 bypy 备份",
+      "description": "~25G (hermes 20G + workspace 4.9G + obsidian 181M) 周日增量 cron",
+      "progress": "06-23 验证 bypy v1.8.9 装好 + OAuth token 有效 (6/17 授权) + 网盘连接 OK (Quota 14.007TB/Used 11.262TB, 2.7TB 余量) + /apps/bypy/.hermes-v1/ 6/19 17:42 上传首次全量; 6/23 fei 问备份内容 → 路径表 + 25G 估算 + bypy 1-3 MB/s 限速预计 3-7 小时; 但周日增量 cron jobs.json 里没建",
+      "phase": "✅ Implemented (首次全量 done, 增量 cron 缺)",
+      "phase_emoji": "✅",
+      "last_active": "2026-06-23",
       "active_status": "stalled",
-      "problem": "— 调研完成归档, 但后续 7 天没动作 — 可能 fei 还在消化",
-      "solution": "1 周后问 fei: 内容够用吗 / 需不需要补全 / 是否启动 ssd-offloading-simulator"
+      "problem": "P1: 首次全量 done 9 天,但周日增量 cron 没建 — 数据风险 (新 skill/commit 丢失); 之前 5 个 cron 都没这块",
+      "solution": "fei 1 分钟拍板: 接受 (手动周日跑) / 建 cron (jobs.json 加 weekly-bypy-incremental, Sonntag 03:00, hermes 增量) — fei 决策, PM 不动 explicit-ask 列表"
     },
     {
-      "id": "writing-agent-env",
-      "name": "writing-agent tunnel 困境",
-      "description": "writing-agent 公开 tunnel 全挡 (cloudflared QUIC/UDP, trycloudflare API, ngrok 无 token, serveo/localhost.run/pinggy SSH 拒)",
-      "progress": "06-16 my-pm 帮 writing-agent @成功的J人项目经理 找方案; 06-17 持续 weekly-report 模板 deliver 走内网 (不走 tunnel)",
-      "phase": "🔧 Maintenance",
-      "phase_emoji": "🔧",
-      "last_active": "2026-06-17",
-      "active_status": "rolling",
-      "problem": "writing-agent 公网预览不可用, controller-roadmap-ppt 没法 share preview 链接 — 只能用 zip + 本地 (跟 06-15 一样)",
-      "solution": "短期: fei 给一个 ngrok authtoken (一次配置永久可用); 长期: 写 `local-tunnel-exposure` skill 标准化"
+      "id": "github-backup-repo",
+      "name": "hermes-backup 私有 GitHub repo",
+      "description": "用 gh CLI 建私有 repo 备份 hermes 关键 config + scripts",
+      "progress": "06-23 fei 问 gh 能否建私有 repo → PM 准备 2 路 (gh OAuth / PAT) 标准命令; gh auth login 走 OAuth 浏览器一次; 推荐 name `hermes-backup`, description + license 默认填好, fei 回 \"go\" 跑; fei 后续说 \"确保目录是 private\" → 标准命令 --private 已含, 等 fei 回 \"go\"",
+      "phase": "📋 Spec (handoff ready, 等 fei \"go\")",
+      "phase_emoji": "📋",
+      "last_active": "2026-06-23",
+      "active_status": "stalled",
+      "problem": "P2: 标准命令准备好了, 但 fei 5 天没回 \"go\" — handoff 闲置",
+      "solution": "fei 一字 \"go\" 跑命令; 或放弃 (用 iCloud / bypy 替代)"
+    },
+    {
+      "id": "memory-self-maintenance",
+      "name": "PM memory 自我维护",
+      "description": "MEMORY.md + USER.md 周期 cleanup 防 95% BLOCK",
+      "progress": "本周跑 2 次 manual cleanup: 6/24 cycle 1 (USER 92.9%→73%, MEMORY 修 §3 \"1\" 异常段); 6/25 cycle 2 (USER 78.6%→62.7%, self-correction bytes vs chars false positive 99%→78.6% 实际, slim 6 处 -219 chars); 2 次都按 pm-memory-management §8 SOP 备份到 memories/ + cron/output/; 6/22 cron weekly-memory-cleanup (03:05) 自动跑一次",
+      "phase": "🔁 Rolling",
+      "phase_emoji": "🔁",
+      "last_active": "2026-06-25",
+      "active_status": "active",
+      "problem": "P1: 清理后 3-4 天涨回 ≥75% (本周触发 2 次 manual), root cause 是 USER §9 Feishu markdown 反复 + 跨 session lessons 累积",
+      "solution": "memory-auto-decay skill (LRU 自动降权) 验证 1 周 (cron 每周一 03:00 跑); USER.md 加 ≥75% 主动 warning (不靠 cron)"
     }
   ],
   "rolling_projects": [
     {
-      "name": "PM 自维护 (memory + ECC + hermes profile)",
-      "progress": "06-14~21 跑 5 次 memory cleanup (98.9%→68.4% / 88.2%→64.53% / 80.67% 等); 装 memory-auto-decry/agent-memory-hygiene/pm-memory-management 3 个 skill; 13 sessions my-pm 跑 hermes profile 调试",
+      "name": "weekly-report cron (本任务)",
+      "progress": "cron job `weekly-report-publish` 周日 07:00 自动跑; 本周手动触发 1 次 (06-25 fei 说 'feishu 表格发不出' 间接走这流程查的)",
       "active_status": "rolling",
-      "problem": "memory 反复涨回 80% — 清理后 3-4 天又触发 cron (本周触发 4 次)",
-      "solution": "已装 memory-auto-decay skill (LRU 自动降权), 验证 1 周看涨回速度; 加 ≥75% 提醒到 home channel"
-    },
-    {
-      "name": "Skill CURATOR umbrella 整理",
-      "progress": "06-14/18 跑 4 次 UMBRELLA-BUILDING pass (research-agent / writing-agent / qual-agent / pm-for-claude); 沉淀 1 个 patch (claude-code-toolchain) + 1 个 reference",
-      "active_status": "rolling",
-      "problem": "本周 80 个新 skill 装库, curator 整理压力暴增 (本周只跑 1 次完全 pass)",
-      "solution": "装库后自动跑 1 次 consolidation (cron 化)"
-    },
-    {
-      "name": "Research 国内平台调研",
-      "progress": "27 sessions research-agent 跑 (xhs-browser / xiaohongshu-cli / 微信归档 / PCIe 8.0 / Gen8 SSD); xiaohongshu-cli 新坑 #15 沉淀 (user_id 权限限制)",
-      "active_status": "rolling",
-      "problem": "归档无 dedup 审计, 同一文章可能被存 2 份 (Obsidian knowowl)",
-      "solution": "weekly audit cron — 按 hash 查重 + 提示合并"
-    },
-    {
-      "name": "Cron 管理 (Z-Library / weekly-report / kiddo 夜班 / silent-watchdog)",
-      "progress": "Z-Library cron 06-20 跑成功 (无 pending); weekly-report 本任务; kiddo 夜班 cron 跑 4 次 (Item #006/#008/#011/#012); silent-cron-watchdog 跑; cron-management + cronjob-management 2 个 skill 装",
-      "active_status": "rolling",
-      "problem": "— 正常滚动",
+      "problem": "— cron 跑通, 3-tier feishu notify 偶尔 race (上 6/14 patch 修过)",
       "solution": "—"
     },
     {
-      "name": "Feishu 飞书栈 + agentmemory 集成",
-      "progress": "feishu-dm-send skill 重写 (bug fix); feishu-messaging-troubleshooting / hermes-feishu-bot-config / hermes-agent-gateway-launchd 3 个新 skill; agentmemory-integration 装",
+      "name": "agentmemory MCP (rolling 维护)",
+      "progress": "viewer http://localhost:3113 健康; lessons 6 条 (本周 +1: 6/22 sync 误判 教训); sync_turn 6/22 0:57 起 fire, /search 5 条 obs 命中",
       "active_status": "rolling",
-      "problem": "飞书 230002 cross-app 仍可能再丢 cron 报告 — P0 持续",
-      "solution": "排查 cron 投递 chat_id + 加投递 ack"
+      "problem": "— 跑通, 监控中",
+      "solution": "—"
+    },
+    {
+      "name": "skill 库持续沉淀 (my-pm 241 skills)",
+      "progress": "6/25 un-archive agentmemory-integration 后 my-pm 241 active / 77 disabled; 本周 +1 un-archive (净新), 0 新装; lessons channel +1 (sync 误判)",
+      "active_status": "rolling",
+      "problem": "P2: 77 disabled skill 占用空间, 但 un-archive 路径不清理 (skill_architecture §'搬上 ≠ 跨 profile 共享' 已覆盖)",
+      "solution": "— 不动 explicit-ask 列表"
+    },
+    {
+      "name": "hermes profile 健康 (rolling)",
+      "progress": "SOUL.md 513B (未变); profiles/my-pm/ state.db + sessions/ + memories/ 0 byte (Feishu 主走, 数据走 session DB); external_dirs [/Users/tidusmaomao/.hermes/skills] 配了",
+      "active_status": "rolling",
+      "problem": "—",
+      "solution": "—"
     }
   ],
   "problems": [
     {
       "priority": "P0",
-      "project": "kiddo",
-      "issue": "0007_coin_system.sql DROP score_events 触发 FK 约束 (4 次 6-11 deploy fail 同根因) — 修 0007 才能 apply 0008_health_events",
-      "solution": "提 fix(migration): 0007 defer FK constraint PR (5 行 SQLite PRAGMA), 验证 wrangler d1 migrations apply --local",
-      "time": "30 min"
-    },
-    {
-      "priority": "P0",
-      "project": "travel-planning",
-      "issue": "清迈+普吉 7 天 handoff 已 ready 5 天 (06-20 准备好), 06-26 出发, 距离 5 天 — fei 没拍板",
-      "solution": "1 分钟决策: (a) 采用 handoff 自己订; (b) 跑 PM chain mode; (c) 暂停等出发前 1 周",
-      "time": "1 min"
-    },
-    {
-      "priority": "P0",
-      "project": "benefit",
-      "issue": "T-103 blocked_on_user 11+ 天 (5 步手动操作) — 比上周拖 7 天",
-      "solution": "fei 1 分钟决策: 继续 / 暂停 / 转其他",
+      "project": "headroom-mcp",
+      "issue": "Forge :8081 → headroom :8787 流量链拓扑未拍板 (a/b/c 三选项) — fei 1 分钟决策",
+      "solution": "fei 选 a/b/c → 改 ANTHROPIC_BASE_URL 指向 headroom,启动 proxy,smoke test 5KB+ 文本看 savings",
       "time": "1 min"
     },
     {
       "priority": "P1",
-      "project": "controller-roadmap-ppt",
-      "issue": "html-ppt skill 在不同 profile 版本漂移 (pm-2 v1.1.0 vs pm-for-claude v1.10.1) — 视觉产出 drift 风险",
-      "solution": "1 个 install event 同步 v1.10.1, 加每周日版本一致性 check cron",
+      "project": "agentmemory-plugin-debug",
+      "issue": "6/21 sync 误判教训未 patch 进 skill — 易重犯 (/api/observations 404 判死, 实际 sync 正常)",
+      "solution": "patch agentmemory-integration skill §'verify method' 段: 1 行改 '用 /search 查 obs, 不用 /api/observations 404 判死'",
       "time": "15 min"
     },
     {
       "priority": "P1",
-      "project": "cc-err-debug",
-      "issue": "Web search 在 FreeCC 上无限 spin + Invalid Tool Parameters — Claude Code 上游 bug #67756",
-      "solution": "加 WebSearch-specific timeout (10s) + fail-fast, 短期文档化 'web search unavailable' 错误",
-      "time": "1 hr"
+      "project": "baidu-netdisk-backup",
+      "issue": "首次全量 done 9 天,周日增量 cron 没建 — 新数据丢失风险",
+      "solution": "fei 拍板: 接受手动 / 建 cron (jobs.json 加 weekly-bypy-incremental)",
+      "time": "1 min"
     },
     {
       "priority": "P1",
-      "project": "kiddo",
-      "issue": "emoji spec drift 已修 4 PR, 根因 (palette 多源) 未根治",
-      "solution": "提 palette single source of truth PR (emojis.ts 单一来源)",
-      "time": "1 hr"
+      "project": "memory-self-maintenance",
+      "issue": "memory 3-4 天涨回 ≥75% (本周触发 2 次 manual) — root cause USER §9 反复加 + 跨 session lessons 累积",
+      "solution": "memory-auto-decay skill 验证 1 周 (cron 每周一 03:00 跑)",
+      "time": "等观察"
     },
     {
       "priority": "P2",
-      "project": "PM 自维护",
-      "issue": "memory 反复涨回 80% (本周触发 4 次 cron)",
-      "solution": "memory-auto-decay 跑 1 周验证, ≥75% 提醒",
-      "time": "1 hr"
-    },
-    {
-      "priority": "P2",
-      "project": "writing-agent",
-      "issue": "公网 tunnel 全挡, controller-roadmap-ppt preview 没法 share",
-      "solution": "fei 给 ngrok authtoken (1 次配置永久)",
-      "time": "5 min"
-    },
-    {
-      "priority": "P3",
-      "project": "xianyu-bot + taobao-killer",
-      "issue": "两者都 stalled 7 天 — PM 优先级窗口",
-      "solution": "1 分钟决策: 合并 / 选 1 个 / 都暂停",
+      "project": "github-backup-repo",
+      "issue": "hermes-backup 私有 repo handoff ready 5 天, fei 没回 \"go\" — 闲置",
+      "solution": "fei 一字 \"go\" 跑; 或放弃",
       "time": "1 min"
     }
   ],
   "new_skills": {
-    "pm_execution_chain_mode": {
-      "category": "PM 链式执行 (pm-execution + workflow/pm)",
-      "count": 14,
-      "trigger": "06-14 my-pm 集中装 9 个 pm-execution + 5 个 workflow/pm-*",
-      "impact": "从 1 个老 pm-workflow 升级到 14 个新链式 skill, 覆盖 agent-status-summary / chain-mode / communication-conventions / curator-review / manual-handoff / pm-save-lesson-checklist / summarize-meeting / test-scenarios / weekly-report / wwas / pm-workflow / pm-project-lifecycle / pm-task-type-defaults / feihao-pm-autonomy",
-      "details": {
-        "pm-execution (9)": [
-          "agent-status-summary",
-          "chain-mode",
-          "communication-conventions",
-          "curator-review",
-          "manual-handoff",
-          "pm-save-lesson-checklist",
-          "summarize-meeting",
-          "test-scenarios",
-          "weekly-report"
-        ],
-        "workflow/pm (5)": [
-          "pm-workflow",
-          "pm-project-lifecycle",
-          "pm-task-type-defaults",
-          "feihao-pm-autonomy",
-          "feihao-visual-feedback"
-        ]
-      }
+    "agentmemory_integration": {
+      "category": "agentmemory (6/25 un-archive)",
+      "count": 1,
+      "trigger": "06-25 fei 提示 '把 agentmemory 使用的 skill 提到 hermes 总目录下', 实操从 .archive/ 移到 active/",
+      "impact": "agentmemory-integration 1.1.0 (PM Agent 著) 重新 active, my-pm 241 skills, 走 external_dirs 全 profile 共享"
     },
-    "hermes_platform": {
-      "category": "Hermes 平台维护 (hermes/* + devops/cron)",
-      "count": 15,
-      "trigger": "06-14~17 my-pm/pm-for-claude 集中装",
-      "impact": "标准化 PM profile 创建/调试/健康/cron/launchd 全链路, 13 个新 skill",
-      "details": {
-        "hermes (8)": [
-          "agentmemory-integration",
-          "cron-management",
-          "hermes-agent-profile-health",
-          "hermes-agent-profile-onboarding",
-          "hermes-feishu-bot-config",
-          "hermes-skill-architecture",
-          "memory-auto-decay",
-          "pm-memory-management"
-        ],
-        "devops (3)": [
-          "cronjob-management",
-          "github-bootstrap",
-          "kanban-orchestrator"
-        ],
-        "software-development (4)": [
-          "cc-pm-spawn-pitfalls",
-          "clean-room-test-run",
-          "hermes-agent-skill-authoring",
-          "qual-report-format"
-        ]
-      }
+    "headroom_integration": {
+      "category": "headroom MCP (6/25 部署, 不在 skill 库, 在 CC .claude.json)",
+      "count": 0,
+      "trigger": "06-25 装 headroom-ai 0.27.0 到 CC (非 hermes skill), 走 PyPI + uv venv, sandbox-only install",
+      "impact": "CC +3 MCP tools (headroom_compress / headroom_retrieve / headroom_stats), bypassPermissions 4/4 smoke test success; 准备切 Forge 流量链"
     },
-    "travel_ecosystem": {
-      "category": "Travel 旅行生态 (workflow/travel)",
-      "count": 13,
-      "trigger": "06-16~20 pm-2 集中装 (5 人清迈+普吉 行程触发)",
-      "impact": "PM 第一次具备端到端旅行规划能力 (调研+酒店+机票+地图+天气+比价+人工登录)",
-      "details": [
-        "aviationstack",
-        "family-travel-planning",
-        "google_places",
-        "google_weather",
-        "nightly-todo-runner",
-        "one-click-travel-skill",
-        "open-ctrip-fliggy-for-manual-login",
-        "pricewin-booking-assistant",
-        "pricewin-deal-finder",
-        "pricewin-hotel-search",
-        "pricewin-price-comparison",
-        "student-budget-travel",
-        "workbuddy-skills-portability-check"
-      ]
-    },
-    "cc_debug_ecosystem": {
-      "category": "CC 监控/调试 (free-claude-code + cc-monitor + preflight)",
-      "count": 7,
-      "trigger": "06-14~21 my-pm/pm-2/pm-for-claude 集中装 (cc-err-debug 触发)",
-      "impact": "CC 委派可观测性 + 5-signal 诊断 + auto-dev-verify 流程, 跟 free-claude-code proxy v1.5.0 配套",
-      "details": [
-        "free-claude-code-cli-args",
-        "headroom-free-claude-code-bridge",
-        "cc-proxy-preflight",
-        "free-claude-code-management",
-        "cc-pm-spawn-pitfalls",
-        "ai-agent-guardrails",
-        "cc-monitor"
-      ]
-    },
-    "feishu_messaging": {
-      "category": "Feishu 飞书消息栈",
-      "count": 4,
-      "trigger": "06-14~16 my-pm 集中装 + patch",
-      "impact": "飞书 API 重写, cross-app 230002 错误修, troubleshooting 沉淀",
-      "details": [
-        "feishu-dm-send (重写)",
-        "feishu-message-format",
-        "feishu-messaging-troubleshooting",
-        "hermes-feishu-bot-config"
-      ]
-    },
-    "memory_management": {
-      "category": "Memory / agentmemory 管理",
-      "count": 6,
-      "trigger": "06-14~21 my-pm/pm-2/pm-for-claude 装",
-      "impact": "MEMORY 自动化清理 + decay + 多 agent memory 同步",
-      "details": [
-        "coding-agent-memory",
-        "memory-cleanup",
-        "agent-memory-hygiene",
-        "agentmemory-integration",
-        "memory-auto-decay",
-        "pm-memory-management"
-      ]
-    },
-    "research_obsidian": {
-      "category": "Obsidian / 调研 / 知识库",
-      "count": 7,
-      "trigger": "06-14~21 research-agent 装",
-      "impact": "knowowl vault + PCIe/NAND/微信归档工具栈完整",
-      "details": [
-        "claude-design",
-        "record-obsidian-base",
-        "agent-memory-hygiene",
-        "nand-flash-research",
-        "record-obsidian-base",
-        "web-acquisition",
-        "xiaohongshu-cli"
-      ]
-    },
-    "frontend_visual": {
-      "category": "Frontend / writing-agent 视觉",
-      "count": 6,
-      "trigger": "06-14~17 writing-agent 装",
-      "impact": "writing-agent 视觉能力升级, 配合 controller-roadmap-ppt 推进",
-      "details": [
-        "frontend-slides",
-        "json-snapshot-diff",
-        "hermes-agent",
-        "claude-design",
-        "local-tunnel-exposure",
-        "frontend-slides (skills/)"
-      ]
-    },
-    "kiddo_deploy": {
-      "category": "Kiddo 实施/部署",
-      "count": 2,
-      "trigger": "06-15~16 pm-for-claude 装",
-      "impact": "kiddo 部署 / D1 testing 沉淀",
-      "details": [
-        "kiddo-scoreboard-deploy",
-        "wrangler-dev-d1-testing-gotchas"
-      ]
-    },
-    "infra_skill_mgmt": {
-      "category": "Skill 管理 + 基础设施",
-      "count": 11,
-      "trigger": "06-14~21 分散装",
-      "impact": "skill 安装 / 多 working tree / subagent / 百度网盘 / visual feedback 工具栈",
-      "details": [
-        "install-skills-from-github",
-        "claude-code-toolchain",
-        "skill",
-        "baidu-netdisk-backup",
-        "local-dev-environment",
-        "github-pr-workflow",
-        "trace",
-        "feihao-visual-feedback",
-        "multi-working-tree-management",
-        "screenshot-sharing-workaround",
-        "subagent-workflow-pattern"
-      ]
+    "feishu_markdown_v10": {
+      "category": "USER.md Feishu rule v10 (6/25 升级)",
+      "count": 0,
+      "trigger": "6/24~25 3 mode 对比 + 6/25 fei 拍板 demo2 是正解",
+      "impact": "USER.md 删旧 fallback (interactive card), 改 v10 默认走 post + tag:md (支持 markdown 表格), 留 1 行指针 → pm-execution/communication-conventions"
     }
   },
   "hot_topics": [
-    "🟢 本周最大事件: 80 个新装/新创 skill (PM 14 + Hermes 15 + Travel 13 + CC 7 + Feishu 4 + Memory 6 + Obsidian 7 + Frontend 6 + Kiddo 2 + Infra 11) + 26 patch, 是上周 74 skills 后的第二大 install wave",
-    "🟢 kiddo Item #006 打卡日历 ✅ done (Qual 验证 12/12 e2e + 313/313 unit, 2026-06-20) — 重大 milestone, 跑通 4 段法 (scaffold→render→color+modal→docs+perf)",
-    "🟡 controller-roadmap-ppt: html-ppt v1.10.1 (pm-for-claude 6-13) 跟 pm-2 v1.1.0 (6-12) 漂移 — 需 1 install event 同步 + 版本一致性 cron",
-    "🟡 kiddo P0 持续: 0007_coin_system.sql DROP score_events FK 约束 (4 次 6-11 fail 同根因) — 修 5 行 SQLite PRAGMA, unlock 0008_health_events",
-    "🟠 FreeCC websearch 无限 spin + Invalid Tool Parameters — 06-21 确认是 Claude Code 上游 issue #67756 (不是 FreeCC 独有), free-cc-websearch-fix.sh 临时方案",
-    "🟠 travel-planning 5 人清迈+普吉 7 天 handoff ready 5 天 (06-26 出发, 距离 5 天) — fei 没拍板, PM skill (family-travel-planning) 已写好",
-    "🔴 3 个 stalled 项目 (xianyu-bot / taobao-killer / benefit T-103) 都在等 fei 1 分钟决策 — 总占 PM 上下文 10+ sessions, 价值在流失",
-    "🔴 writing-agent 公网 tunnel 全挡 — controller-roadmap-ppt preview 没法 share, fei 给个 ngrok authtoken (5 min 永久解决)"
+    "🟢 本周核心: agentmemory sync 误判 真相调查 — 6/21 报错的 sync 实际一直在 work, root cause 是 verify 方法错 (/api/observations 404 ≠ 没存), 6/22 lesson saved confidence 0.9, top 1 recall",
+    "🟢 headroom MCP 装上 CC + 拍板 Forge → headroom 流量链切换 (下一步 fei 选 a/b/c 拓扑)",
+    "🟢 Feishu markdown v10 落地 (撤旧 fallback, 默认走 post + tag:md 支持表格) — 修了 1 周的反斜杠 + 错 fallback 链",
+    "🟠 memory 自我维护 2 次 manual cleanup (78.6%→62.7%) — 反复涨回 ≥75% 根因未根治",
+    "🔴 3 个 stalled 等 fei 1 分钟决策: headroom 流量链拓扑 (a/b/c) / 百度网盘周日增量 cron (建/不建) / hermes-backup repo (go/放弃)",
+    "🔴 acceptEdits 不 grant MCP tool 教训 lesson 被打断未存 — 下次 headroom smoke test 可能再踩"
   ]
 }
