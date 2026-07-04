@@ -1,192 +1,247 @@
 {
   "meta": {
     "title": "Hermes 团队周报",
-    "date_range": "2026-06-21 → 2026-06-28",
-    "generated_at": "2026-06-28",
+    "date_range": "2026-06-28 → 2026-07-05",
+    "generated_at": "2026-07-05",
     "owner": "fei",
     "summary": {
-      "total_sessions": 12,
-      "profiles_active": 1,
+      "total_sessions": 50,
+      "profiles_active": 6,
       "real_projects": 6,
-      "rolling_projects": 4,
-      "real_problems": 5,
-      "new_skills_count": 3
+      "rolling_projects": 6,
+      "real_problems": 6,
+      "new_skills_count": 12
     }
   },
   "overview": [
     {
       "profile": "my-pm",
-      "sessions": 12,
-      "focus": "agentmemory plugin 真相调查 (误判修) + headroom MCP 部署 (CC smoke test 4/4) + Feishu markdown debug (3 mode 对比) + memory 2 次手动 cleanup (78.6%→62.7%) + 百度网盘 25G 首全量 + gh CLI GitHub repo handoff"
+      "sessions": 1,
+      "focus": "weekly-report cron (本任务) — 5 步流程跑通, data.json 推送 GH Pages, Feishu 通知"
+    },
+    {
+      "profile": "pm-2",
+      "sessions": 20,
+      "focus": "forge cron job 关闭 (06-29) + Thailand 行程修改 (07-04, 205 msgs) + NIGHTLY-TODO cron (0 pending) + Daily Memory Cleanup (49% 阈值) + skill-promotion-scanner 周跑"
+    },
+    {
+      "profile": "pm-for-claude",
+      "sessions": 8,
+      "focus": "gateway 崩溃诊断 + restart (07-02, 24 msgs) + CC unable-to-connect 调研 (07-02 旧 session 重启, 140 msgs) + CURATOR consolidation (07-01)"
+    },
+    {
+      "profile": "research-agent",
+      "sessions": 17,
+      "focus": "新股申购 cron 修 bug (07-02~04, 113+141 msgs, check_ipo.py 未改) + WeChat 公众号归档 3 次 (NAND/SSD/AI) + Z-Library 每日下载 + CURATOR"
+    },
+    {
+      "profile": "qual-agent",
+      "sessions": 2,
+      "focus": "CURATOR consolidation 跑通"
+    },
+    {
+      "profile": "writing-agent",
+      "sessions": 2,
+      "focus": "CURATOR consolidation 跑通"
     }
   ],
   "real_projects": [
     {
-      "id": "agentmemory-plugin-debug",
-      "name": "agentmemory plugin sync 误判",
-      "description": "hermes 更新后 verify 6/21 报的 sync 问题 — 真假判定",
-      "progress": "06-22 verify 结论: sync **一直在 work**,6/21 是误判; Plugin activated 6/22 0:57 第一次出现 (老 bug 修了), sync_turn fire 6 次, /search 查到 5 条 obs 含 sync_turn 写入; 6/22 清 TEMP_DIAG block (15 行删掉, fresh-import verified clean); 6/22 save lesson lsn_2c2bfd3631d85702 (confidence 0.9, top 1 recall); 6/25 un-archive agentmemory-integration skill (从 .archive/agentmemory-integration-20260621-203248/ 移到 ~/.hermes/skills/agentmemory-integration/), my-pm 241 skills active",
-      "phase": "🛠 Implementation → ✅ Implemented",
-      "phase_emoji": "✅",
-      "last_active": "2026-06-25",
-      "active_status": "rolling",
-      "problem": "P1: 6/21 误判 sync 不 work (根因: check 方式错, /api/observations 404 ≠ 没存, /search 才查得到) — lesson saved 但需 patch 进 hermes-agent 或 agentmemory-integration skill 防重犯",
-      "solution": "patch agentmemory-integration skill §'verify method' 段: '用 /search 查 obs,不用 /api/observations 404 判死' (1 行); patch hermes-agent profile health check 同段"
-    },
-    {
-      "id": "headroom-mcp",
-      "name": "headroom MCP 接入 (新)",
-      "description": "headroomlabs-ai/headroom 48,770★ Python 库 + proxy + MCP server 装到 CC",
-      "progress": "06-25 完成: PyPI 包 `headroom-ai` v0.27.0 (非 `headroom`),uv venv --python 3.11, headroom --version OK, 3 MCP tools (headroom_compress / headroom_retrieve / headroom_stats) JSON-RPC 跑通; CC .claude.json mcpServers 配好, smoke test v2 (bypassPermissions) 4/4 tool call success; 06-25 fei 拍板 放弃forge用headroom — 准备切流量链 (Forge :8081 → headroom :8787); acceptEdits 不 grant MCP tool 教训待存 (lesson 草稿已写,被打断)",
-      "phase": "🛠 Implementation → 🧪 Testing",
+      "id": "gateway-429-crash",
+      "name": "My-pm/pm-for-claude gateway 崩溃 (P0)",
+      "description": "07-02 早 8 点 my-pm 挂掉, fei 在 pm-for-claude 求助 restart, 根因是 Token Plan 耗尽",
+      "progress": "07-02 08:13 pm-for-claude session_bg_081238: 找到 pm-for-claude PID 79068 退码 -9 (SIGKILL) + 飞书 WebSocket 断开 + HTTP 429 Token Plan 用量耗尽; pm-2 也被波及退码 -15; fei restart gateway 后 WebSocket 重连但 429 仍可能挡消息; 触发 hermes-agent-gateway-launchd skill 同日升级 (07-04 1.1.0+, 加入 429 诊断 + 多 profile recovery SOP)",
+      "phase": "🔧 Maintenance → 🛠 Implementation",
       "phase_emoji": "🛠",
-      "last_active": "2026-06-25",
+      "last_active": "2026-07-04",
       "active_status": "active",
-      "problem": "P0: Forge :8081 → headroom :8787 流量链拓扑未拍板 (3 选项: (a) headroom 接 free-cc (b) headroom 直连上游 (c) free-cc → headroom 串行); P0: headroom proxy 子命令参数 (端口/上游配置/env) 未查证; P1: acceptEdits 教训 lesson 未存",
-      "solution": "P0: fei 1 分钟决策 (a/b/c) → 改 ANTHROPIC_BASE_URL 指向 headroom,启动 `headroom proxy` 后台跑,smoke test 5KB+ 重复模式文本看 savings > 0%; P1: 跑 pm-save-lesson-checklist 把 acceptEdits 不 grant MCP tool lesson 存上"
+      "problem": "P0: Token Plan 用量耗尽 (HTTP 429) 根因没修 — gateway 重启只是临时救火, 下一个 429 还会再挂; 同一晚上 pm-2 + my-pm + pm-for-claude 都被波及说明无全局 budget/rate-limit 护栏",
+      "solution": "(1) free-cc proxy 加 per-profile daily budget ($5/d 之类) + 429 时 throttle 而不是 SIGKILL; (2) PM 加 daily token-budget-advisor skill 主动报告用量; (3) hermes-agent-gateway-launchd skill §'recovery SOP' 段加 429-aware restart (先降并发再 restart, 不要直接 respawn)"
     },
     {
-      "id": "feishu-markdown",
-      "name": "Feishu markdown mode 调研",
-      "description": "lark-cli --text / --markdown / --content 三个 mode 实际行为差异",
-      "progress": "06-24 跑 3 demo 验证 (msg_id 全 success); 结论: --text 走 text type, --markdown 走 post + tag:md (支持 inline markdown, **不**解析 table), --content + interactive 走 tag:table (真表格); 6/25 fei 拍板 demo2 (--markdown 走 post + tag:md) 是 \"另一个 agent 发不出\" 的正解; USER.md Feishu rule 更新 v10 (撤旧 fallback); save lesson \"tag:md 现状支持 markdown 表格 (vs 4/22 commit 8e18d1031 stale 假设)\"",
-      "phase": "✅ Implemented",
-      "phase_emoji": "✅",
-      "last_active": "2026-06-25",
+      "id": "check-ipo-bond",
+      "name": "新股申购 cron 修 bug (可转债 + 双信源)",
+      "description": "fei 反馈每日新股申购 cron 缺可转债, 应该有 2 个信源 (东方财富 + CNInfo/akshare) 但少了 1 个",
+      "progress": "07-02 08:31 research-agent session_20260702_083140 (113 msgs) + 07-04 09:15 session_20260704_091505 (141 msgs) 排查完毕: (a) Eastmoney 可转债 API `RPTA_APP_BONDAPPLY`/`RPTA_APP_CBAPPLY`/`RPTA_APP_KZZAPPLY` 全部下线 code=9501; (b) akshare `bond_zh_cov` 可用 (1030 行历史, 2007-2026/7); (c) 当前 CNInfo 验证源 (akshare `stock_new_ipo_cninfo`) 仍 OK, 没新股时也能跑倒计时; (d) 7-3 实际有可转债申购『科博达』, 但脚本没查到; 但 **check_ipo.py 文件 mtime 仍是 2026-06-09, 没有 commit 改动** — 诊断→实现 链断了",
+      "phase": "🔬 Discovery → 📋 Spec (fix 设计有, 但 check_ipo.py 未改)",
+      "phase_emoji": "📋",
+      "last_active": "2026-07-04",
+      "active_status": "stalled",
+      "problem": "P1: 诊断结论已有但 check_ipo.py 未改 (mtime 2026-06-09, 4 周没动) — fei 反馈当天跑了 2 个 session 没产出 fix; 根因: 2 个 session 中途被新需求打断 (07-02 中途切到『6 张图书图片 OCR』, 07-04 中途切到 mp.weixin.qq.com 归档), image-text-extraction skill 倒是 patch 了, IPO 没修",
+      "solution": "(1) Code Agent 接 session_20260704_091505 上下文 (第 27-28 行的诊断结论) 直接改 check_ipo.py: 加 bond_zh_cov 数据源 + akshare 兼容 + 输出段加『可转债』分隔; (2) 测 7-3 数据『科博达』应能查到; (3) commit 进 workspace/hermes-backup 让下次 cron 自动生效"
+    },
+    {
+      "id": "forge-cron-closed",
+      "name": "Forge weekly-audit cron 关闭",
+      "description": "fei 6-29 决定停掉 cc-forge-weekly-audit, 转 headroom 路线",
+      "progress": "06-29 19:54 pm-2 session_bg_195419_5ba337 删 cron job (job_id `0e7d5fc472d2`, schedule 周一 10:00); 同日 10:00 最后一次 audit 输出: Forge 23,863 POST (lifetime) / 11,564 (last 7d) / 1,248 错误 (含 502 BackendError) / main log 仅 25 行 banner (stderr 分离异常); my-pm profile `.claude/settings.json` ANTHROPIC_BASE_URL 已切 `http://localhost:8788` (headroom), pm-2 还在 `:8082` (free-cc 直连) — 半迁移态",
+      "phase": "🪦 Closed",
+      "phase_emoji": "🪦",
+      "last_active": "2026-06-29",
       "active_status": "closed",
-      "problem": "— 调研完成 + 拍了板 (demo2 是正解), 不算问题",
+      "problem": "— 主动关闭, 不算问题",
       "solution": "—"
     },
     {
-      "id": "baidu-netdisk-backup",
-      "name": "百度网盘 bypy 备份",
-      "description": "~25G (hermes 20G + workspace 4.9G + obsidian 181M) 周日增量 cron",
-      "progress": "06-23 验证 bypy v1.8.9 装好 + OAuth token 有效 (6/17 授权) + 网盘连接 OK (Quota 14.007TB/Used 11.262TB, 2.7TB 余量) + /apps/bypy/.hermes-v1/ 6/19 17:42 上传首次全量; 6/23 fei 问备份内容 → 路径表 + 25G 估算 + bypy 1-3 MB/s 限速预计 3-7 小时; 但周日增量 cron jobs.json 里没建",
-      "phase": "✅ Implemented (首次全量 done, 增量 cron 缺)",
+      "id": "headroom-upgrade-030",
+      "name": "headroom v0.30.0 升级 + daily-audit cron",
+      "description": "headroom-ai 0.27.0 → 0.30.0 升级 + 0 流量 idle 11 天实测 + 每日 audit cron 启动",
+      "progress": "07-04 16:52 ONNX load confirmed fresh (predecessor 6/24 warning 已 stale); 07-05 02:01 headroom-daily-audit cron 首次跑 (job_id `2213b29bf9b2`, schedule `0 2 * * *`, no_agent false): proxy PID 54447 up 9h, RSS 22 MB, v0.30.0, listener 127.0.0.1:8788 alive, upstream :8082 healthy, Kompress ENABLED (ModernBERT ONNX), CCR cache 0/1000, budget $0/$10 daily, lifetime 15 reqs / 37,614 tokens / $0.19 spent / 0 saved — **WARN** 状态但全是因为 11 天没真 CC 流量 (上一次 PERF 行 6/24); devops/headroom-context-compression skill 7-4/05 创建到位",
+      "phase": "✅ Implemented",
       "phase_emoji": "✅",
-      "last_active": "2026-06-23",
-      "active_status": "stalled",
-      "problem": "P1: 首次全量 done 9 天,但周日增量 cron 没建 — 数据风险 (新 skill/commit 丢失); 之前 5 个 cron 都没这块",
-      "solution": "fei 1 分钟拍板: 接受 (手动周日跑) / 建 cron (jobs.json 加 weekly-bypy-incremental, Sonntag 03:00, hermes 增量) — fei 决策, PM 不动 explicit-ask 列表"
-    },
-    {
-      "id": "github-backup-repo",
-      "name": "hermes-backup 私有 GitHub repo",
-      "description": "用 gh CLI 建私有 repo 备份 hermes 关键 config + scripts",
-      "progress": "06-23 fei 问 gh 能否建私有 repo → PM 准备 2 路 (gh OAuth / PAT) 标准命令; gh auth login 走 OAuth 浏览器一次; 推荐 name `hermes-backup`, description + license 默认填好, fei 回 \"go\" 跑; fei 后续说 \"确保目录是 private\" → 标准命令 --private 已含, 等 fei 回 \"go\"",
-      "phase": "📋 Spec (handoff ready, 等 fei \"go\")",
-      "phase_emoji": "📋",
-      "last_active": "2026-06-23",
-      "active_status": "stalled",
-      "problem": "P2: 标准命令准备好了, 但 fei 5 天没回 \"go\" — handoff 闲置",
-      "solution": "fei 一字 \"go\" 跑命令; 或放弃 (用 iCloud / bypy 替代)"
-    },
-    {
-      "id": "memory-self-maintenance",
-      "name": "PM memory 自我维护",
-      "description": "MEMORY.md + USER.md 周期 cleanup 防 95% BLOCK",
-      "progress": "本周跑 2 次 manual cleanup: 6/24 cycle 1 (USER 92.9%→73%, MEMORY 修 §3 \"1\" 异常段); 6/25 cycle 2 (USER 78.6%→62.7%, self-correction bytes vs chars false positive 99%→78.6% 实际, slim 6 处 -219 chars); 2 次都按 pm-memory-management §8 SOP 备份到 memories/ + cron/output/; 6/22 cron weekly-memory-cleanup (03:05) 自动跑一次",
-      "phase": "🔁 Rolling",
-      "phase_emoji": "🔁",
-      "last_active": "2026-06-25",
+      "last_active": "2026-07-05",
       "active_status": "active",
-      "problem": "P1: 清理后 3-4 天涨回 ≥75% (本周触发 2 次 manual), root cause 是 USER §9 Feishu markdown 反复 + 跨 session lessons 累积",
-      "solution": "memory-auto-decay skill (LRU 自动降权) 验证 1 周 (cron 每周一 03:00 跑); USER.md 加 ≥75% 主动 warning (不靠 cron)"
+      "problem": "P1: headroom 流量链拓扑 (a/b/c) 仍未拍板 — fei 6/25 拍板走 headroom 替代 forge 但 a/b/c 路由选择未决; 当前 my-pm 已切 `:8788`, pm-2 还走 `:8082` 直连 free-cc, 11 天 0 流量导致无法验证 token 节省效果",
+      "solution": "fei 1 分钟决策 a/b/c → PM 改 pm-2/.claude/settings.json ANTHROPIC_BASE_URL 同步切 :8788; 跑 1 次 5KB+ smoke test 看 savings% 实测; 如 ONNX 在 macOS sandbox 跑得动, 等 daily-audit cron 自动报绿"
+    },
+    {
+      "id": "image-text-extraction-patch",
+      "name": "image-text-extraction skill patch (实战驱动)",
+      "description": "公众号文章图片 OCR 实战暴露 skill 缺口 → patch 决策树 + 常见坑",
+      "progress": "07-04 research-agent 公众号 mp.weixin.qq.com 文章正文仅图片, 6 张图书封面拼图 OCR 多 psm 阈值 (psm 6 + threshold 120-160 实测最佳) 救出大部分书名; 同 session 末 patch image-text-extraction skill: 决策树 STEP 0 新增『先扫本地 KB』分支 (本次 KB 已有 action item 直接复用); WeChat MP 特判新增 5 步工作流 (alt 提取 → data-src → 下载 → OCR → 整理); C 路径新增『激进增强』小节 (艺术字体/封面拼图); 常见坑 +2 (#9 mmbiz 子图 243 字节拒服, #10 execute_code 沙箱 /tmp 隔离)",
+      "phase": "✅ Implemented",
+      "phase_emoji": "✅",
+      "last_active": "2026-07-04",
+      "active_status": "active",
+      "problem": "P2: skill patched 但 research-agent 没把 image-text-extraction 显式列在 active skill list — 下次跑同类任务可能没 load (本周实战驱动修, 但驱动力是 session 内的『读图失败』信号, 不是 skill discovery)",
+      "solution": "research-agent SKILL.md §'default skills' 段加 image-text-extraction; 或 PM 加 weekly skill-promotion-scanner 规则: 实战驱动 patch 后自动 promote"
+    },
+    {
+      "id": "5-new-skills-batch",
+      "name": "5 个新 skill 批量安装 (6-28 batch)",
+      "description": "周末一次性装 5 个新 skill, 全部 first_seen = 2026-06-28, 跨 PM/agent 通用能力",
+      "progress": "06-28 21:11~21:31 装 5 个 net-new skill: `apple/macos-native-integration` (5285B), `autonomous-ai-agents/coding-agent-clis` (5766B), `github/github-workflows` (6315B), `messaging/feishu-messaging` (6588B), `red-teaming/jailbreak-methods` (5309B); 同时 pm-execution/weekly-report 自身 patch (parent 6-14, last_mod 6-28); 全部走 external_dirs 共享, 5 profile 都可见; hermes-skill-architecture skill 06-29 22:06 装上, 跨 profile skill 共享规范明确",
+      "phase": "✅ Implemented",
+      "phase_emoji": "✅",
+      "last_active": "2026-06-29",
+      "active_status": "rolling",
+      "problem": "— 5 个 skill 都装好, 跟 6-25 un-archive agentmemory-integration 加起来 6 个 net-new, 跨 PM 维护边界 OK",
+      "solution": "—"
     }
   ],
   "rolling_projects": [
     {
-      "name": "weekly-report cron (本任务)",
-      "progress": "cron job `weekly-report-publish` 周日 07:00 自动跑; 本周手动触发 1 次 (06-25 fei 说 'feishu 表格发不出' 间接走这流程查的)",
+      "name": "memory-cleanup cron (multi-profile, 滚动涨回 ≥75%)",
+      "progress": "本周 my-pm/pm-2/pm-for-claude/research-agent 共跑 ~10 次 memory-cleanup cron (06-28~07-04); pm-2 06-29 23:00 实测 49.2% 触发阈值 NOT_CLEAN, 涨得慢; my-pm 涨回 ≥75% 频次仍高 (上周报 P1 标记延续)",
       "active_status": "rolling",
-      "problem": "— cron 跑通, 3-tier feishu notify 偶尔 race (上 6/14 patch 修过)",
-      "solution": "—"
+      "problem": "P1: 涨回 ≥75% 根因未根治 (上周报标记延续 2 周); memory-auto-decay skill (6-20 装) LRU 自动降权验证 1 周, cron 每周一 03:00 跑, 但本周末 07-06 才到第 1 次验证窗口",
+      "solution": "等 07-06 周一 memory-auto-decay 验证结果; 如 1 周后仍 ≥75%, 上 manual cleanup 二次 (上周 78.6%→62.7% 套路)"
     },
     {
-      "name": "agentmemory MCP (rolling 维护)",
-      "progress": "viewer http://localhost:3113 健康; lessons 6 条 (本周 +1: 6/22 sync 误判 教训); sync_turn 6/22 0:57 起 fire, /search 5 条 obs 命中",
+      "name": "CURATOR consolidation (multi-profile)",
+      "progress": "本周 5 个 profile 跑 CURATOR (pm-2 07-01 87 msgs, pm-for-claude 07-01 12 msgs, research-agent 07-02 12 msgs, qual-agent 07-02 23 msgs, writing-agent 07-02 9 msgs); pm-2 输出 8 个 candidate skills 全部 class-level umbrella, 无 overlap",
       "active_status": "rolling",
       "problem": "— 跑通, 监控中",
       "solution": "—"
     },
     {
-      "name": "skill 库持续沉淀 (my-pm 241 skills)",
-      "progress": "6/25 un-archive agentmemory-integration 后 my-pm 241 active / 77 disabled; 本周 +1 un-archive (净新), 0 新装; lessons channel +1 (sync 误判)",
+      "name": "weekly-report cron (本任务)",
+      "progress": "cron job `weekly-report-publish` 周日 07:00 自动跑; 上周日 (06-28) 跑通 push; 本周日 (07-05) 第 2 次自动跑, 流程跟上次一致 (5 步)",
       "active_status": "rolling",
-      "problem": "P2: 77 disabled skill 占用空间, 但 un-archive 路径不清理 (skill_architecture §'搬上 ≠ 跨 profile 共享' 已覆盖)",
-      "solution": "— 不动 explicit-ask 列表"
+      "problem": "— cron 跑通, 3-tier feishu notify 持续验证中",
+      "solution": "—"
     },
     {
-      "name": "hermes profile 健康 (rolling)",
-      "progress": "SOUL.md 513B (未变); profiles/my-pm/ state.db + sessions/ + memories/ 0 byte (Feishu 主走, 数据走 session DB); external_dirs [/Users/tidusmaomao/.hermes/skills] 配了",
+      "name": "Z-Library 每日下载 (research-agent)",
+      "progress": "07-04 00:00 cron 跑: 0 本下载 / 0 失败 / pending.txt 空 / 30 天重搜仍 4 本找不到 (National Geographic Robots / Who Was Armstrong / Who Was Cady Stanton / 等)",
       "active_status": "rolling",
-      "problem": "—",
+      "problem": "— 跑通, 4 本真找不到 (zlib 索引缺), 已知 issue",
+      "solution": "—"
+    },
+    {
+      "name": "xianyu-daily-check (my-pm)",
+      "progress": "07-04 09:00 cron 跑通 (no_agent script); 本周 6 次跑 (06-29~07-04 跳过周末 + 节日); 数据源 goofish mtop 协议稳定",
+      "active_status": "rolling",
+      "problem": "— 跑通",
+      "solution": "—"
+    },
+    {
+      "name": "disk-space-daily-3am (my-pm)",
+      "progress": "07-05 03:00 cron 跑通 (32 次 repeat); no_agent bash 脚本, 报告磁盘余量",
+      "active_status": "rolling",
+      "problem": "— 跑通",
       "solution": "—"
     }
   ],
   "problems": [
     {
       "priority": "P0",
-      "project": "headroom-mcp",
-      "issue": "Forge :8081 → headroom :8787 流量链拓扑未拍板 (a/b/c 三选项) — fei 1 分钟决策",
-      "solution": "fei 选 a/b/c → 改 ANTHROPIC_BASE_URL 指向 headroom,启动 proxy,smoke test 5KB+ 文本看 savings",
-      "time": "1 min"
+      "project": "gateway-429-crash",
+      "issue": "Token Plan 用量耗尽 (HTTP 429) → my-pm + pm-for-claude + pm-2 三 profile 07-02 同早上挂 — 根因没修, 下次 429 还会再挂",
+      "solution": "free-cc proxy 加 per-profile daily budget ($5/d) + 429 throttle (而非 SIGKILL) + PM token-budget-advisor skill 主动报告",
+      "time": "1-2 天"
     },
     {
       "priority": "P1",
-      "project": "agentmemory-plugin-debug",
-      "issue": "6/21 sync 误判教训未 patch 进 skill — 易重犯 (/api/observations 404 判死, 实际 sync 正常)",
-      "solution": "patch agentmemory-integration skill §'verify method' 段: 1 行改 '用 /search 查 obs, 不用 /api/observations 404 判死'",
-      "time": "15 min"
+      "project": "check-ipo-bond",
+      "issue": "新股申购可转债 + akshare 整合 fix 设计有 (session 27-28 行结论), 但 check_ipo.py 未改 (mtime 06-09, 4 周没动) — 诊断→实现 链断了",
+      "solution": "Code Agent 接 session_20260704_091505 上下文直接改 check_ipo.py + 测 7-3 科博达 + commit 进 workspace/hermes-backup",
+      "time": "30 min"
+    },
+    {
+      "priority": "P1",
+      "project": "headroom-upgrade-030",
+      "issue": "headroom 流量链拓扑 a/b/c 仍未拍板 (上周报 P0 延续, 11 天 0 流量导致无法验证 token 节省效果)",
+      "solution": "fei 1 分钟选 a/b/c → 改 pm-2/.claude/settings.json ANTHROPIC_BASE_URL 切 :8788 → 跑 5KB+ smoke test 看 savings%",
+      "time": "5 min"
     },
     {
       "priority": "P1",
       "project": "baidu-netdisk-backup",
-      "issue": "首次全量 done 9 天,周日增量 cron 没建 — 新数据丢失风险",
-      "solution": "fei 拍板: 接受手动 / 建 cron (jobs.json 加 weekly-bypy-incremental)",
+      "issue": "首次全量 done 16 天, 周日增量 cron 没建 — 新数据丢失风险 (上周报 P1 延续)",
+      "solution": "fei 拍板: 接受手动 / 建 cron (jobs.json 加 weekly-bypy-incremental 周日 03:00)",
       "time": "1 min"
-    },
-    {
-      "priority": "P1",
-      "project": "memory-self-maintenance",
-      "issue": "memory 3-4 天涨回 ≥75% (本周触发 2 次 manual) — root cause USER §9 反复加 + 跨 session lessons 累积",
-      "solution": "memory-auto-decay skill 验证 1 周 (cron 每周一 03:00 跑)",
-      "time": "等观察"
     },
     {
       "priority": "P2",
       "project": "github-backup-repo",
-      "issue": "hermes-backup 私有 repo handoff ready 5 天, fei 没回 \"go\" — 闲置",
-      "solution": "fei 一字 \"go\" 跑; 或放弃",
+      "issue": "hermes-backup 私有 repo handoff ready 12 天, fei 没回 \"go\" — 闲置 (上周报 P2 延续)",
+      "solution": "fei 一字 \"go\" 跑; 或放弃 (用 iCloud / bypy 替代)",
       "time": "1 min"
+    },
+    {
+      "priority": "P2",
+      "project": "memory-self-maintenance",
+      "issue": "memory 涨回 ≥75% 仍未根治 (上周 P1 延续 2 周) — memory-auto-decay 验证窗口 07-06 才到",
+      "solution": "等 07-06 周一验证; 如不行, manual cleanup + 调阈值",
+      "time": "等观察"
     }
   ],
   "new_skills": {
-    "agentmemory_integration": {
-      "category": "agentmemory (6/25 un-archive)",
+    "p2_pm_misc": {
+      "category": "🟣 PM / 维护能力套件 (5 skills, 6-28 batch 一次性装)",
+      "count": 5,
+      "trigger": "06-28 21:11~21:31 批量装, 跨 PM/agent 通用",
+      "impact": "- `apple/macos-native-integration` (5285B) · macOS 原生 app 自动化\n- `autonomous-ai-agents/coding-agent-clis` (5766B) · 外部 AI CLI 委派\n- `github/github-workflows` (6315B) · gh CLI / PR / issue 全套\n- `messaging/feishu-messaging` (6588B) · Feishu bot-mode 收发\n- `red-teaming/jailbreak-methods` (5309B) · 安全研究"
+    },
+    "headroom_skill": {
+      "category": "🟢 devops/headroom-context-compression (新建, 7-04)",
       "count": 1,
-      "trigger": "06-25 fei 提示 '把 agentmemory 使用的 skill 提到 hermes 总目录下', 实操从 .archive/ 移到 active/",
-      "impact": "agentmemory-integration 1.1.0 (PM Agent 著) 重新 active, my-pm 241 skills, 走 external_dirs 全 profile 共享"
+      "trigger": "headroom-ai 0.27.0 → 0.30.0 升级 + daily-audit cron 7-05 首次跑需要 SOP 文档",
+      "impact": "headroom-context-compression skill (~9KB) — 覆盖 install / CC routing / daemon lifecycle / usage stats / 'savings=0' 决策树"
     },
-    "headroom_integration": {
-      "category": "headroom MCP (6/25 部署, 不在 skill 库, 在 CC .claude.json)",
-      "count": 0,
-      "trigger": "06-25 装 headroom-ai 0.27.0 到 CC (非 hermes skill), 走 PyPI + uv venv, sandbox-only install",
-      "impact": "CC +3 MCP tools (headroom_compress / headroom_retrieve / headroom_stats), bypassPermissions 4/4 smoke test success; 准备切 Forge 流量链"
+    "hermes_arch": {
+      "category": "🟠 hermes-skill-architecture (6-29 装)",
+      "count": 1,
+      "trigger": "5 个新 skill 装到 my-pm + external_dirs 共享, 需要跨 profile skill 架构规范",
+      "impact": "hermes-skill-architecture skill (~5KB) — 三层 skill 目录模型 (全 profile 共享 / profile 私有 / cross-profile write guard)"
     },
-    "feishu_markdown_v10": {
-      "category": "USER.md Feishu rule v10 (6/25 升级)",
-      "count": 0,
-      "trigger": "6/24~25 3 mode 对比 + 6/25 fei 拍板 demo2 是正解",
-      "impact": "USER.md 删旧 fallback (interactive card), 改 v10 默认走 post + tag:md (支持 markdown 表格), 留 1 行指针 → pm-execution/communication-conventions"
+    "patch_events": {
+      "category": "🟠 实战驱动 patch (4 skills)",
+      "count": 4,
+      "trigger": "本周 session 内实战暴露缺口, 同 session 末 patch",
+      "impact": "- `pm-execution/weekly-report` (06-28 patch, self-referential)\n- `pm-execution/communication-conventions` (07-02 patch)\n- `hermes/pm-memory-management` (07-04 patch)\n- `hermes/hermes-agent-gateway-launchd` (07-04 patch, 加 429 诊断 + multi-profile recovery SOP)\n- `devops/claude-code-infrastructure` (07-04 patch)\n- `coding-agent-memory` (07-04 patch)\n- `image-text-extraction` (07-04 patch, research-agent 实战驱动, 加 KB 优先 / WeChat MP 特判 / psm 6+threshold 120-160)"
     }
   },
   "hot_topics": [
-    "🟢 本周核心: agentmemory sync 误判 真相调查 — 6/21 报错的 sync 实际一直在 work, root cause 是 verify 方法错 (/api/observations 404 ≠ 没存), 6/22 lesson saved confidence 0.9, top 1 recall",
-    "🟢 headroom MCP 装上 CC + 拍板 Forge → headroom 流量链切换 (下一步 fei 选 a/b/c 拓扑)",
-    "🟢 Feishu markdown v10 落地 (撤旧 fallback, 默认走 post + tag:md 支持表格) — 修了 1 周的反斜杠 + 错 fallback 链",
-    "🟠 memory 自我维护 2 次 manual cleanup (78.6%→62.7%) — 反复涨回 ≥75% 根因未根治",
-    "🔴 3 个 stalled 等 fei 1 分钟决策: headroom 流量链拓扑 (a/b/c) / 百度网盘周日增量 cron (建/不建) / hermes-backup repo (go/放弃)",
-    "🔴 acceptEdits 不 grant MCP tool 教训 lesson 被打断未存 — 下次 headroom smoke test 可能再踩"
+    "🔴 P0: 07-02 早上 my-pm + pm-for-claude + pm-2 三 profile gateway 同挂, 根因是 Token Plan 用量耗尽 (HTTP 429) — 不是偶发, 是无护栏的必然; gateway restart 是临时救火",
+    "🔴 P0 延续: headroom 流量链拓扑 (a/b/c) 仍未拍板, headroom 0.30.0 升级完了但 11 天 0 流量, token 节省效果没法实测; 上报 P1 标记升级到 P1 (跟 gateway 429 同根因)",
+    "🟠 P1: 新股申购 cron 修 bug — 2 个 session 跑出诊断结论但 check_ipo.py 4 周没改, 中途被新需求打断 (图书 OCR + 公众号归档); 实战驱动 patch 都打到 image-text-extraction skill, IPO fix 漏了",
+    "🟢 进展: headroom-daily-audit cron 7-05 首次跑通, proxy v0.30.0 健康 (Kompress ONNX enabled, 6 subsystems 全 ok); 11 天 0 流量 = WARN 但非 ALERT",
+    "🟢 进展: 5 个新 skill 批量装好 (6-28), 加上 hermes-skill-architecture 跨 profile 共享规范明确 — my-pm 247 active skills (上周 241, +6)",
+    "🟡 滚存: 4 个 stalled 等 fei 决策 — 百度网盘周日增量 cron (建/不建) / hermes-backup repo (go/放弃) / headroom 流量链 a/b/c (选哪个) / 新股申购 akshare 整合 (接 30min fix)",
+    "🟡 滚存: memory 涨回 ≥75% 仍未根治 (2 周), 等 07-06 memory-auto-decay LRU 验证窗口",
+    "⚪ 1 sentence: Thailand 行程修改 (pm-2 07-04, 205 msgs) — fei 个人, 不在 PM 范围",
+    "⚪ 1 sentence: kiddo-scoreboard cron (daily-backup + nightly-todo) 持续跑, 0 pending, 不在 PM 主动跟踪"
   ]
 }
