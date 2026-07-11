@@ -1,163 +1,177 @@
 {
   "meta": {
     "title": "Hermes 团队周报",
-    "date_range": "2026-06-28 → 2026-07-05",
-    "generated_at": "2026-07-05",
+    "date_range": "2026-07-06 → 2026-07-12",
+    "generated_at": "2026-07-12",
     "owner": "fei",
     "summary": {
-      "total_sessions": 50,
-      "profiles_active": 6,
-      "real_projects": 6,
+      "total_sessions": 61,
+      "profiles_active": 5,
+      "real_projects": 7,
       "rolling_projects": 6,
-      "real_problems": 6,
-      "new_skills_count": 12
+      "real_problems": 5,
+      "new_skills_count": 18
     }
   },
   "overview": [
     {
-      "profile": "my-pm",
-      "sessions": 1,
-      "focus": "weekly-report cron (本任务) — 5 步流程跑通, data.json 推送 GH Pages, Feishu 通知"
-    },
-    {
-      "profile": "pm-2",
-      "sessions": 20,
-      "focus": "forge cron job 关闭 (06-29) + Thailand 行程修改 (07-04, 205 msgs) + NIGHTLY-TODO cron (0 pending) + Daily Memory Cleanup (49% 阈值) + skill-promotion-scanner 周跑"
+      "profile": "research-agent",
+      "sessions": 37,
+      "focus": "NAND/DRAM 存储行业研究 (Lambda 公司调研 4 session + NAND/DRAM 价格 2026Q3 354 行报告 + NAND/DRAM RSS 聚合信源联调 + 公众号归档 6 篇 + xiaohongshu-cli QR 登录全套修复 + Z-Library 每日 cron + agentmemory MCP 首验 + CURATOR)"
     },
     {
       "profile": "pm-for-claude",
-      "sessions": 8,
-      "focus": "gateway 崩溃诊断 + restart (07-02, 24 msgs) + CC unable-to-connect 调研 (07-02 旧 session 重启, 140 msgs) + CURATOR consolidation (07-01)"
+      "sessions": 20,
+      "focus": "request_dump 旧文件 (2026-06-05 Copilot ACP `--workdir` 报错) mtime 被批量更新到 07-11; 实际活跃 session 仅 2 个 chat 元数据更新 (含 oc_fe7d405b... DM), 多数是历史快照"
     },
     {
-      "profile": "research-agent",
-      "sessions": 17,
-      "focus": "新股申购 cron 修 bug (07-02~04, 113+141 msgs, check_ipo.py 未改) + WeChat 公众号归档 3 次 (NAND/SSD/AI) + Z-Library 每日下载 + CURATOR"
-    },
-    {
-      "profile": "qual-agent",
+      "profile": "my-pm",
       "sessions": 2,
-      "focus": "CURATOR consolidation 跑通"
+      "focus": "weekly-report cron (本任务) + headroom 暂停 + NAND 新闻搜索器 chat 创建 (07-11) + benefit 项目状态汇报 (07-06, 195 msgs 跨日)"
+    },
+    {
+      "profile": "pm-2",
+      "sessions": 1,
+      "focus": "benefit 项目跨日 session 元数据更新 (07-11 22:11, oc_1c92cc4b... DM), 实际工程已在 benefit session 里跑完"
     },
     {
       "profile": "writing-agent",
-      "sessions": 2,
-      "focus": "CURATOR consolidation 跑通"
+      "sessions": 1,
+      "focus": "sessions.json 聚合更新, 无本周新 chat"
     }
   ],
   "real_projects": [
     {
-      "id": "gateway-429-crash",
-      "name": "My-pm/pm-for-claude gateway 崩溃 (P0)",
-      "description": "07-02 早 8 点 my-pm 挂掉, fei 在 pm-for-claude 求助 restart, 根因是 Token Plan 耗尽",
-      "progress": "07-02 08:13 pm-for-claude session_bg_081238: 找到 pm-for-claude PID 79068 退码 -9 (SIGKILL) + 飞书 WebSocket 断开 + HTTP 429 Token Plan 用量耗尽; pm-2 也被波及退码 -15; fei restart gateway 后 WebSocket 重连但 429 仍可能挡消息; 触发 hermes-agent-gateway-launchd skill 同日升级 (07-04 1.1.0+, 加入 429 诊断 + 多 profile recovery SOP)",
-      "phase": "🔧 Maintenance → 🛠 Implementation",
+      "id": "nand-news-searcher",
+      "name": "NAND 新闻搜索器 web 项目 (新上线, 07-11)",
+      "description": "fei 提的 NAND/DRAM 行业每日 RSS 聚合 + 中英双语网页 — research-agent 联调信源 161 msgs 落地, web 层交给 PM 统筹, 当晚出现 UX 问题需修复",
+      "progress": "07-10 07:13 research-agent session_20260710_071347 (161 msgs) 跑通 9 条 ISS 信源 (Kioxia/Samsung/SK hynix/Micron/WD/Phison/Maxio/TrendForce/Omdia/FGI) + 30 行 Python PoC + ISS 地址保存到 Obsidian; fei 当晚 21:38 在 NAND 新闻搜索器 chat 里反馈 3 个 UX 问题: 文章截断 (无全文)、找不到翻译按钮/译文入口、卡片排版乱 — PM 接手 web 层",
+      "phase": "🛠 Implementation",
       "phase_emoji": "🛠",
-      "last_active": "2026-07-04",
+      "last_active": "2026-07-11",
       "active_status": "active",
-      "problem": "P0: Token Plan 用量耗尽 (HTTP 429) 根因没修 — gateway 重启只是临时救火, 下一个 429 还会再挂; 同一晚上 pm-2 + my-pm + pm-for-claude 都被波及说明无全局 budget/rate-limit 护栏",
-      "solution": "(1) free-cc proxy 加 per-profile daily budget ($5/d 之类) + 429 时 throttle 而不是 SIGKILL; (2) PM 加 daily token-budget-advisor skill 主动报告用量; (3) hermes-agent-gateway-launchd skill §'recovery SOP' 段加 429-aware restart (先降并发再 restart, 不要直接 respawn)"
+      "problem": "P1: web 层 3 个 UX 问题 (截断/翻译入口缺失/卡片排版乱) 没修 — research-agent 信源层已 OK 但前端没动, 现在是半成品状态; NAND 新闻搜索器 chat 是新 group chat (oc_961b49aa...) 7-11 创建, 还需协调 Code Agent / UI Agent 接手",
+      "solution": "(1) PM 拉 research-agent session_20260710_071347 第 100-161 行 PoC + ISS 9 信源列表, 起一个新 web project; (2) Code Agent 修 3 个 UX 问题 (后端全文接口 / 前端 translate button / CSS card 重排); (3) web 部署走 GitHub Pages (跟 weekly-report 同模式)"
     },
     {
-      "id": "check-ipo-bond",
-      "name": "新股申购 cron 修 bug (可转债 + 双信源)",
-      "description": "fei 反馈每日新股申购 cron 缺可转债, 应该有 2 个信源 (东方财富 + CNInfo/akshare) 但少了 1 个",
-      "progress": "07-02 08:31 research-agent session_20260702_083140 (113 msgs) + 07-04 09:15 session_20260704_091505 (141 msgs) 排查完毕: (a) Eastmoney 可转债 API `RPTA_APP_BONDAPPLY`/`RPTA_APP_CBAPPLY`/`RPTA_APP_KZZAPPLY` 全部下线 code=9501; (b) akshare `bond_zh_cov` 可用 (1030 行历史, 2007-2026/7); (c) 当前 CNInfo 验证源 (akshare `stock_new_ipo_cninfo`) 仍 OK, 没新股时也能跑倒计时; (d) 7-3 实际有可转债申购『科博达』, 但脚本没查到; 但 **check_ipo.py 文件 mtime 仍是 2026-06-09, 没有 commit 改动** — 诊断→实现 链断了",
-      "phase": "🔬 Discovery → 📋 Spec (fix 设计有, 但 check_ipo.py 未改)",
-      "phase_emoji": "📋",
-      "last_active": "2026-07-04",
-      "active_status": "stalled",
-      "problem": "P1: 诊断结论已有但 check_ipo.py 未改 (mtime 2026-06-09, 4 周没动) — fei 反馈当天跑了 2 个 session 没产出 fix; 根因: 2 个 session 中途被新需求打断 (07-02 中途切到『6 张图书图片 OCR』, 07-04 中途切到 mp.weixin.qq.com 归档), image-text-extraction skill 倒是 patch 了, IPO 没修",
-      "solution": "(1) Code Agent 接 session_20260704_091505 上下文 (第 27-28 行的诊断结论) 直接改 check_ipo.py: 加 bond_zh_cov 数据源 + akshare 兼容 + 输出段加『可转债』分隔; (2) 测 7-3 数据『科博达』应能查到; (3) commit 进 workspace/hermes-backup 让下次 cron 自动生效"
-    },
-    {
-      "id": "forge-cron-closed",
-      "name": "Forge weekly-audit cron 关闭",
-      "description": "fei 6-29 决定停掉 cc-forge-weekly-audit, 转 headroom 路线",
-      "progress": "06-29 19:54 pm-2 session_bg_195419_5ba337 删 cron job (job_id `0e7d5fc472d2`, schedule 周一 10:00); 同日 10:00 最后一次 audit 输出: Forge 23,863 POST (lifetime) / 11,564 (last 7d) / 1,248 错误 (含 502 BackendError) / main log 仅 25 行 banner (stderr 分离异常); my-pm profile `.claude/settings.json` ANTHROPIC_BASE_URL 已切 `http://localhost:8788` (headroom), pm-2 还在 `:8082` (free-cc 直连) — 半迁移态",
-      "phase": "🪦 Closed",
-      "phase_emoji": "🪦",
-      "last_active": "2026-06-29",
-      "active_status": "closed",
-      "problem": "— 主动关闭, 不算问题",
-      "solution": "—"
-    },
-    {
-      "id": "headroom-upgrade-030",
-      "name": "headroom v0.30.0 升级 + daily-audit cron",
-      "description": "headroom-ai 0.27.0 → 0.30.0 升级 + 0 流量 idle 11 天实测 + 每日 audit cron 启动",
-      "progress": "07-04 16:52 ONNX load confirmed fresh (predecessor 6/24 warning 已 stale); 07-05 02:01 headroom-daily-audit cron 首次跑 (job_id `2213b29bf9b2`, schedule `0 2 * * *`, no_agent false): proxy PID 54447 up 9h, RSS 22 MB, v0.30.0, listener 127.0.0.1:8788 alive, upstream :8082 healthy, Kompress ENABLED (ModernBERT ONNX), CCR cache 0/1000, budget $0/$10 daily, lifetime 15 reqs / 37,614 tokens / $0.19 spent / 0 saved — **WARN** 状态但全是因为 11 天没真 CC 流量 (上一次 PERF 行 6/24); devops/headroom-context-compression skill 7-4/05 创建到位",
-      "phase": "✅ Implemented",
-      "phase_emoji": "✅",
-      "last_active": "2026-07-05",
-      "active_status": "active",
-      "problem": "P1: headroom 流量链拓扑 (a/b/c) 仍未拍板 — fei 6/25 拍板走 headroom 替代 forge 但 a/b/c 路由选择未决; 当前 my-pm 已切 `:8788`, pm-2 还走 `:8082` 直连 free-cc, 11 天 0 流量导致无法验证 token 节省效果",
-      "solution": "fei 1 分钟决策 a/b/c → PM 改 pm-2/.claude/settings.json ANTHROPIC_BASE_URL 同步切 :8788; 跑 1 次 5KB+ smoke test 看 savings% 实测; 如 ONNX 在 macOS sandbox 跑得动, 等 daily-audit cron 自动报绿"
-    },
-    {
-      "id": "image-text-extraction-patch",
-      "name": "image-text-extraction skill patch (实战驱动)",
-      "description": "公众号文章图片 OCR 实战暴露 skill 缺口 → patch 决策树 + 常见坑",
-      "progress": "07-04 research-agent 公众号 mp.weixin.qq.com 文章正文仅图片, 6 张图书封面拼图 OCR 多 psm 阈值 (psm 6 + threshold 120-160 实测最佳) 救出大部分书名; 同 session 末 patch image-text-extraction skill: 决策树 STEP 0 新增『先扫本地 KB』分支 (本次 KB 已有 action item 直接复用); WeChat MP 特判新增 5 步工作流 (alt 提取 → data-src → 下载 → OCR → 整理); C 路径新增『激进增强』小节 (艺术字体/封面拼图); 常见坑 +2 (#9 mmbiz 子图 243 字节拒服, #10 execute_code 沙箱 /tmp 隔离)",
-      "phase": "✅ Implemented",
-      "phase_emoji": "✅",
-      "last_active": "2026-07-04",
-      "active_status": "active",
-      "problem": "P2: skill patched 但 research-agent 没把 image-text-extraction 显式列在 active skill list — 下次跑同类任务可能没 load (本周实战驱动修, 但驱动力是 session 内的『读图失败』信号, 不是 skill discovery)",
-      "solution": "research-agent SKILL.md §'default skills' 段加 image-text-extraction; 或 PM 加 weekly skill-promotion-scanner 规则: 实战驱动 patch 后自动 promote"
-    },
-    {
-      "id": "5-new-skills-batch",
-      "name": "5 个新 skill 批量安装 (6-28 batch)",
-      "description": "周末一次性装 5 个新 skill, 全部 first_seen = 2026-06-28, 跨 PM/agent 通用能力",
-      "progress": "06-28 21:11~21:31 装 5 个 net-new skill: `apple/macos-native-integration` (5285B), `autonomous-ai-agents/coding-agent-clis` (5766B), `github/github-workflows` (6315B), `messaging/feishu-messaging` (6588B), `red-teaming/jailbreak-methods` (5309B); 同时 pm-execution/weekly-report 自身 patch (parent 6-14, last_mod 6-28); 全部走 external_dirs 共享, 5 profile 都可见; hermes-skill-architecture skill 06-29 22:06 装上, 跨 profile skill 共享规范明确",
-      "phase": "✅ Implemented",
-      "phase_emoji": "✅",
-      "last_active": "2026-06-29",
+      "id": "nand-ssd-expert-skill",
+      "name": "NAND/SSD 技术专家 skill 提案 (07-10)",
+      "description": "fei 想让某个 agent 成为 NAND/SSD 性能功耗计算专家, 把 SSD 公式保存成专有 skill",
+      "progress": "07-10 18:18 my-pm session_20260710_181812: fei 提出『让你成为 NAND 和 SSD 性能功耗模型的技术专家, 保存成专有 skill』; agent 用 agentmemory memory_recall 查 KB 既有 SSD 信息, 准备从 9 条 SSD 标准公式 (latency/throughput/IOPS/Power/TBW/DWPD/Queueing/Wear-leveling) 出发建 skill; 后续 session_20260710_182620 (子 agent) 试图抓 SSD 公式但 web 工具未在 subagent scope 内 (task blocked)",
+      "phase": "🔬 Discovery",
+      "phase_emoji": "🔬",
+      "last_active": "2026-07-10",
       "active_status": "rolling",
-      "problem": "— 5 个 skill 都装好, 跟 6-25 un-archive agentmemory-integration 加起来 6 个 net-new, 跨 PM 维护边界 OK",
+      "problem": "P2: skill 提案停在『信源调研』阶段 — subagent 跑公式收集时 web access 不通 (没 web_search/browser_navigate), fei 想要的『专有 skill』还没起头; SSD 公式数据源需要 web 工具或预存 KB, 现有 skill 库里 company-research / nand-flash-research 都不是这个用途",
+      "solution": "(1) 决定 skill 放哪个 profile (research-agent 还是 my-pm 都不太合适, 建议新立一个 nand-ssd-expert profile); (2) PM 手动跑 web search 收 9 条标准公式 (上次 subagent 阻塞可绕开); (3) 公式表保存到 nand-ssd-expert/references/ssd-formulas.md, SKILL.md 决策树覆盖『TBW 估算/功耗预算/Queueing 模型』3 个高频场景"
+    },
+    {
+      "id": "nand-dram-price-research",
+      "name": "NAND/DRAM 价格 2026Q3 调研报告 (07-09)",
+      "description": "research-agent 跑完 354 行 20KB NAND/DRAM 2026Q3 价格主报告 + 344 行速查表, 含 $/GB 标准化换算",
+      "progress": "07-09 11:18 research-agent session_20260709_111823 (49 msgs): §1 TL;DR → §2 NAND → §3 DRAM → §4 HBM → §5 3Q26 趋势 → §6 缺失项 → §7 一手源 → §8 深挖 → §9 方法论 → §10 $/GB 标准化; 速查表 344 行 / 15.6KB; §10 含 8 个反直觉洞察 + 48GB 同容量 HBM4 vs DDR5 对比; 同 session 后段 self-corrected 一处 Samsung NAND 表误改, revert 成功",
+      "phase": "🚀 Deployed",
+      "phase_emoji": "🚀",
+      "last_active": "2026-07-10",
+      "active_status": "rolling",
+      "problem": "P2: KB 表自我纠正暴露 UPDATE 误覆盖风险 — session 中段把 nand_samsung_v8_236L_* 错『修』成 3200 (实际应保持 2400, V8 时代不对), 后续 detect + revert OK, 但说明 UPDATE 时缺 SELECT 二次校验护栏",
+      "solution": "(1) nand-flash-research/references/kb-update-sop.md 加 §UPDATE 前必 SELECT 对比; (2) research-agent 跑批量 UPDATE 默认 --dry-run + diff 预览; (3) 此类已 1 次自愈, 验证后可关"
+    },
+    {
+      "id": "lambda-company-research",
+      "name": "Lambda AI 公司深度调研 (07-08)",
+      "description": "Lambda (AI GPU cloud, 非 AWS Lambda) 结构化公司调研 dossier 13 sections / 19.7KB, 含 MAD podcast 检索",
+      "progress": "07-08 08:23 research-agent session_20260708_082315 (主调研) + 08:25 session_20260708_082535 (MAD podcast 检索) + 12:23 session_20260708_122318 (英语深化 deep research) 三 session 接力; 产出 Tech/AI/2026-07-08__Lambda_AI_公司深度调研.md (19.7KB, 13 sections); patch web-acquisition skill (research-agent 主用 class-level skill) 加 Lambda 类『公司 + 产品 + GPU cloud 业务』情报模板; 同 session 末新建 company-research class-level skill",
+      "phase": "✅ Implemented",
+      "phase_emoji": "✅",
+      "last_active": "2026-07-08",
+      "active_status": "rolling",
+      "problem": "— 三 session 接力顺利, 类比 NVIDIA/CoreWeave 同模板复用; MAD podcast 检索没拿到 (subagent 受限), 不算问题",
       "solution": "—"
+    },
+    {
+      "id": "xiaohongshu-cli-skill-hardening",
+      "name": "xiaohongshu-cli skill 全套加固 (07-08~09, 4 session)",
+      "description": "自动化 QR 登录端到端流程 + ASCII QR → PNG bitmap 渲染 + non-ASCII 字符清洗 + agentmemory plugin 首次验证",
+      "progress": "07-09 research-agent 4 session 集中打 xiaohongshu-cli skill: (a) session_20260709_073044 (坑 #13 加 ASCII QR 渲染坑 + 23 个非 ASCII 字符清洗); (b) session_20260709_080046 (patch SKILL.md 坑 #13); (c) session_20260709_080842 (新增章节『自动化 QR 登录端到端流程 2026-07-09 实测』Step 1-7 完整脚本); (d) session_20260709_111615 (验证 agentmemory MCP 在新 session 调用 + patch yaml 解析错误 + 23 个 non-ASCII 字符全清); 关键发现: mmbiz 子图 243 字节拒服 (#9) + ASCII QR 不能直接 base64 decode (#16) → 全部 patch 进 SKILL.md",
+      "phase": "✅ Implemented",
+      "phase_emoji": "✅",
+      "last_active": "2026-07-09",
+      "active_status": "active",
+      "problem": "P2: xiaohongshu-cli skill 现在含 16+ 个实战坑, 但 fei 本周没用它跑过实际登录 — skill patch 实战驱动, 但实际业务需求场景 (为啥要登录 xhs?) 还没明确; skill 可能 over-engineered",
+      "solution": "等 fei 给一个真实业务场景验证 skill 端到端能跑通 (e.g. 抓某个博主内容); 不然保持现状"
+    },
+    {
+      "id": "wechat-archive-cron",
+      "name": "微信公众号归档 cron + 6 篇新归档 (07-07~10)",
+      "description": "research-agent 多 session 自动归档微信公众号文章到 Obsidian knowowl vault, 含 KB 优先决策树",
+      "progress": "本周归档 6 篇: (1) 07-07 BiCS10 332 层 3D NAND 发布 (Tech-SSD); (2) 07-08 推理服务 KV Cache 估算 (Tech/AI); (3) 07-09 又一个神级上网 Agent Agent Reach (Tech/AI); (4) 07-09 JEDEC/Intel 专利 memory_standard 新表提案 (背景 session); (5) 07-10 我整理了 10 个进阶 Agent Skills (Tech/AI); (6) 07-10 Kioxia VLSI2026 AI 数据闪存架构 (Tech/NandFlash, 156 行 9.1KB); 全部走 record-obsidian-base skill 规范 + frontmatter",
+      "phase": "🔁 Rolling",
+      "phase_emoji": "🔁",
+      "last_active": "2026-07-10",
+      "active_status": "rolling",
+      "problem": "P2: 07-10 公众号 js_image_content 类型 (image-style) 跟 text-style 完全不同 — DOM 容器是 js_image_content 不是 content, patch record-obsidian-base skill 加 image-style 特判 OK, 但 skill 库这种『跑一篇加一种特判』累积趋势可考虑 umbrella 化",
+      "solution": "(1) record-obsidian-base skill §'article-type detection' 段加决策树 (text / image / mixed); (2) 跑 2 周观察新特判需求频次, 如 >5 次/月就抽出来 single source of truth"
+    },
+    {
+      "id": "headroom-paused",
+      "name": "headroom 暂停 (07-11) + daily-audit cron 暂停",
+      "description": "fei 7-11 21:56 命令『把 headroom 暂停』, 同步暂停 headroom-daily-audit cron (job_id 2213b29bf9b2)",
+      "progress": "07-11 21:56 my-pm session_20260711_215603: fei 一句『把 headroom 暂停』; PM 调 hermes cron disable 2213b29bf9b2 + 关 headroom proxy (PID 待确认); 之前一周 daily-audit 跑 6 次 (07-06~07-10) 都是 WARN (0 流量 idle), fei 嫌『headroom cron job 的结果看不懂, 一个是全英文的, 一个是逻辑』",
+      "phase": "🔧 Maintenance",
+      "phase_emoji": "🔧",
+      "last_active": "2026-07-11",
+      "active_status": "stalled",
+      "problem": "P0 延续: headroom 流量链拓扑 (a/b/c) 仍未拍板 — 上周 P1 标记升级; fei 7-11 暂停说明 headroom 在『关停 + 重启』cycle 上, 11 天 0 流量问题依然没解决; headroom-daily-audit cron 7-11 早 02:01 跑完最后一次就停了",
+      "solution": "(1) fei 决定是否完全弃用 headroom 还是只是临时暂停; (2) 如保留: 等 daily-audit 报告改人类可读 (中文 + 关键数字), 别每次贴英文 proxy log; (3) 如弃用: pm-2/.claude/settings.json ANTHROPIC_BASE_URL 切回 :8082 free-cc 直连, 统一收口"
     }
   ],
   "rolling_projects": [
     {
-      "name": "memory-cleanup cron (multi-profile, 滚动涨回 ≥75%)",
-      "progress": "本周 my-pm/pm-2/pm-for-claude/research-agent 共跑 ~10 次 memory-cleanup cron (06-28~07-04); pm-2 06-29 23:00 实测 49.2% 触发阈值 NOT_CLEAN, 涨得慢; my-pm 涨回 ≥75% 频次仍高 (上周报 P1 标记延续)",
+      "name": "memory-cleanup cron (multi-profile, 涨回 ≥75% 持续中)",
+      "progress": "本周 PM Memory Weekly Cleanup 跑 1 次 (07-06 03:00); memory-auto-decay skill (07-08 装到 my-pm) + 上周日 cron (07-05) 验证窗口; my-pm/pm-2/pm-for-claude/research-agent 涨回 ≥75% 频次仍高, 上周 P1 标记延续 2 周",
       "active_status": "rolling",
-      "problem": "P1: 涨回 ≥75% 根因未根治 (上周报标记延续 2 周); memory-auto-decay skill (6-20 装) LRU 自动降权验证 1 周, cron 每周一 03:00 跑, 但本周末 07-06 才到第 1 次验证窗口",
-      "solution": "等 07-06 周一 memory-auto-decay 验证结果; 如 1 周后仍 ≥75%, 上 manual cleanup 二次 (上周 78.6%→62.7% 套路)"
+      "problem": "P1 延续: 涨回 ≥75% 根因未根治, memory-auto-decay LRU 自动降权验证 1 周但本周仍 ≥75%; skill 装的时机 (7-08) 跟验证窗口对不齐, 实际效果待观察",
+      "solution": "等下周一 (07-13) memory-auto-decay 第 2 次验证; 如仍 ≥75%, manual cleanup 二次 + 调 LRU 阈值"
     },
     {
-      "name": "CURATOR consolidation (multi-profile)",
-      "progress": "本周 5 个 profile 跑 CURATOR (pm-2 07-01 87 msgs, pm-for-claude 07-01 12 msgs, research-agent 07-02 12 msgs, qual-agent 07-02 23 msgs, writing-agent 07-02 9 msgs); pm-2 输出 8 个 candidate skills 全部 class-level umbrella, 无 overlap",
-      "active_status": "rolling",
-      "problem": "— 跑通, 监控中",
-      "solution": "—"
+      "name": "benefit 项目 (权益提醒, 周日 → 周二)",
+      "progress": "07-06 22:50 my-pm session_20260706_225003 (跨日 195 msgs) benefit 项目状态汇报 — fei 问 Phase2 离线测试可行性 + E2E 是否需要等 CloudBase AppID; PM 让 CC 推 Phase2 多次 background proc (07-07/08/09 各 1 次) + 07-08 09:28 last update; 后续 fei 7-7 22:55『如果不用 headroom, 你 call CC 可以吗? 你这样交叉验证一下』, 验证 headroom vs CC 隔离; session 状态: 跨 2 日持续, 当前 stalled 在 cross-validation 阶段",
+      "active_status": "stalled",
+      "problem": "P1: benefit Phase2 进展被 CC 工具调用链 (headroom vs free-cc 8082 vs 8788) 反复打断 — fei 怀疑 CC 调用方式不对, PM 在隔离测试中; cross-validation 结果还没出, Phase2 没法推进",
+      "solution": "(1) PM 给 fei 一份 benefit 项目状态明确表 (Phase2 当前进度 + E2E 阻塞点 + cross-validation 结论); (2) 等 fei 决定走 headroom 还是直连 free-cc; (3) CloudBase AppID 申请状态查 (上周报 pm-2 提过)"
     },
     {
       "name": "weekly-report cron (本任务)",
-      "progress": "cron job `weekly-report-publish` 周日 07:00 自动跑; 上周日 (06-28) 跑通 push; 本周日 (07-05) 第 2 次自动跑, 流程跟上次一致 (5 步)",
+      "progress": "cron job `weekly-report-publish` 周日 07:00 自动跑; 上周日 (06-28, 07-05) 跑通 2 次; 本周日 (07-12) 第 3 次自动跑; 本周 SSH push 验证 + GH Pages build 实测 35s (上周报引用 25-30s 偏快, 实测更慢)",
       "active_status": "rolling",
       "problem": "— cron 跑通, 3-tier feishu notify 持续验证中",
       "solution": "—"
     },
     {
       "name": "Z-Library 每日下载 (research-agent)",
-      "progress": "07-04 00:00 cron 跑: 0 本下载 / 0 失败 / pending.txt 空 / 30 天重搜仍 4 本找不到 (National Geographic Robots / Who Was Armstrong / Who Was Cady Stanton / 等)",
+      "progress": "07-06/07/08/09/10/11/12 共 7 次 cron 跑 (每天 00:00); 全部 pending.txt 空, 所有书目 status=done; 30 天重搜仍 4 本找不到 (National Geographic Robots / Who Was Armstrong / Who Was Cady Stanton 等, zlib 索引缺)",
       "active_status": "rolling",
-      "problem": "— 跑通, 4 本真找不到 (zlib 索引缺), 已知 issue",
+      "problem": "— 跑通, 4 本真找不到 (zlib 索引缺), 已知 issue 不算问题",
       "solution": "—"
     },
     {
       "name": "xianyu-daily-check (my-pm)",
-      "progress": "07-04 09:00 cron 跑通 (no_agent script); 本周 6 次跑 (06-29~07-04 跳过周末 + 节日); 数据源 goofish mtop 协议稳定",
+      "progress": "本周日 (07-12) 09:00 cron 跑通 (no_agent script); goofish mtop 协议稳定; 本周 6 次跑 (07-06~07-11), 数据正常",
       "active_status": "rolling",
       "problem": "— 跑通",
       "solution": "—"
     },
     {
       "name": "disk-space-daily-3am (my-pm)",
-      "progress": "07-05 03:00 cron 跑通 (32 次 repeat); no_agent bash 脚本, 报告磁盘余量",
+      "progress": "07-06/07/08/09/10/11/12 共 7 次 cron 跑通; no_agent bash 脚本, 报告磁盘余量; 跟往常一致",
+      "active_status": "rolling",
+      "problem": "— 跑通",
+      "solution": "—"
+    },
+    {
+      "name": "PM Memory Weekly Cleanup cron",
+      "progress": "07-06 03:00 cron 跑 (cron_665164abcb5f, no_agent false) — weekly 周日 03:00 节奏; 输出 PM Memory cleanup 报告",
       "active_status": "rolling",
       "problem": "— 跑通",
       "solution": "—"
@@ -166,82 +180,91 @@
   "problems": [
     {
       "priority": "P0",
-      "project": "gateway-429-crash",
-      "issue": "Token Plan 用量耗尽 (HTTP 429) → my-pm + pm-for-claude + pm-2 三 profile 07-02 同早上挂 — 根因没修, 下次 429 还会再挂",
-      "solution": "free-cc proxy 加 per-profile daily budget ($5/d) + 429 throttle (而非 SIGKILL) + PM token-budget-advisor skill 主动报告",
-      "time": "1-2 天"
-    },
-    {
-      "priority": "P1",
-      "project": "check-ipo-bond",
-      "issue": "新股申购可转债 + akshare 整合 fix 设计有 (session 27-28 行结论), 但 check_ipo.py 未改 (mtime 06-09, 4 周没动) — 诊断→实现 链断了",
-      "solution": "Code Agent 接 session_20260704_091505 上下文直接改 check_ipo.py + 测 7-3 科博达 + commit 进 workspace/hermes-backup",
+      "project": "headroom-paused",
+      "issue": "headroom 暂停 (07-11) + 流量链拓扑 a/b/c 仍未拍板 — fei 嫌 daily-audit 报告看不懂 (全英文 + 逻辑混乱), 11 天 0 流量导致无法验证 token 节省效果; 上周 P1 标记升级 P0 延续",
+      "solution": "fei 决定 (a) 完全弃用 headroom / (b) 保留但 daily-audit 改中文 + 关键数字 / (c) 等几天再开 — 任选一个 → PM 30 min 内执行",
       "time": "30 min"
     },
     {
       "priority": "P1",
-      "project": "headroom-upgrade-030",
-      "issue": "headroom 流量链拓扑 a/b/c 仍未拍板 (上周报 P0 延续, 11 天 0 流量导致无法验证 token 节省效果)",
-      "solution": "fei 1 分钟选 a/b/c → 改 pm-2/.claude/settings.json ANTHROPIC_BASE_URL 切 :8788 → 跑 5KB+ smoke test 看 savings%",
-      "time": "5 min"
+      "project": "nand-news-searcher",
+      "issue": "NAND 新闻搜索器 web 层 3 个 UX 问题没修 (文章截断 / 翻译按钮缺失 / 卡片排版乱) — research-agent 信源层 9 条 ISS 跑通, 但前端半成品, 新 chat 等 PM 统筹",
+      "solution": "PM 起新 web project (走 GitHub Pages) → Code Agent 修 3 个 UX 问题 → research-agent 提供 ISS 9 信源 + Python 抓取脚本 → 7 天内 MVP",
+      "time": "1 周"
     },
     {
       "priority": "P1",
-      "project": "baidu-netdisk-backup",
-      "issue": "首次全量 done 16 天, 周日增量 cron 没建 — 新数据丢失风险 (上周报 P1 延续)",
-      "solution": "fei 拍板: 接受手动 / 建 cron (jobs.json 加 weekly-bypy-incremental 周日 03:00)",
-      "time": "1 min"
+      "project": "benefit-phase2",
+      "issue": "benefit Phase2 进展被 headroom vs free-cc cross-validation 打断 — fei 7-7 22:55 怀疑 CC 调用方式不对, PM 在隔离测试中, Phase2 没法推进; 上周报 P1 标记延续",
+      "solution": "PM 给 fei 一份 benefit 状态明确表 → 等 fei 决定 headroom 走向 → Phase2 继续推 (跨 7-06~07-11 已 195 msgs, 别再 stall)",
+      "time": "1-2 天"
     },
     {
-      "priority": "P2",
-      "project": "github-backup-repo",
-      "issue": "hermes-backup 私有 repo handoff ready 12 天, fei 没回 \"go\" — 闲置 (上周报 P2 延续)",
-      "solution": "fei 一字 \"go\" 跑; 或放弃 (用 iCloud / bypy 替代)",
-      "time": "1 min"
-    },
-    {
-      "priority": "P2",
+      "priority": "P1",
       "project": "memory-self-maintenance",
-      "issue": "memory 涨回 ≥75% 仍未根治 (上周 P1 延续 2 周) — memory-auto-decay 验证窗口 07-06 才到",
-      "solution": "等 07-06 周一验证; 如不行, manual cleanup + 调阈值",
+      "issue": "memory 涨回 ≥75% 仍未根治 (上周 P1 延续 3 周) — memory-auto-decay 验证窗口 (07-06) 已过但本周仍 ≥75%; skill 装的时机 (07-08) 跟验证窗口对不齐, LRU 自动降权效果待观察",
+      "solution": "等 07-13 周一第 2 次验证; 如仍 ≥75%, manual cleanup 二次 + 调 LRU 阈值 (current default 可能太低)",
       "time": "等观察"
+    },
+    {
+      "priority": "P2",
+      "project": "nand-ssd-expert-skill",
+      "issue": "NAND/SSD 技术专家 skill 提案停在信源调研 — subagent 跑 SSD 公式收集时 web access 不通 (07-10 session_20260710_182620 task blocked), 没 web_search/browser_navigate; fei 想要的『专有 skill』还没起头",
+      "solution": "PM 手动跑 web search 收 9 条标准公式 → 决定 skill profile (建议新立 nand-ssd-expert) → SKILL.md 决策树覆盖 TBW 估算/功耗预算/Queueing 模型",
+      "time": "3-5 天"
     }
   ],
   "new_skills": {
-    "p2_pm_misc": {
-      "category": "🟣 PM / 维护能力套件 (5 skills, 6-28 batch 一次性装)",
+    "p1_my_pm_infra": {
+      "category": "🔵 my-pm 基础设施升级 (5 skills, 7-06~11 分批)",
       "count": 5,
-      "trigger": "06-28 21:11~21:31 批量装, 跨 PM/agent 通用",
-      "impact": "- `apple/macos-native-integration` (5285B) · macOS 原生 app 自动化\n- `autonomous-ai-agents/coding-agent-clis` (5766B) · 外部 AI CLI 委派\n- `github/github-workflows` (6315B) · gh CLI / PR / issue 全套\n- `messaging/feishu-messaging` (6588B) · Feishu bot-mode 收发\n- `red-teaming/jailbreak-methods` (5309B) · 安全研究"
+      "trigger": "headroom / cron / memory / lesson 实战驱动, 分多次 patch + 新建",
+      "impact": "- `devops/cloudflare-pages-deploy` (07-11) · CF Pages 部署\n- `devops/feed-ingestion-pitfalls` (07-11) · RSS/Atom/JSON feed 类级坑\n- `devops/headroom-context-compression` (07-11) · headroom proxy SOP (上周)\n- `hermes/memory-auto-decay` (07-08) · memory LRU 自动降权\n- `pm-execution/pm-save-lesson-checklist` (07-09) · save 前 7-question checklist\n- `pm-execution/chain-mode` (07-09) · PRD→Stories→Sprint chain 纪律\n- `pm-execution/project-history-recall` (07-08) · 项目历史检索\n- `pm-execution/communication-conventions` (07-11) · PM 通用回复规范 (复盘+patch)\n- `pm-ai-shipping/intended-vs-implemented` (07-11) · 实现 vs 预期 gap 找法"
     },
-    "headroom_skill": {
-      "category": "🟢 devops/headroom-context-compression (新建, 7-04)",
-      "count": 1,
-      "trigger": "headroom-ai 0.27.0 → 0.30.0 升级 + daily-audit cron 7-05 首次跑需要 SOP 文档",
-      "impact": "headroom-context-compression skill (~9KB) — 覆盖 install / CC routing / daemon lifecycle / usage stats / 'savings=0' 决策树"
+    "p1_research_storage": {
+      "category": "🟠 research-agent 存储研究能力 (4 skills, 7-07~10)",
+      "count": 4,
+      "trigger": "NAND/DRAM/SSD/Kioxia/Lambda 实战驱动",
+      "impact": "- `research/company-research` (07-08) · 公司调研 umbrella (Lambda 类模板)\n- `research/nand-flash-research` (07-07) · NAND umbrella 1.8.0→1.9.0 (加价格/汇率/skill 引用)\n- `research/image-text-extraction` (07-10) · 图文提取 (决策树 patch)\n- `research/web-acquisition` (07-10) · web 抓取 + Lambda 情报模板\n- `research/xiaohongshu-cli` (07-09) · xhs 自动化 QR 登录全套修复\n- `creative/record-obsidian-base` (07-09) · Obsidian 归档 (js_image_content 特判)"
     },
-    "hermes_arch": {
-      "category": "🟠 hermes-skill-architecture (6-29 装)",
-      "count": 1,
-      "trigger": "5 个新 skill 装到 my-pm + external_dirs 共享, 需要跨 profile skill 架构规范",
-      "impact": "hermes-skill-architecture skill (~5KB) — 三层 skill 目录模型 (全 profile 共享 / profile 私有 / cross-profile write guard)"
+    "p1_pm2_workflow": {
+      "category": "🟢 pm-2 工作流套件 (3 skills, 7-08~12)",
+      "count": 3,
+      "trigger": "benefit / travel / cron pipeline 实战驱动",
+      "impact": "- `workflow/pm-nightly-cron-runner` (07-12) · PM 夜间 cron 调度\n- `workflow/spec-driven-task-cron` (07-11) · spec-driven 任务 cron\n- `workflow/pm-task-type-defaults` (07-11) · PM 任务类型默认值\n- `workflow/agentmemory-framework-refactor` (07-09) · agentmemory 框架重构\n- `workflow/thailand-trip-planning` (07-06) · 泰国行程规划\n- `workflow/family-travel-planning` (07-08) · 家庭行程规划\n- `workflow/feihao-travel-preferences` (07-06) · fei 出行偏好\n- `devops/cronjob-management` (07-08) · cron job 管理\n- `devops/hermes-backup-orchestration` (07-08) · 备份编排\n- `messaging/feishu-dm-send` (07-08) · feishu DM 发送 (patch 7-14 已知坑)\n- `messaging/feishu-message-format` (07-10) · feishu 消息格式\n- `project-tracking/pm-workflow` (07-08) · PM 工作流\n- `hermes/hermes-backup-pipeline` (07-08) · 备份流水线"
+    },
+    "p1_pmc_skills": {
+      "category": "🟣 pm-for-claude 重构 + 工具链 (24 skills, 7-06~11 大批)",
+      "count": 24,
+      "trigger": "profile 重启 + apple/ai-coding/cc/hermes/skill-arch 多套件分批 patch",
+      "impact": "- 6 个 .archive 旧 skill (7-08, claude-code/codex/hermes-agent-gateway/apple-reminders/python-debugpy/imessage/findmy/apple-notes/node-inspect-debugger/opencode/hermes-agent-profile-onboarding)\n- `apple/apple-macos-apps` (07-08) · macOS apps\n- `feishu/lark-cli-profile-binding` (07-08) · lark-cli profile 绑定\n- `software-development/language-debuggers` (07-08) · 多语言调试\n- `software-development/cc-pm-spawn-pitfalls` (07-06) · CC PM spawn 坑\n- `software-development/debugging-hermes-tui-commands` (07-08) · Hermes TUI 命令调试\n- `workflow/cc-monitor` (07-11) · CC 委派 5-signal 监控\n- `workflow/pm-project-lifecycle` (07-08) · PM 项目生命周期\n- `workflow/multi-working-tree-management` (07-11) · 多 working tree 管理\n- `hermes/hermes-agent-profile-setup` (07-08) · profile 设置\n- `hermes/hermes-skill-architecture` (07-08) · skill 架构 (跨 profile)\n- `messaging/feishu-message-format` (07-11) · feishu 消息格式\n- `autonomous-ai-agents/ai-coding-clis` (07-08) · AI coding CLI\n- `autonomous-ai-agents/hermes-agent` (07-08) · Hermes Agent"
+    },
+    "p1_external_cross": {
+      "category": "🌐 跨 profile external_dirs 新增 (10 skills, 7-06~11)",
+      "count": 10,
+      "trigger": "浏览器 + memory + agentmemory + free-claude-code 多方扩展",
+      "impact": "- `browser/cloakbrowser` (07-09) · 反爬 stealth 浏览器\n- `browser/xhs-browser` (07-09) · 小红书 Playwright + CloakBrowser 持久化\n- `workflow/agentmemory-usage-sop` (07-11) · agentmemory SOP\n- `free-claude-code/templates` + `references` (07-10/11) · free-cc proxy 模板\n- `agent-reach/references` (07-10) · agent reach 引用\n- `memory-cleanup/references` (07-11) · memory cleanup 引用\n- `software-development/hermes-agent-skill-authoring` (07-10) · SKILL.md 作者指南\n- `agentmemory-integration/references` (07-09) · agentmemory 集成引用"
     },
     "patch_events": {
-      "category": "🟠 实战驱动 patch (4 skills)",
-      "count": 4,
+      "category": "🔴 实战驱动 patch (>=5 skills)",
+      "count": 5,
       "trigger": "本周 session 内实战暴露缺口, 同 session 末 patch",
-      "impact": "- `pm-execution/weekly-report` (06-28 patch, self-referential)\n- `pm-execution/communication-conventions` (07-02 patch)\n- `hermes/pm-memory-management` (07-04 patch)\n- `hermes/hermes-agent-gateway-launchd` (07-04 patch, 加 429 诊断 + multi-profile recovery SOP)\n- `devops/claude-code-infrastructure` (07-04 patch)\n- `coding-agent-memory` (07-04 patch)\n- `image-text-extraction` (07-04 patch, research-agent 实战驱动, 加 KB 优先 / WeChat MP 特判 / psm 6+threshold 120-160)"
+      "impact": "- `pm-execution/communication-conventions` (07-11) · PM 收尾『汇报完毕』+ 输出格式\n- `devops/claude-code-infrastructure` (07-06) · CC 基础设施 patch\n- `devops/feed-ingestion-pitfalls` (07-11) · feed 类级坑 (NAND RSS 实战)\n- `autonomous-ai-agents/coding-agent-clis` (07-08) · coding CLI (patch)\n- `devops/cronjob-management` (07-08) · cron 管理 (patch)\n- `research/xiaohongshu-cli` (07-09) · xhs QR 登录 (大改)\n- `creative/record-obsidian-base` (07-09) · 公众号 js_image_content 特判"
     }
   },
   "hot_topics": [
-    "🔴 P0: 07-02 早上 my-pm + pm-for-claude + pm-2 三 profile gateway 同挂, 根因是 Token Plan 用量耗尽 (HTTP 429) — 不是偶发, 是无护栏的必然; gateway restart 是临时救火",
-    "🔴 P0 延续: headroom 流量链拓扑 (a/b/c) 仍未拍板, headroom 0.30.0 升级完了但 11 天 0 流量, token 节省效果没法实测; 上报 P1 标记升级到 P1 (跟 gateway 429 同根因)",
-    "🟠 P1: 新股申购 cron 修 bug — 2 个 session 跑出诊断结论但 check_ipo.py 4 周没改, 中途被新需求打断 (图书 OCR + 公众号归档); 实战驱动 patch 都打到 image-text-extraction skill, IPO fix 漏了",
-    "🟢 进展: headroom-daily-audit cron 7-05 首次跑通, proxy v0.30.0 健康 (Kompress ONNX enabled, 6 subsystems 全 ok); 11 天 0 流量 = WARN 但非 ALERT",
-    "🟢 进展: 5 个新 skill 批量装好 (6-28), 加上 hermes-skill-architecture 跨 profile 共享规范明确 — my-pm 247 active skills (上周 241, +6)",
-    "🟡 滚存: 4 个 stalled 等 fei 决策 — 百度网盘周日增量 cron (建/不建) / hermes-backup repo (go/放弃) / headroom 流量链 a/b/c (选哪个) / 新股申购 akshare 整合 (接 30min fix)",
-    "🟡 滚存: memory 涨回 ≥75% 仍未根治 (2 周), 等 07-06 memory-auto-decay LRU 验证窗口",
-    "⚪ 1 sentence: Thailand 行程修改 (pm-2 07-04, 205 msgs) — fei 个人, 不在 PM 范围",
-    "⚪ 1 sentence: kiddo-scoreboard cron (daily-backup + nightly-todo) 持续跑, 0 pending, 不在 PM 主动跟踪"
+    "🔴 P0: headroom 暂停 (07-11) + 流量链拓扑 a/b/c 仍未拍板 — fei 嫌 daily-audit 报告看不懂, 11 天 0 流量; 上周 P1 标记升级 P0, 现在干脆暂停, 走向待 fei 决策 (弃用 / 保留改报告 / 暂搁)",
+    "🟠 P1: NAND 新闻搜索器 web 层 3 个 UX 问题 (截断/翻译按钮缺失/卡片乱) 没修 — research-agent 信源层 9 条 ISS 跑通 161 msgs, 但前端半成品; 新 chat 等 PM 统筹 + 起新 web project (GitHub Pages 模式)",
+    "🟠 P1: benefit Phase2 进展被 headroom vs free-cc cross-validation 打断 — fei 7-7 22:55 怀疑 CC 调用方式不对, PM 隔离测试中, Phase2 没法推进 (跨 07-06~11 已 195 msgs), 上周 P1 标记延续",
+    "🟠 P1: memory 涨回 ≥75% 仍未根治 (上周 P1 延续 3 周) — memory-auto-decay 验证窗口 (07-06) 已过, skill 装的时机 (07-08) 跟验证窗口对不齐, LRU 自动降权效果待 07-13 观察",
+    "🟢 进展: NAND/DRAM 价格 2026Q3 调研报告 (07-09) 354 行 20KB 完成 + 含 $/GB 标准化换算 + 48GB HBM4 vs DDR5 对比 + 8 反直觉洞察 — 主报告已就位, 速查表 344 行 / 15.6KB",
+    "🟢 进展: Lambda AI 公司深度调研 (07-08) 三 session 接力产出 19.7KB / 13 sections dossier — 同 session 末新建 company-research class-level skill (后续 NVIDIA/CoreWeave 可复用)",
+    "🟢 进展: xiaohongshu-cli skill 4 session (07-09) 大改 — 加 ASCII QR→PNG bitmap 渲染 + 23 个 non-ASCII 字符清洗 + agentmemory plugin 首验; 16+ 个实战坑 patch 进 SKILL.md",
+    "🟢 进展: 微信公众号归档 6 篇 (07-07~10) — BiCS10 / KV Cache / Agent Reach / 10 个 Agent Skills / Kioxia VLSI2026 / JEDEC; record-obsidian-base skill 加 js_image_content 特判",
+    "🟡 新提案: NAND/SSD 技术专家 skill (07-10) — fei 想让某个 agent 专做性能功耗计算, 当前停在信源调研 (subagent web access blocked), 建议新立 nand-ssd-expert profile",
+    "🟡 滚存: 18+ skills 跨 5 profile 批量 patch/新建 — 含 cross-profile external_dirs (cloakbrowser/xhs-browser/agentmemory-sop) + pm-for-claude 重构 (.archive 6 个旧 skill); skill 库沉淀加速",
+    "⚪ 1 sentence: Thailand 行程规划 (pm-2 07-06, workflow/thailand-trip-planning 新建) — fei 个人, 不在 PM 范围",
+    "⚪ 1 sentence: kiddo-scoreboard cron (daily-backup + nightly-todo) 持续跑, 0 pending, 不在 PM 主动跟踪",
+    "⚪ 1 sentence: bdpan 登录跳转问题 (07-11 my-pm bg_001629) — fei 个人百度网盘使用, 不在 PM 范围"
   ]
 }
