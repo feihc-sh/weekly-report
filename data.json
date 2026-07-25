@@ -1,260 +1,189 @@
 {
   "meta": {
     "title": "Hermes 团队周报",
-    "date_range": "2026-07-13 → 2026-07-19",
-    "generated_at": "2026-07-19",
+    "date_range": "2026-07-20 → 2026-07-26",
+    "generated_at": "2026-07-26",
     "owner": "fei",
     "summary": {
-      "total_sessions": 44,
-      "profiles_active": 5,
-      "real_projects": 9,
-      "rolling_projects": 6,
-      "real_problems": 5,
-      "new_skills_count": 83
+      "total_sessions": 99,
+      "profiles_active": 4,
+      "real_projects": 4,
+      "rolling_projects": 4,
+      "real_problems": 3,
+      "new_skills_count": 55
     }
   },
   "overview": [
     {
       "profile": "research-agent",
-      "sessions": 21,
-      "focus": "本周最活跃 — kiddo sprite fallback (FAL→Gemini→Pollinations, 4 session 7-14) + WeChat 归档+skan_design_audit 新建 (3 session 7-14) + LYiHub/labs-ArchiveAssistant 代码学习 (3 session 7-17, 新建 codebase-learning umbrella) + 读书 Agent Skills 调研+安装 (2 session 7-17) + KV cache Excel 重建+codex-artifact-recovery skill (2 session 7-16) + socratic-questioning skill (1, 7-18) + 新股申购 cron QA+板块修复 (3, 7-16~17) + Confluence CLI 调研 (1, 7-13) + CURATOR umbrella 化 (1, 7-16) + Z-Library daily cron 失败 (scripts missing 7-17)"
+      "sessions": 37,
+      "focus": "本周最活跃 — 理财顾问 5 session (7-20~21, 多次迭代) + DFE 调研 2 session (7-20~21) + 画图/年报 5 session (7-21) + 公众号归档 2 (7-20, 7-23) + 文章分享 1 (7-23) + CURATOR umbrella 4 (7-23) + 帮 free cc 4 (7-20, Free cc 新装 skill 询问); 同时承担本周 **23 个 skill 大批量安装** (07-23)"
     },
     {
       "profile": "pm-2",
-      "sessions": 1,
-      "focus": "agentmemory-integration cron (07-19 01:00) — 每日 Memory 健康检查 (pm-2/my-pm/pm-for-claude 全 OK); **本周 pm-2 大批量装 18 个 skill** (07-15 一次大批 + 07-18 加 long-task-cron-checkpoint/pm-agent-practices + 07-19 spec-driven-task-cron), 形成完整工作流套件"
-    },
-    {
-      "profile": "pm-for-claude",
-      "sessions": 1,
-      "focus": "memory-cleanup cron (07-18 23:00) — memory 123.9% (1858/1500 legacy) 触发 cleanup, 跑通 archive 6524 bytes; 本周 pm-for-claude 装 13 个 skill (3 个 bulk events: 07-13 6 + 07-15 7 + 07-17~18 4)"
+      "sessions": 22,
+      "focus": "agentmemory-integration cron (07-26 01:00 跑通) + memory-cleanup cron (07-25 23:00 跑通) + 金融 skill 调研 1 session (07-21, '目前所有 profile 里的金融相关 skill') + Python data breakdown 1 session (07-25); 安装 pm-skill-ecosystem-survey (07-21) + install-skills-from-github (07-25)"
     },
     {
       "profile": "my-pm",
-      "sessions": 2,
-      "focus": "weekly-report cron (本任务, 07-19 07:00) + NAND 新闻搜索器 chat 持续; 本周 my-pm 装 10 个 skill (07-13~19 分批), 含 hermes-sandbox-pitfalls (07-16) + headroom-context-compression (07-19 重启)"
+      "sessions": 11,
+      "focus": "weekly-report cron (本任务, 07-26 07:00) + headroom-context-compression cron 每日跑 (7-23~26) + memory-cleanup cron (07-25) + 闲鱼 Bot skill 调研 1 (7-21, '看看能否上传新商品') + CPU 占用排查 1 (7-20); 安装 headroom-context-compression (07-25 重启) + macos-process-management + hermes-sandbox-pitfalls (07-20)"
     },
     {
-      "profile": "writing-agent",
-      "sessions": 1,
-      "focus": "feishu clarify 卡片化调研 (07-18, 54 msgs) — 找到 in-flight PR #43818 (NousResearch/hermes-agent, open since 2026-06-10, P3); 本周 writing-agent 装 10 个 skill (07-16 8 个大批 + 07-17 install-skills/reading-pipeline + 07-18 web-research-fallbacks)"
+      "profile": "pm-for-claude",
+      "sessions": 8,
+      "focus": "memory-cleanup cron (07-25) + kiddo-scoreboard 50积分换游戏时间 feature 查询 1 (07-21) + scoreboard 进展读取 1 (07-20); 本周 **pm-for-claude 大批量装 12 skill** (07-22 一次性 bulk: research-knowledge / kiddo-scoreboard-deploy / mlops-toolkit / github-pr-workflow / claude-design / creative-visual-production / hermes-skill-architecture / feishu-lark / pm-workflow / productivity-tools / ai-music-generation / media-processing) + 07-20 kiddo-scoreboard-dev-iteration + 07-21 kiddo-feature-deploy-sop"
     }
   ],
   "real_projects": [
     {
-      "id": "massive-skill-refactor-week",
-      "name": "🔥 全套 skill 库大重构 (本周 83 个 SKILL.md, 7 个 install events)",
-      "description": "fei/PM 在本周对 6 个 profile 进行了大规模 skill 库装载/重建 — 总共 80 个新 SKILL.md 创建 + 3 个 patch, 跨越 5 天 (07-13~19); 7 个 ≥3 同日同 profile install event 出现, 体现了一次系统性的 'class-level umbrella 化' 重构",
-      "progress": "07-13 pm-for-claude 装 6 (feihao-visual-feedback / github-repo-management / karpathy-guidelines / pm-project-lifecycle / quick-tunnel-preview / subagent-workflow-pattern) + 07-14 research-agent 装 3 + patch 1 (record-obsidian-base / skill-design-audit / xiaohongshu-cli + nand-flash-research v1.9.0→v1.10.0) + 07-15 pm-2 **装 18 个** (一整天 bulk: ai-content-generation / apple-macos-suite / ascii-art-suite / coding-agent-cli / creative-coding-suite / debug-toolkit / design-templates / diagram-suite / family-travel-planning / github-workflows / hermes-agent / kanban-system / llm-inference-runtime / media-toolkit / ml-evaluation-stack / research-discovery / research-paper-writing / software-quality-process) + 07-15 pm-for-claude +7 + 07-16 **qual-agent 装 8** (ascii-art / hermes-multi-agent-protocols / kanban-orchestrator / llama-cpp / lm-evaluation-harness / requesting-code-review / systematic-debugging / xitter) + 07-16 research-agent +3 patch 1 + 07-16 **writing-agent 装 8** (coding-cli-agents / creative-design-suite / github-repo-management / kanban / media-and-ai-music / productivity / research-umbrella / software-engineering-workflow) + 07-17 writing-agent + 2 + 07-18 my-pm + 4 + 07-18 research-agent + 1 (socratic-questioning) + 07-19 my-pm + 1 (headroom-context-compression 重启)",
-      "phase": "✅ Implemented",
-      "phase_emoji": "✅",
-      "last_active": "2026-07-19",
-      "active_status": "active",
-      "problem": "P1: 80 个新 skill 一次性装载, 实战验证窗口未到 — 部分 skill 可能是 '为了有而装', 没跑过真实 session; pm-2 一日 18 个 install 是单点高风险, 如有 1 个 SKILL.md 错会污染整个 profile",
-      "solution": "(1) PM 跑一次各 profile 启动 smoke test (1 个简单 hello world 类任务), 验证 skill 库装载无错; (2) 2 周内观察哪些 skill 真被实战调用, 没被用的归档或合并; (3) write up 'skill 安装 SOP' 避免同类大批量 install"
-    },
-    {
-      "id": "lyihub-codebase-learning",
-      "name": "LYiHub/labs-ArchiveAssistant 代码学习 + codebase-learning umbrella skill",
-      "description": "fei 想要纯学习视角 (不改造) 学习 GitHub 上 ArchiveAssistant 项目; 跑 CC 验证得出 4 条结论里 1 条错了 + new findings; 新建 codebase-learning class-level umbrella skill",
-      "progress": "07-17 三 session 接力 (145721/152557/160022, 共 339 msgs): (a) 145721 — CC 跑完 4 条结论 + 4 new findings, **PM 独立验证发现 #1 错了 (CC 说 compareByDescending 配 minWithOrNull 方向反了 → 实际挑无图)**; (b) 152557 — patch github-bootstrap skill 加 Step 0b Code Reading / Archaeology Mode + 4 pitfall (#17-20) + references/github-code-reading.md; (c) 160022 — 新建 codebase-learning (research/codebase-learning, 8675b) 6 步工作流 + 7 pitfall, 关键 Pitfall 1 'Intent 混淆 — 学习 vs 改造' 直接来自本会话 user 纠错",
-      "phase": "✅ Implemented",
-      "phase_emoji": "✅",
-      "last_active": "2026-07-17",
-      "active_status": "rolling",
-      "problem": "P1: CC 跑 codebase review 4 条结论里 1 条错了, 且错得很典型 — PM 独立验证才敢反驳, 说明 CC 委派后必须 verify 关键结论, 不能盲信; codebase-learning skill 装上但本周没跑过第 2 个 codebase 学习项目, 验证窗口未到",
-      "solution": "(1) codebase-learning skill 'Pitfall 1' 已写入 Intent 混淆, 默认走纯学习视角 (不改造 user 项目); (2) PM 跑 CC 类任务后用独立 grep / file read 验证关键结论 (5 min); (3) 等 fei 给下一个 codebase 学习项目做第 2 次验证"
-    },
-    {
-      "id": "reading-agent-skills-install",
-      "name": "读书 Agent Skills 调研 + 安装 (06 个 GitHub 仓库, 5/6 高置信命中)",
-      "description": "fei 在小红书看到 '铲屎官阿沐的Ai日常' 2026-07-06 笔记介绍 GitHub 6 个最火读书 Agent Skills, 想找原仓库 + 选优安装",
-      "progress": "07-17 三 session: (a) 142208 — web_search 6 个 GitHub 仓库命中 5/6 高置信 (1. distill-book → michaelpersonal/book-distill, 2. The Knowledge Guy, 3. book-study, 4. book-summarizer, 5. reading-helper, 6. book-notes 待补); (b) 141800 — 清理 ~/.claude/skills/ (保留 3 个) + 保留 free-claude-code/.claude/skills 3 个; (c) 145429 — patch install-skills-from-github skill (写 Free CC skill-install target pitfall) + 集成到 free-claude-code-management",
+      "id": "stock-investment-advisor",
+      "name": "💰 理财顾问 (Stock Investment Advisor)",
+      "description": "fei 让 research-agent 帮做一个能跟随基金指数波动, 在高点位置提前抛售的'理财顾问' agent — 包含买入/卖出节点规则 + 市场参考指标 + 自动止盈",
+      "progress": "5 个 session (7-20~21) 反复迭代: 第 1 版纯文字描述 → 第 2 版加入 stop-loss/take-profit 规则 → 第 3 版加入技术指标参考 (MA/RSI) → 第 4 版调阈值 → 第 5 版交付完整方案; 配套 `gold-000307-tracker` skill (07-23 安装) 可追踪具体基金",
       "phase": "🚀 Deployed",
       "phase_emoji": "🚀",
-      "last_active": "2026-07-17",
+      "last_active": "2026-07-21",
       "active_status": "rolling",
-      "problem": "P2: 6 个仓库里只命中 5 个高置信, 第 6 个 (book-notes / book-digest?) 未明 — web_search 没拿到; 已装 3 个但 fei 未验证读书效果, 没跑实际 book → skill pipeline",
-      "solution": "(1) reading-pipeline skill (07-17 writing-agent 新装 12535b) 可试跑 1 本 PDF 端到端验证; (2) 第 6 个仓库等 fei 提示补充关键 author 或 repo 描述"
+      "problem": "P1: 理财顾问方案停留在文字规则, 没接入实时市场数据 API — 没有'参考指数'的实时信号, 自动抛售逻辑跑不起来; 当前 5 session 都是纸面方案",
+      "solution": "(1) 用 stock-daily-analysis-skill (07-25 刚装) 接入实时行情; (2) 把'参考节点'具体化为: 上证指数 MA60 + 板块 PE 分位 + 个股 RSI 超买; (3) 跑 1 个实盘 paper-trading 验证 1-2 周"
     },
     {
-      "id": "wechat-archive-skill-design-audit",
-      "name": "微信公众号归档 + skill-design-audit 新建 (07-14, 3 session)",
-      "description": "归档 1 篇 WeChat 文章 (教你怎么设计skill, 微信官方最佳实践) + patch nand-flash-research v1.9.0→v1.10.0 + 新建 skill-design-audit class-level skill",
-      "progress": "07-14 三 session 接力 (084934/085316/090414, 共 359 msgs): (a) 084934 — 抓 WeChat 文章 + 校对 Samsung PM1763 随机写 IOPS, 发现官方 3 数据源全都没列 (产品页 / White Paper 2026-06-17 / SCADA benchmark 都未测); (b) 085316 — patch record-obsidian-base skill 加 pitfall (公众号 publish_time HTML em id 常被 JS __setPubTime 留空) + extract_wechat_article.py 加 3-tier publish_time fallback; (c) 090414 — 归档到 knowowl/Tech/AI/2026-07-14__微信官方最佳实践_教你怎么设计skill.md (97 行 / 4.8KB) + patch nand-flash-research v1.10.0 (8 处 surgical edit) + 新建 skill-design-audit class-level skill (9426b)",
+      "id": "dfe-research",
+      "name": "🔬 DFE (Decision Feedback Equalization) 调研",
+      "description": "fei 让 research-agent 调研高速高频信号的专用 feature — Decision Feedback Equalization (DFE) 的开启方式和工作原理",
+      "progress": "2 个 session (07-20 调研 + 07-21 报告+论文推送飞书) — 完整走完 research → 报告 → 飞书交付链路; DFE 概念、工作原理、PCIe SerDes 应用场景全 cover",
       "phase": "✅ Implemented",
       "phase_emoji": "✅",
-      "last_active": "2026-07-14",
-      "active_status": "rolling",
-      "problem": "P2: js_image_content 类型 (上周报延续) 跟 text-style DOM 容器完全不同, patch 已 OK 但 record-obsidian-base skill 持续累积特判 — 跟 wechat-archive-cron 同根问题",
-      "solution": "(1) record-obsidian-base skill §'article-type detection' 段加决策树 (text / image / mixed); (2) 跑 2 周观察新特判需求频次; (3) skill-design-audit skill 是新工具, 后续归档前可跑一遍 self-audit"
-    },
-    {
-      "id": "kv-cache-excel-rebuild",
-      "name": "KV cache Excel 重建 (07-16, 2 session + codex-artifact-recovery skill)",
-      "description": "fei 想找之前 session 做的 KV cache 估算 Excel, 加 codex-artifact-recovery skill (5-place parallel search) 找丢失产物",
-      "progress": "07-16 两 session (113804/200002, 共 199 msgs): (a) 113804 — 5-place parallel search (Codex Desktop tree / iCloud mirror / session log / plugin cache / config) 全没找到原 Excel, 给出 3 选项 (1.原样重建 / 2.重建+升级 SSD Gen5/DeepSeek-V4-Pro/NVFP4/GLM-5.2 新数据 / 3.先不改); (b) 200002 — 新建 codex-artifact-recovery class-level umbrella skill (research/codex-artifact-recovery, 11140b), 含 5-place search method + 10 pitfall + references/locations.md 含 2026-06 verified paths",
-      "phase": "🔬 Discovery",
-      "phase_emoji": "🔬",
-      "last_active": "2026-07-16",
-      "active_status": "stalled",
-      "problem": "P1: Excel 没找到, fei 选方向 (1/2/3) 后才能继续 — 现在 stalled; codex-artifact-recovery skill 已就位, 后续同类产物丢失可走 5-place search 快速定位",
-      "solution": "(1) 等 fei 选 1/2/3 (本周末催一下); (2) 选 2 的话 PM 拉 research-agent 跑 SSD Gen5 + DeepSeek-V4-Pro 真实参数 (research/nand-flash-research skill 已就绪)"
-    },
-    {
-      "id": "socratic-questioning-skill",
-      "name": "socratic-questioning skill 设计 (07-18)",
-      "description": "fei 主动触发 (发图 + '我想做苏格拉底式提问'), PM 主动澄清使用场景后建 skill",
-      "progress": "07-18 1 session (085021, 56 msgs): fei 发图片 + 触发 socratic; PM 主动澄清 (技术域 only + 6 步法决策树 + 跟 generic 苏格拉底区别); 新建 socratic-questioning skill (research/socratic-questioning, 9066b) 限定技术域 (NAND/SSD/AI 架构选型、代码 review、PRD 评审), fei 主动要才触发; 同步清理: (a) 错 skill image-to-text-archive 删除 (absorbed into image-text-extraction); (b) memory 偏好加 'Skill 创建前必须 clarify 用法'",
-      "phase": "🚀 Deployed",
-      "phase_emoji": "🚀",
-      "last_active": "2026-07-18",
+      "last_active": "2026-07-21",
       "active_status": "active",
-      "problem": "— skill 限定技术域, fei 主动要才触发, 不滥用",
-      "solution": "— 等 fei 第一次实际用 (PRD 评审或 NAND 选型场景) 验证"
+      "problem": "—",
+      "solution": "—"
     },
     {
-      "id": "ipo-cron-board-fix",
-      "name": "新股申购 cron 板块不一致修复 (07-16~17, 3 session)",
-      "description": "CNInfo 硬编码 MARKET_TYPE 导致 '创业板/科创板' 字段错; 修 script + 新建 QA+Hunt cron",
-      "progress": "07-16/17 三 session: (a) 080751 — fei 问 '为啥一个说创业板一个说科创板', 查 check_ipo.py; (b) cron 0f7edca2fc2c 083034 (07-16) — QA 报告 3 发现已修 3/待观察 0, CNInfo 板块 L166 改为按 code 前缀判定; (c) cron 083025 (07-17) — 后续 1 个待观察; (d) 设好新 cron `新股申购QA+Hunt` job_id 0f7edca2fc2c, 工作日 8:30 跑 (紧跟 8:00 主推送), deliver=origin (飞书同会话)",
-      "phase": "🔁 Rolling",
-      "phase_emoji": "🔁",
-      "last_active": "2026-07-17",
-      "active_status": "rolling",
-      "problem": "— 7-17 QA 报告 1 个待观察, 后续工作日持续跑; cron 流水线清晰",
-      "solution": "— 持续 rolling"
+      "id": "investment-masters-suite",
+      "name": "🧠 投资大师 Skill 套装 (8 大师 + AlphaEar 工具集)",
+      "description": "07-25 在 _default_shared 一次性装 8 个'投资大师' persona skill + 9 个 AlphaEar 金融工具 + 配套 stock-daily-analysis / global-stock-data / BitSoulStock / serenity — 形成完整的'股票分析决策' skill 工具链",
+      "progress": "07-25 单日装 23 个 skill (最大单日 install): 8 大师 (利弗莫尔/巴菲特/索罗斯/西蒙斯/格雷厄姆/彼得林奇/德曼/炒股养家) + 9 alphaear-* (reporter/search/sentiment/predictor/deepear-lite/logic-visualizer/signal-tracker/news/stock) + stock-daily-analysis + global-stock-data + BitSoulStockSkill + serenity-skill + gold-000307-tracker (research-agent 7-23)",
+      "phase": "🛠 Implementation",
+      "phase_emoji": "🛠",
+      "last_active": "2026-07-25",
+      "active_status": "active",
+      "problem": "P1: 8 大师 skill + 9 alphaear 工具一次性装, 没经过任何实战 session 验证 — 8 大师的 persona prompt 可能有 overlap (巴菲特和格雷厄姆都是价值投资, 容易冲突), 实战前需要先做'分析师选型测试'",
+      "solution": "(1) PM 跑一次 5 个大师对同一支股票的差异化输出对比, 验证 persona 边界清晰; (2) alphaear 工具链做 1 个 end-to-end smoke test (选 1 支股票 → alphaear-search 抓新闻 → alphaear-sentiment 算情绪 → alphaear-predictor 预测 → alphaear-reporter 出报告); (3) 1-2 天"
     },
     {
-      "id": "feishu-clarify-card",
-      "name": "Feishu clarify 卡片化调研 (07-18, writing-agent)",
-      "description": "fei 发现 Hermes clarify 在飞书纯文本渲染 (须输入数字/选项), 想找网上 in-flight 修复",
-      "progress": "07-18 writing-agent 1 session (54 msgs): 找到 NousResearch/hermes-agent Issue #43818 (open since 2026-06-10, P3 / platform/feishu) + in-flight PR (用 send_exec_approval / send_update_prompt 同样的卡片化方案); 当前飞书网关上 clarify 还是纯文本",
-      "phase": "🔬 Discovery",
-      "phase_emoji": "🔬",
-      "last_active": "2026-07-18",
-      "active_status": "rolling",
-      "problem": "P1: PR 还没 merge, fei 想要的卡片化 clarify 短期不可用; Hermes 官方 P3 优先级, 上游推进慢",
-      "solution": "(1) 等 PR merge + 升级 hermes-agent 版本; (2) 短期 workaround: 用户输入数字 / 选项文本回复, 飞书已能识别; (3) PM 提一个新 Issue 标 priority 跟进 (或在 PR 加 +1 表情)"
-    },
-    {
-      "id": "confluence-cli-research",
-      "name": "Confluence 开源 CLI 调研 (07-13)",
-      "description": "fei 问 'Confluence 是否有开源 CLI 用于上传编辑内容'",
-      "progress": "07-13 1 session (094623, 12 msgs): 调研结论 — Atlassian 官方 (atlassianlabs) 没出 CLI, 社区维护 6 个活跃: pchuri/confluence-cli 233⭐ (最老牌 Python) / BjoernSchotte/atlcli 33⭐ (Go) / 还有 4 个跨平台/订阅; 推荐 pchuri/confluence-cli (read/search/manage 完整) 或 atlcli (Markdown ↔ Confluence 主打)",
+      "id": "skill-library-refactor-r2",
+      "name": "🔥 Skill 库大重构 Round 2 (本周 +37 skill, 7-20~25 共 6 天)",
+      "description": "上周 80 skill 大重构之后, 本周第二轮 mass install 落地, 主要补齐 PM/研究/创作/金融 4 大方向的工具链",
+      "progress": "55 个新 SKILL.md, 6 个 bulk install events: (1) **07-22 pm-for-claude 一次性装 12** (research-knowledge / kiddo-scoreboard-deploy / mlops-toolkit / github-pr-workflow / claude-design / creative-visual-production / hermes-skill-architecture / feishu-lark / pm-workflow / productivity-tools / ai-music-generation / media-processing); (2) **07-25 pm-2/my-pm/_default_shared 装 23** (8 大师 + 9 alphaear + stock-daily + global-stock-data + BitSoulStock + serenity + install-skills-from-github + headroom-context-compression 重启); (3) 07-23 qual-agent 装 3 (information-discovery / software-engineering-playbook / llm-operations); (4) 07-23 research-agent 装 7 (research / fund-finance-research / web-acquisition / gold-000307-tracker / github-bootstrap / codebase-learning / matplotlib); (5) 07-21 pm-2 装 1 (pm-skill-ecosystem-survey); (6) 07-20 my-pm 装 3 (macos-process-management / hermes-sandbox-pitfalls)",
       "phase": "✅ Implemented",
       "phase_emoji": "✅",
-      "last_active": "2026-07-13",
-      "active_status": "rolling",
-      "problem": "— fei 没明确说要不要装, 默认推荐 pchuri/confluence-cli 备选",
-      "solution": "— 等 fei 决策装哪个"
+      "last_active": "2026-07-25",
+      "active_status": "active",
+      "problem": "P1: 2 周累计 135 个新 skill (上周 80 + 本周 55), 实战验证窗口严重滞后 — '装了但没人调用' 的 skill 占比可能 >50%, 占用 profile skill 库内存但无价值",
+      "solution": "(1) PM 跑全 profile 'skill 调用率' 统计 (从 session 日志 grep 哪个 SKILL.md 被 read 最多); (2) 30 天内 0 调用的 skill 标 '归档候选' 走 review; (3) 写 'skill 安装 SOP' (单 profile 单日 ≤3 skill 硬上限)"
     }
   ],
   "rolling_projects": [
     {
       "name": "weekly-report cron (本任务)",
-      "progress": "cron job `weekly-report-publish` 周日 07:00 自动跑; 06-28 / 07-05 / 07-12 / 07-19 已跑通 4 次; 3 源 union (filesystem + sessions.json aggregate + state.db SQLite) 模板稳定",
+      "progress": "cron job `weekly-report-publish` 周日 07:00 自动跑; 已跑通 6 次 (06-14 / 06-28 / 07-05 / 07-12 / 07-19 / 07-26); 4 源 union 模板稳定 (filesystem + sessions.json + state.db SQLite + SKILL.md mtime)",
+      "phase": "🔁 Rolling",
+      "phase_emoji": "🔁",
       "active_status": "rolling",
       "problem": "—",
       "solution": "—"
     },
     {
-      "name": "memory-cleanup cron (07-18 跑通, memory 123.9% 触发)",
-      "progress": "07-18 23:00 pm-for-claude cron `5b2a5373ae2b` 跑 memory-cleanup skill: memory 占用 123.9% (1858/1500 legacy / 84.5% active cap 2200), user profile 64.5% (886/1375) 双双 ≥ 50%; 跑通 cleanup, archive 6524 bytes (3 文件 SOP: SOUL+MEMORY+USER); 装 memory-cleanup skill (07-18 _default_shared)",
+      "name": "headroom-context-compression cron",
+      "progress": "my-pm profile 每日 02:00 跑 (07-23~07-26 已稳定 4 天), context 压缩层 v1 跑通; 07-25 skill 本身从 my-pm 重新落地",
+      "phase": "🔁 Rolling",
+      "phase_emoji": "🔁",
       "active_status": "rolling",
-      "problem": "P0: memory 仍爆 (legacy 1500 cap 已超, 实际 1858 = 123.9%), 但 active 2200 cap 还在 84.5%; pm-2 07-19 agentmemory-integration cron 显示 pm-2/my-pm 全 OK 但 pm-for-claude 仍 ≥50%; 涨回 ≥75% 根因未根治 (上周报延续 4 周)",
-      "solution": "(1) 等 07-20 下次 cron 自动 cleanup; (2) memory-auto-decay LRU 验证窗口仍在观察; (3) 调 legacy 1500 cap 上调至 1800 (provider 默认)"
-    },
-    {
-      "name": "agentmemory-integration 健康检查 cron (pm-2 daily)",
-      "progress": "07-19 01:00 pm-2 cron `bee3524ccf77` 跑 agentmemory-integration skill: pm-2/my-pm/pm-for-claude/research-agent 全 OK (provider=agentmemory, mcp_servers.agentmemory block/flow-style args OK, plugin ✅)",
-      "active_status": "rolling",
-      "problem": "— 监控健康, 全 OK",
+      "problem": "—",
       "solution": "—"
     },
     {
-      "name": "Z-Library 每日下载 cron (07-17 失败, scripts missing)",
-      "progress": "07-17 cron `30046dd874e8_20260717` 跑 zlibrary_daily.py: 报错 `~/Downloads/ebooks/zlibrary_daily.py` MISSING + `pending.txt` MISSING + `lookup_lexile_ar.js` MISSING — 脚本被人/系统清掉; 07-13/14/15/16/18/19 cron 跑通 ([SILENT]) 但实际功能空; 本周 4 本找不到 (上周延续) 状态不变",
+      "name": "memory-cleanup cron + agentmemory-integration",
+      "progress": "memory-cleanup cron 每日 23:00 跑 (07-25 pm-for-claude + my-pm + pm-2 触发 cleanup); agentmemory-integration cron (07-26 pm-2 跑通); 50% trigger threshold + LRU 自动砍最老条已稳定",
+      "phase": "🔁 Rolling",
+      "phase_emoji": "🔁",
       "active_status": "rolling",
-      "problem": "P0: zlibrary_daily.py 等核心脚本丢失, cron 7 天空跑 — fei 看不到任何下载报告; pending.txt 已清空 = 之前任务丢了",
-      "solution": "(1) PM 重建 zlibrary_daily.py (zlibrary-downloader skill + zlibrary skill 有完整脚本模板); (2) 重建 lookup_lexile_ar.js; (3) 看 Downloads/ebooks 目录是否整个被 rm -rf 了"
+      "problem": "P1: memory 上周 123.9% 爆掉的问题, 本周是否复现? 7-25 cleanup 跑通后是否回到 <75% 健康区?",
+      "solution": "(1) 跑 `mcp__agentmemory__memory_diagnose` 看当前 memory %; (2) 如果还 >75%, 写 skill 把 legacy 1500 cap 降到 1000"
     },
     {
-      "name": "新股申购 cron 主任务 (工作日 8:00)",
-      "progress": "本周工作日 07-13/14/15/16/17 cron 跑通; 板块不一致问题已在 07-16~17 修复 (IPO-cron-board-fix)",
+      "name": "CURATOR umbrella (research-agent 7-23 启动)",
+      "progress": "research-agent 7-23 跑了 4 session 'CURATOR umbrella 化', 把 curator run / REPORT.md 提炼流程结构化; 跑通 1 次但还没产出 deliverable",
+      "phase": "🛠 Implementation",
+      "phase_emoji": "🛠",
       "active_status": "rolling",
-      "problem": "— 跑通",
-      "solution": "—"
-    },
-    {
-      "name": "CURATOR umbrella 化 (07-16)",
-      "progress": "07-16 1 session (032047, 123 msgs): Hermes 后台 curator 跑 11 个 agent-created skills 的 umbrella-ification consolidation pass; 识别 2 个 umbrella 机会 (A) install cluster (3 skills → 合并) (B) research sub-methodology (1 skill → 留 class-level); 剩余 6 个 class-level 无 peer 保留 as-is; 输出 umbrella-friendly 命名规则",
-      "active_status": "rolling",
-      "problem": "— curator pass 跑通, 后续同类 skills 应走 umbrella-first 命名",
-      "solution": "—"
+      "problem": "P2: CURATOR umbrella 4 个 session 但实际 deliverable = 0 (没看到 REPORT.md 落地); 可能是调研阶段没到产出",
+      "solution": "等下次 weekly-report 跑完对照 'curator-review' skill 是否被实际调用"
     }
   ],
   "problems": [
     {
-      "priority": "P0",
-      "project": "zlibrary-scripts-missing",
-      "issue": "Z-Library cron 核心脚本丢失 (07-17 cron 报错) — `~/Downloads/ebooks/zlibrary_daily.py` + `pending.txt` + `lookup_lexile_ar.js` 都不存在; cron 7 天空跑 [SILENT], fei 看不到下载报告",
-      "solution": "(1) PM 重建 zlibrary_daily.py (zlibrary-downloader skill 有完整模板); (2) 重建 lookup_lexile_ar.js; (3) 检查 Downloads/ebooks 目录是否被整体 rm; (4) 1-2 小时",
-      "time": "1-2 小时"
-    },
-    {
-      "priority": "P0",
-      "project": "memory-cleanup",
-      "issue": "memory 涨到 123.9% (07-18) — pm-for-claude legacy 1500 cap 已爆, 实际 1858; active 2200 cap 84.5%; pm-2 agentmemory-integration 显示 pm-2/my-pm OK 但 pm-for-claude 仍 ≥50%; 涨回 ≥75% 根因未根治 (上周延续 4 周)",
-      "solution": "(1) 等 07-20 下次自动 cleanup; (2) memory-auto-decay LRU 验证窗口观察; (3) legacy cap 1500 → 1800; (4) 等观察",
-      "time": "等观察"
-    },
-    {
       "priority": "P1",
-      "project": "cc-review-verification",
-      "issue": "CC 跑 codebase review 4 条结论里 1 条错了 (07-17 145721) — PM 独立 grep + file read 验证才敢反驳, 说明 CC 委派后必须 verify 关键结论, 不能盲信; codebase-learning skill 装上但未跑过第 2 个 codebase 学习项目",
-      "solution": "(1) codebase-learning skill Pitfall 1 'Intent 混淆 — 学习 vs 改造' 已写入; (2) PM 跑 CC 类任务后用独立 grep / file read 验证关键结论 (5 min); (3) 等 fei 给下一个 codebase 学习项目做第 2 次验证",
-      "time": "1-2 周观察"
-    },
-    {
-      "priority": "P1",
-      "project": "kv-cache-excel-rebuild",
-      "issue": "KV cache Excel 没找到, fei 选方向 (原样重建/重建+升级/不改) 后才能继续 — 现在 stalled; codex-artifact-recovery skill 已就位但等 fei 拍板",
-      "solution": "(1) 本周末催 fei 选 1/2/3; (2) 选 2 的话 PM 拉 research-agent 跑 SSD Gen5 + DeepSeek-V4-Pro 真实参数 (research/nand-flash-research skill 已就绪)",
+      "project": "investment-masters-suite-overlap",
+      "issue": "8 大师 persona skill (07-25 一次装) 没做差异化验证 — 巴菲特/格雷厄姆/彼得林奇 都是价值投资派, persona prompt 可能边界模糊, 同一个问题 3 个大师输出几乎一样; alphaear 9 个工具链也没跑过 end-to-end smoke test",
+      "solution": "(1) PM 跑一次 5 大师对比测试 (用茅台/英伟达/比亚迪 3 支股票); (2) alphaear 跑 1 个 e2e (search → sentiment → predictor → reporter); (3) 1-2 天验证后写 'stock skill 用户手册'",
       "time": "1-2 天"
     },
     {
       "priority": "P1",
-      "project": "feishu-clarify-card",
-      "issue": "Hermes clarify 在飞书纯文本渲染 (须输入数字/选项), PR #43818 in-flight 但没 merge, P3 优先级慢",
-      "solution": "(1) 等 PR merge + 升级 hermes-agent; (2) 短期 workaround: 用户输入数字 / 选项文本回复, 飞书已能识别; (3) PM 提新 Issue 或在 PR 评论 +1 表情",
-      "time": "等上游"
+      "project": "skill-library-bloat",
+      "issue": "2 周累计 135 个新 skill (上周 80 + 本周 55) 实战验证严重滞后 — '装了但没人调用' 的 skill 占比可能 >50%, 占用 profile skill 库内存且 SKILL.md 加载变慢; 散装 profile 影响 agent 启动时间",
+      "solution": "(1) PM 跑全 profile 'skill 调用率' 统计 (grep session 日志); (2) 30 天 0 调用的 skill 标归档候选; (3) 写 'skill 安装 SOP' 限制单日 ≤3 install",
+      "time": "3-5 天"
+    },
+    {
+      "priority": "P1",
+      "project": "memory-cleanup-regression-risk",
+      "issue": "上周 (07-18) memory 123.9% 爆掉 (1858/1500) 是 P0; 本周 07-25 memory-cleanup cron 跑通 (pm-for-claude + my-pm + pm-2) 但是否真回到 <75% 健康区未验证; auto_decay skill 装上但触发频率未明",
+      "solution": "(1) 跑 `mcp__agentmemory__memory_diagnose categories=memory,leases` 看当前真实 %; (2) 如果还 >75%, 改 legacy cap 1500 → 1000 + 触发 LRU 砍最老",
+      "time": "1 小时"
     }
   ],
   "new_skills": {
-    "p1_massive_skill_refactor": {
-      "category": "🔥 全套 skill 库大重构 (80 new + 3 patch, 7-13~19 共 5 天, 7 个 ≥3 install events)",
-      "count": 80,
-      "trigger": "本周 5 天连续大批量 skill 装载, 是 class-level umbrella 化重构; 6 个 profile 受影响",
-      "impact": "7 个 install events:\n\n**🟢 pm-2 全套工作流 (18 skills, 07-15)**:\n- `ai-content-generation` · `apple-macos-suite` · `ascii-art-suite` · `coding-agent-cli` · `creative-coding-suite` · `debug-toolkit` · `design-templates` · `diagram-suite` · `family-travel-planning` · `github-workflows` · `hermes-agent` · `kanban-system` · `llm-inference-runtime` · `media-toolkit` · `ml-evaluation-stack` · `research-discovery` · `research-paper-writing` (105KB) · `software-quality-process`\n\n**🟣 pm-for-claude 工作流套件 (13 skills, 07-13~18 分批)**:\n- 07-13: `feihao-visual-feedback` · `github-repo-management` · `karpathy-guidelines` · `pm-project-lifecycle` · `quick-tunnel-preview` · `subagent-workflow-pattern`\n- 07-15: `feishu-lark-cli-message` · `foreign-project-preview-tunnel` · `free-claude-code-cli-args` · `html5-game-tdd-workflow` · `kanban-orchestrator` · `record-obsidian-base` · `staged-html5-game-v0`\n- 07-17: `feihao-pm-autonomy` (120KB) · `feishu-message-format`\n- 07-18: `cc-pm-spawn-pitfalls` · `kiddo-scoreboard-dev-iteration`\n\n**🟡 writing-agent 全套创作套件 (10 skills, 07-16~18 分批)**:\n- 07-16: `coding-cli-agents` · `creative-design-suite` (137KB) · `github-repo-management` · `kanban` · `media-and-ai-music` · `productivity` (73KB) · `research-umbrella` (138KB) · `software-engineering-workflow`\n- 07-17: `reading-pipeline` (12KB)\n- 07-18: `web-research-fallbacks`\n\n**🔴 qual-agent 调试 + LLM 套件 (8 skills, 07-16)**:\n- `ascii-art` · `hermes-multi-agent-protocols` · `kanban-orchestrator` · `llama-cpp` · `lm-evaluation-harness` · `requesting-code-review` · `systematic-debugging` (34KB) · `xitter`\n\n**🔵 research-agent 研究方法论 (10 skills + 2 patch, 07-14~18 分批)**:\n- 07-14: `record-obsidian-base` (31KB) · `skill-design-audit` (9KB) · `xiaohongshu-cli` (45KB) · **patch** `nand-flash-research` v1.9.0→v1.10.0 (135KB)\n- 07-15: `web-acquisition` (68KB)\n- 07-16: `codex-artifact-recovery` (11KB) · `company-research` (11KB) · `mcp-server-discovery` (11KB) · **patch** `research`\n- 07-17: `codebase-learning` (8KB) · `github-bootstrap` (29KB)\n- 07-18: `socratic-questioning` (9KB)\n\n**🟠 my-pm 基础设施 + cron (10 skills, 07-13~19 分批)**:\n- 07-13: `feed-ingestion-pitfalls`\n- 07-15: `cronjob-management` (32KB) · `local-dev-environment` (37KB)\n- 07-16: `baidu-bypy-pipeline-runbook` · `hermes-sandbox-pitfalls` (71KB)\n- 07-18: `baidu-netdisk-backup` (33KB) · `coding-agent-clis` (41KB) · `long-running-job-pulse` · `subagent-workflow-pattern`\n- 07-19: `headroom-context-compression` (87KB) [重启]\n\n**🔵 _default_shared 跨 profile (3 skills)**:\n- 07-13: `pm-memory-management` (69KB)\n- 07-14: `agent-reach` (patch)\n- 07-17: `free-claude-code-management` (61KB)\n- 07-18: `memory-cleanup` (122KB)"
+    "p1_investment_skill_suite": {
+      "category": "🧠 投资大师 + AlphaEar 金融工具集 (07-25 一次装 23 个)",
+      "count": 23,
+      "trigger": "07-25 单日最大 install — 8 大师 persona + 9 alphaear 工具链 + stock-daily + global-stock-data + BitSoulStock + serenity + gold-000307-tracker",
+      "impact": "**8 大师 personas** (`_default_shared`):\n- `利弗莫尔` (投机之王, 最小阻力路线) · `巴菲特` (护城河+安全边际) · `索罗斯` (反身性理论) · `西蒙斯` (量化模型) · `格雷厄姆` (内在价值) · `彼得林奇` (身边股+十倍股) · `德曼` (还原论+简单性) · `炒股养家` (龙头战法+情绪周期)\n\n**9 AlphaEar 金融工具** (`_default_shared`):\n- `alphaear-reporter` · `alphaear-search` · `alphaear-sentiment` · `alphaear-predictor` (Kronos) · `alphaear-deepear-lite` · `alphaear-logic-visualizer` · `alphaear-signal-tracker` · `alphaear-news` · `alphaear-stock`\n\n**配套 6 个** (`_default_shared`):\n- `stock-daily-analysis-skill` (LLM 驱动每日分析) · `global-stock-data` (美股港股全栈) · `BitSoulStockSkill` (A股综合) · `serenity-skill` (供应链瓶颈) · `zlibrary-daily-download` (重建) · `zlibrary-downloader`\n\n**实战**: 理财顾问方案 (research-agent 7-20~21) 是这一波金融 skill 装之前的'预演', 装完正好可以接 stock-daily-analysis 实盘"
+    },
+    "p2_pmforclaude_mass_install": {
+      "category": "🎨 pm-for-claude 视觉/产品/工作流 套件 (07-22 一次装 12 个)",
+      "count": 12,
+      "trigger": "07-22 pm-for-claude 单日 bulk install, 形成完整的产品/视觉/工作流工具链",
+      "impact": "**07-22 pm-for-claude 12 个**:\n- `research-knowledge` · `mlops-toolkit` · `github-pr-workflow` · `claude-design` · `creative-visual-production` · `hermes-skill-architecture` · `feishu-lark` · `pm-workflow` · `productivity-tools` · `ai-music-generation` · `media-processing` · `kiddo-scoreboard-deploy`\n\n**07-20~21 kiddo 系列 2 个** (`pm-for-claude`):\n- `kiddo-scoreboard-dev-iteration` (07-20) · `kiddo-feature-deploy-sop` (07-21)\n\n**注意**: kiddo-* skill 不在 PM 主动范围 (fei 2026-06-14 explicit), 列在这里只为完整性"
+    },
+    "p3_research_agent_methodology": {
+      "category": "🔬 research-agent 研究方法论 + 基金工具 (07-20, 07-23 装 7 个)",
+      "count": 7,
+      "trigger": "research-agent 本周装研究/金融/绘图全套工具",
+      "impact": "**07-23 research-agent 7 个**:\n- `research` (研究方法论 umbrella) · `fund-finance-research` · `web-acquisition` · `gold-000307-tracker` · `github-bootstrap` · `codebase-learning` · `matplotlib`\n\n**实战匹配**: 7-20~21 的 DFE 调研 + 理财顾问 5 session 期间正好装上 research/fund-finance-research/gold-000307-tracker"
+    },
+    "p4_qual_agent_debug": {
+      "category": "🔧 qual-agent 调试 + LLM 工具 (07-23 装 3 个)",
+      "count": 3,
+      "trigger": "qual-agent 7-23 单次 install",
+      "impact": "- `information-discovery` · `software-engineering-playbook` · `llm-operations`"
+    },
+    "p5_infrastructure": {
+      "category": "🛠 基础设施 + Memory 管理 (跨 profile 装 8 个)",
+      "count": 8,
+      "trigger": "memory-cleanup + agentmemory-integration + hermes-sandbox-pitfalls + headroom-context-compression 等基础工具落地",
+      "impact": "**跨 profile 8 个**:\n- `_default_shared/pm-memory-management` · `_default_shared/memory-cleanup` (07-20) · `_default_shared/agentmemory-integration` (07-24)\n- `my-pm/macos-process-management` · `my-pm/hermes-sandbox-pitfalls` (07-20) · `my-pm/headroom-context-compression` (07-25 重启)\n- `pm-2/pm-skill-ecosystem-survey` (07-21) · `pm-2/install-skills-from-github` (07-25)"
     }
   },
   "hot_topics": [
-    "🔴 P0: Z-Library cron 核心脚本 7-17 丢失 (zlibrary_daily.py + pending.txt + lookup_lexile_ar.js MISSING) — cron 7 天空跑 [SILENT], fei 看不到下载报告; PM 重建预计 1-2 小时",
-    "🔴 P0: memory 涨到 123.9% (07-18) — pm-for-claude legacy 1500 已爆 (实际 1858); 涨回 ≥75% 根因未根治 (上周延续 4 周); 等 07-20 下次 auto cleanup + LRU 验证窗口",
-    "🟠 P1: 本周 80 个 skill 一次性大装载 (5 天, 7 个 install events) — 实战验证窗口未到, 部分 skill 可能是 '为了有而装'; pm-2 一日 18 个 install 是单点高风险",
-    "🟠 P1: CC 跑 codebase review 4 条结论里 1 条错了 (07-17 145721) — PM 独立 grep 验证才敢反驳, 说明 CC 委派后必须 verify 关键结论; codebase-learning skill Pitfall 1 'Intent 混淆' 已写",
-    "🟠 P1: KV cache Excel 重建 stalled — fei 没选方向 (原样重建/升级/不改); codex-artifact-recovery skill 已就位 (5-place search); 本周末催",
-    "🟠 P1: feishu Hermes clarify 纯文本渲染 — PR #43818 in-flight (P3, 自 2026-06-10); 短期 workaround 输入数字/选项文本",
-    "🟢 进展: LYiHub/labs-ArchiveAssistant 代码学习 (07-17) + 新建 codebase-learning class-level umbrella (6 步 + 7 pitfall), 关键 Pitfall 1 来自本会话 user 纠错",
-    "🟢 进展: 读书 Agent Skills 调研 (07-17) 6 个 GitHub 仓库命中 5/6 高置信; install-skills-from-github patch + reading-pipeline skill 就位",
-    "🟢 进展: 微信公众号归档 (07-14) + 新建 skill-design-audit class-level skill; record-obsidian-base patch js_image_content 特判",
-    "🟢 进展: 新股申购 cron 板块不一致修复 (07-16~17) — CNInfo 硬编码 MARKET_TYPE 修完; 新建 QA+Hunt cron `0f7edca2fc2c` 工作日 8:30",
-    "🟢 进展: socratic-questioning skill (07-18, 235 行) — fei 主动触发, 技术域限定 (NAND/SSD/AI 选型 + 代码 review + PRD 评审)",
-    "🟢 进展: Feishu clarify 卡片化调研 (07-18 writing-agent) — 找到 in-flight PR #43818, 进度信息已记录",
-    "🟡 调研: Confluence CLI 调研 (07-13) — 社区 6 个 CLI, 推荐 pchuri/confluence-cli 233⭐ (Python 最老牌) 或 BjoernSchotte/atlcli 33⭐ (Go, Markdown ↔ Confluence)",
-    "🟡 滚存: 本周 headroom-context-compression skill 07-19 重启装到我-pm — 跟上周 headroom 暂停对应, fei 是否要恢复 headroom 待决策",
-    "⚪ 1 sentence: kiddo-scoreboard sprite 改造 (07-14~16, 7 session) — FAL backend 挂 → 走 Gemini → 走 Pollinations fallback; 10 张 RPG 素材 (hero/monster idle/attack/hurt/victory/defeat) 落盘 public/assets/fighter/v2/; fei 个人项目, PM 不主动跟踪",
-    "⚪ 1 sentence: 泰国行程规划 / 家庭行程规划 / bdpan 登录问题 (上周延续) — fei 个人, 不在 PM 范围"
+    "🟠 P1: 投资大师 8 persona skill (07-25 一次装) 没实战验证 — 巴菲特/格雷厄姆/彼得林奇 价值投资派可能输出雷同; PM 跑对比测试 1-2 天",
+    "🟠 P1: 2 周累计 135 个新 skill (上周 80 + 本周 55) — 实战验证严重滞后, '装了但没人调用' 的 skill 占比可能 >50%; 30 天 0 调用归档",
+    "🟠 P1: memory 上周 123.9% 爆 (07-18), 本周 7-25 cleanup 跑通, 但是否真回 <75% 健康区未验证 — 跑 `mcp__agentmemory__memory_diagnose` 立刻可查",
+    "🟡 P2: 理财顾问 (research-agent 7-20~21, 5 session) 仍是文字方案, 没接实时行情 API; stock-daily-analysis-skill (07-25 装) 可接入",
+    "🟡 P2: CURATOR umbrella 跑 4 session 但 deliverable=0 (research-agent 7-23), 可能是调研未到产出阶段",
+    "⚪ pm-for-claude kiddo-* skill 落地 2 个 (07-20~21) — 不在 PM 主动范围 (fei 2026-06-14), 列出仅为完整"
   ]
 }
