@@ -1,167 +1,211 @@
 {
   "meta": {
     "title": "Hermes 团队周报",
-    "date_range": "2026-07-26 → 2026-08-02",
-    "generated_at": "2026-08-02",
+    "date_range": "2026-08-03 → 2026-08-09",
+    "generated_at": "2026-08-09",
     "owner": "fei",
     "summary": {
-      "total_sessions": 22,
-      "profiles_active": 6,
-      "real_projects": 4,
-      "rolling_projects": 6,
-      "real_problems": 3,
-      "new_skills_count": 56
+      "total_sessions": 206,
+      "profiles_active": 5,
+      "real_projects": 8,
+      "rolling_projects": 5,
+      "real_problems": 4,
+      "new_skills_count": 57
     }
   },
   "overview": [
     {
-      "profile": "research-agent",
-      "sessions": 8,
-      "focus": "本周最活跃 — Firecrawl 调研 + 安装 (8-1) + OpenMini Android 调研 + skill 固化 (8-1) + 英伟达 VeRoBERTa 架构调研 (7-31) + 新股申购 QA cron 周度化 (7-31) + Z-Library 每日下载 cron (7 天) + 新股申购 QA cron (7-27, 7-30); 同时承担本周 8 个 devops skill 大批量安装 (07-30)"
-    },
-    {
-      "profile": "my-pm",
-      "sessions": 5,
-      "focus": "weekly-report cron (本任务 8-2 + 上次 7-26) + headroom-context-compression cron 每日跑 (7-27~8-1, 6 天) + memory-cleanup cron (7-27) + 飞书 channel 全 down 排查 (7-27 21:11, 当晚恢复) + agentmemory health check (8-1) + headroom cron 手动 pause (8-1 12:44); 本周 my-pm 装 12 个新 skill (07-26 mlops 9 + 07-28 headroom/coding-agent 2 + 08-01 communication-conventions 1)"
-    },
-    {
       "profile": "pm-2",
-      "sessions": 4,
-      "focus": "agentmemory-integration cron 每日 (7-26~8-2, 7 天) + NIGHTLY-TODO cron 每日 (7 天 0 pending 干净) + memory-cleanup cron 每日 (07-30 触发 USER 99.8% cleanup) + 旅行愿望清单 skill 体系化 (8-1) + 8月17日 度假规划 (7-31) + AgentMemory unassigned review cron (7-26 22:00 跑通) + agentmemory-usage-sop cron (7-26 22:00); 本周 pm-2 装 2 个旅行 skill (08-01)"
+      "sessions": 162,
+      "focus": "本周最活跃 — **health-vault cron 新上线** 7x24 每小时跑 (128 sessions / 7 天, 跟新装 health-vault skill 配套); **agentmemory-integration cron** 每日 01:00 稳定 7 天; memory-cleanup cron 每日 23:00 稳定 6 天; 健康助手配置 (8-3 22:34) + 腰肌劳损康复 (8-4 21:52) + 腰肌劳损 → 手麻自查 (8-8 11:41) + 8/15 云南 8天7晚 旅行规划 (8-3 ~ 8-8 多次, 含航班/玉龙雪山票 verify) + 小孩报班合同审查 (8-4 22:43) + 百度网盘 iOS Shortcut (8-3 23:05); 本周 pm-2 装 5 个新 skill (cronjob-management + feihao-health-research + family-travel-planning + health-vault + pm-agent-practices)"
+    },
+    {
+      "profile": "research-agent",
+      "sessions": 25,
+      "focus": "本周第二活跃 — **中国 AI 服务器厂商调研** (8-4 15:47 三并发: 浪潮/联想/华为 对标 NVIDIA NVL72/CMX, v2 重试用 firecrawl keyless 替代 cloakbrowser 补齐); **Samsung V-NAND slide 出处追查** (8-5 07:00 + 07:10, 第二轮 5-min quick lookup 被 interrupt); **QLC NAND nearline TCO 调研** (8-5 16:44); **AI 老师讲课视频 → 火柴人动画化 调研** (8-7 B站 8 视频搜索 + 8-8 Cliptude/Scholarly/VEED 4 工具推荐); **IPO 申购 cron 周五化** (8-4 8:25 schedule 调整); **Microsoft Skill Recorder 公众号归档** (8-9 凌晨); 飞书 230002 持续不通, agent 已 fallback 在对话里直接发; 本周 research-agent 装 16 个新 skill (15 bulk 08-06 + 1 record-obsidian-base 08-09, 含 research/academic-research/web-research-monitoring/kanban-operations/claude-code-operations/github-bootstrap/engineering-workflows/llm-operations/hermes-operations/diagramming/creative-coding-media/audio-music-production/design-systems/workspace-operations/document-processing)"
     },
     {
       "profile": "pm-for-claude",
-      "sessions": 3,
-      "focus": "memory-cleanup cron 每日 (7-26~8-1, 7 天) + kiddo-scoreboard → 微信小程序迁移 (8-1 23:12, 8 决策点待拍板); 本周 0 新 skill"
+      "sessions": 9,
+      "focus": "memory-cleanup cron 每日 23:00 稳定 6 天; **kiddo-scoreboard → 微信小程序 0.1.0 上线** (8-3 D1 backup 248KB 落地 + 8-5 miniprogram-ci upload 成功, AppID wx0a69442415a53a67, 体验版已发, 3 件事可做: 后台扫码/微信扫码/真机闭环测试); 本周 pm-for-claude 装 7 个新 skill (cloudflare-workers-production-debug + cloudflare-workers-deploy + software-engineering-methodology + cc-pm-spawn-pitfalls + wechat-miniprogram-ci-upload 5 bulk 08-05 + pm-project-lifecycle + hermes-skill-architecture 2 单点 08-03)"
     },
     {
-      "profile": "data-agent",
-      "sessions": 1,
-      "focus": "本周 1 session, 详情由 fs scan 拿到 (SQLite 0 命中); 跨 profile image-gen 装 2 个 (07-29)"
-    },
-    {
-      "profile": "web-ui-designer",
-      "sessions": 1,
-      "focus": "本周 1 session, 详情由 fs scan 拿到; 跨 profile image-gen 装 2 个 (07-29)"
+      "profile": "my-pm",
+      "sessions": 7,
+      "focus": "weekly-report cron (本任务 8-9 + 上次 8-2); **disk-cleanup 三连击** (8-4 磁盘预警 190GB→158GB 释放 32GB, 8-7 盘点 hermes profile sandbox 23GB, 8-8 daily cron reset 副作用); **obsidian-personal-records skill 提炼 + 实战验证** (8-3 23:20 cross_profile=True 写到 _default_shared); 本周 my-pm 装 3 个新 skill (communication-conventions 08-03 + baidu-netdisk-backup 08-04 + disk-bloat-rootcause 08-08, 全是本周实战 trigger 的 skill)"
     },
     {
       "profile": "code-agent",
+      "sessions": 3,
+      "focus": "本周 3 session 全是 mecha-challenge: 8-4 8:31 **deploy blocker 修复方案独立 review** (wrangler pages deploy + miniprogram-ci Node22 问题); 8-4 23:08 **bonus bug root cause 独立分析** (rawSubitems scope bug, let block-scoped 出 if block); 8-5 0:56 **confirm + surgical fix + amend commit** (rawSubitems fix 已 verify, commit 02ce0d5 fix(mecha-deploy): unblock wrangler pages deploy (Tip 29 + APPID))"
+    },
+    {
+      "profile": "data-agent",
       "sessions": 0,
-      "focus": "本周 0 session (after 7-27 全 profile 飞书 channel incident 排查); 但 grok-image-to-video + apikey-image-gen 跨 profile 装 2 个 (07-29)"
+      "focus": "本周 0 session; 但 8-5 一次性 bulk install 11 个 skill (apple-native-apps + academic-research-workflow + kanban-orchestrator + systematic-debugging + software-quality-workflows + github-collaboration + ai-music-production + diagram-and-infographic-production + web-design-workflows + hermes-agent + coding-agent-clis)"
     },
     {
       "profile": "qual-agent",
       "sessions": 0,
-      "focus": "本周 0 session; grok-image-to-video + apikey-image-gen 跨 profile 装 2 个 (07-29)"
+      "focus": "本周 0 session; 但 8-6 一次性 bulk install 6 个 skill (llm-research-workflows + ascii-art + research-paper-writing + evaluating-llms-harness patch + creative-rendering-workflows + productivity-service-integrations), 等 fei 委派内容质量/研究类任务时启用"
+    },
+    {
+      "profile": "web-ui-designer",
+      "sessions": 0,
+      "focus": "本周 0 session; 但 8-5 一次性 bulk install 4 个 skill (diagrams + github-pr-workflow + pdf-tools + audio-tools), 等 fei 委派视觉/UI 类任务时启用"
     },
     {
       "profile": "writing-agent",
       "sessions": 0,
-      "focus": "本周 0 session; 但 07-30 一次性 bulk install 9 个 umbrella skill (research-umbrella / humanizer / kanban / audiocraft / github-repo-management / creative-design-suite / coding-cli-agents / productivity / media-and-ai-music), 等 fei 委派内容创作任务"
+      "focus": "本周 0 session; 上周装 9 个 umbrella skill 仍未启用, 等 fei 委派内容创作任务时激活"
     }
   ],
   "real_projects": [
     {
-      "id": "firecrawl-toolkit-landing",
-      "name": "🔥 Firecrawl 工具落地 (research-agent 08-01)",
-      "description": "fei 让 research-agent 调研 github.com/firecrawl/ 并安装 + 写使用说明发飞书; firecrawl 是 158K 星的 web scraper + AI 联网服务",
-      "progress": "1 个 session 跑通 (08-01 12:43): (1) 三角定位 firecrawl org 100 个 repo 找到 3 个核心 (firecrawl/firecrawl 主仓库 AGPL + CLI + MCP server); (2) 安装 firecrawl skill (08-01 跨 _default_shared 落地); (3) 写完整使用说明 (含 3 种入口: MCP server / CLI / API) 通过飞书发给 fei",
-      "phase": "🚀 Deployed",
-      "phase_emoji": "🚀",
-      "last_active": "2026-08-01",
+      "id": "mecha-challenge-bug-fix-deploy-unblock",
+      "name": "🛠 mecha-challenge bonus bug 修复 + deploy unblock (code-agent 8-4 ~ 8-5)",
+      "description": "feihao 8-4 21:21 观察: child=lele (uid=2) 打满所有 active task 但没发\"全勤 Bonus 奖\"; PM tunnel reproduce: task 7 complete → 500 ReferenceError: rawSubitems is not defined at src/routes/me/tasks.ts:230. wrangler pages deploy 也卡住 (Tip 29 + APPID 配置问题)",
+      "progress": "3 sessions 跑通 (8-4 8:31 + 8-4 23:08 + 8-5 0:56): (1) **deploy blocker 独立 review** — miniprogram-ci 在 Node22 缺全局 localStorage, 用 wrangler pages dev 临时 unblock; (2) **bonus bug root cause 独立分析** — rawSubitems let 声明在 L97 (if SUMMER_HOMEWORK_TASK_NAME block 内, block-scoped), 引用在 L230 (outer if 已 exit), 是 scope bug, task 1/2/6 短路求值 match, 永不命中; (3) **surgical fix + amend commit** — L96 加 `let rawSubitems` 提到 outer scope, commit `02ce0d5 fix(mecha-deploy): unblock wrangler pages deploy (Tip 29 + APPID)`, PR #56 已 merge 进 main 但 production 仍 pre-PR-#56 回滚版 (INCIDENTS.md 记录)",
+      "phase": "🛠 Implementation → 🧪 Testing",
+      "phase_emoji": "🧪",
+      "last_active": "2026-08-05",
       "active_status": "active",
-      "problem": "P2: firecrawl skill 装好了但还没真正被调用验证 (e2e scrape 一个真实网页看输出格式)",
-      "solution": "(1) PM 跑 1 个 smoke test (用 firecrawl 抓 hermes docs 站); (2) 验证 MCP server 入口能用 (比 CLI 更适合 agent 内嵌); (3) 写 1 个 firecrawl vs jina-reader vs web-acquisition 对比表"
+      "problem": "P1: production 仍是 pre-PR-#56 回滚版 (含 rawSubitems bug), INCIDENTS.md 记录 8-2 16:19 部署失败. fix 已 commit 但 production 没重新 deploy, fei 真机用 kiddo 仍会撞 bug",
+      "solution": "(1) PM 跑 `wrangler pages deploy` 重发 production (verify Tip 29 fix 生效); (2) PM 跑 e2e smoke (task 7 complete → 200, 不再 500); (3) production 健康后再写 INCIDENTS.md post-mortem"
     },
     {
-      "id": "openmini-android-research-skill",
-      "name": "📱 OpenMini Android 调研 + Skill 固化 (research-agent 08-01)",
-      "description": "fei 调研 github.com/OpenMinis — 想知道 Android 怎么安装这个项目",
-      "progress": "1 session 跑通 (08-01 12:38): 调研 OpenMini (Android 客户端) 仓库结构 + 安装方式; 按 fei 4 个选择 (1A 关键词触发 / 2C / 3A / 4D) 落地为 SKILL.md, 含 frontmatter description 关键词 盯 X repo / release",
+      "id": "disk-cleanup-3-strikes",
+      "name": "💾 disk-cleanup 三连击 (my-pm 8-4 ~ 8-8)",
+      "description": "feihao 8-4 报磁盘预警; my-pm 跑 3 轮: 8-4 急救释放 32GB, 8-7 盘点可清理空间, 8-8 跟进 daily cron reset 副作用",
+      "progress": "3 sessions 跑通: (1) **8-4 08:27 急救** — 190GB → 158GB used (+30GB 可用, 100% → 84%): P0 删 hermes-backup 4 副本 (-11GB); P1 删豆包输入法 .app/.zip 残留 (-900MB); (2) **8-7 07:42 盘点** — 现在 156GB used / 85%, 主要大头 my-pm/home 11GB (含 Docker.raw 2.3GB), hermes profile sandbox 23GB 总, 仅盘点不删; (3) **8-8 08:10 reset 副作用** — trim weekly-baidu.sh (936M → 128M) + reset HEAD, daily cron 跑 `git add -A` 不读 skip-worktree 又 commit 一次, ahead 5 commits. weekly-report cron 写到哪个 repo 待确认 (reflog 看像 daily-backup repo)",
       "phase": "✅ Implemented",
       "phase_emoji": "✅",
-      "last_active": "2026-08-01",
+      "last_active": "2026-08-08",
+      "active_status": "active",
+      "problem": "P2: disk-bloat-rootcause skill 装了但只盘点没接 root cause 自动调查; daily cron 跑 `git add -A` 不读 skip-worktree 是 daily-backup cron 的隐性 bug, 后续 trim 工作会被它反复覆盖",
+      "solution": "(1) daily-backup cron 改用 `git add -- <explicit paths>` 替代 `-A`, 或跑前先 `git stash` 保存 user 的 skip-worktree 文件; (2) disk-bloat-rootcause 跑 1 次 root cause 自动调查 (e.g. Docker.raw 能不能瘦身, hermes profile sandbox 哪些是可重建的 runtime)"
+    },
+    {
+      "id": "china-ai-server-vendors-research",
+      "name": "🏭 中国 AI 服务器厂商调研 (research-agent 8-4 三并发)",
+      "description": "fei 想深度了解国内 (浪潮/联想/华为) AI server 整机柜 / 超节点架构, 对标 NVIDIA GB200 NVL72 / Vera Rubin NVL72 / CMX (G3.5 KV-aware Flash Tier)",
+      "progress": "3 session 并发 (8-4 15:47: 浪潮/联想/华为 各自跑一次深度调研) + v2 重试 (cloakbrowser 路径不在 research-agent profile, 但 firecrawl keyless 意外可用 替代 subagent): **5 项关键发现** — (1) 浪潮元脑 SD200 = 国内最接近 CMX 概念方案 (64 路本土 GPU / 异步 KV Cache 高效传输 / 统一原生内存语义通信 / DeepSeek R1 超线性 3.7×); (2) 华为 WAIC 2026 真机亮相 1024 卡 + Atlas 950 三大核心优势 (统一内存编址) + 全球商用 750+ 套; (3) 曙光 scaleX 平台 = 中国首个万卡 AI 超集群 (40-GPU / 28 PFLOPS / 17 TB/s / $1-2M 部署); (4) 浪潮 AIStation = 国内最完整对标 NVIDIA Dynamo (Token 是新算力货币, 三步建平台, 年省 1800-2500 万元); (5) 海光 DCU = 国产 GPGPU 龙头 (深算 1/3/4 号 + DTK 软件栈 + 类 CUDA 架构); 最终 6 厂商 × 5 维度对比矩阵 v2 全部一手数据补齐",
+      "phase": "🚀 Deployed",
+      "phase_emoji": "🚀",
+      "last_active": "2026-08-04",
+      "active_status": "rolling",
+      "problem": "—",
+      "solution": "—"
+    },
+    {
+      "id": "ai-teacher-video-stickman-animation",
+      "name": "🎬 AI 老师讲课视频 → 火柴人动画化 调研 (research-agent 8-7 + 8-8)",
+      "description": "fei 8-8 提需求: 想让 AI 把现有老师讲课视频做成火柴人/简笔动画版 (保留版权干净)",
+      "progress": "2 sessions 跑通: (1) **8-7 07:41 B站 8 健身视频搜索** — 用 cloakbrowser 跑 search.bilibili.com, 8/8 拿到真实 BV/AV URL (Pamela Reif 马甲线 BV1z7411A7eH / 欧阳春晓 瘦小腿 BV1af4y1V7ZJ / 体态大师 BV1CF411475p 等), 1 个 OCR 乱码给了候选; (2) **8-8 08:08 AI 工具调研** — 推荐 4 个 (Cliptude Stickman ⭐⭐⭐⭐⭐ / Scholarly 讲课场景最优 / VEED Animate Move 保留老师原貌 / 第 4 个), 按版权风险排序, 自用成本可控",
+      "phase": "🔬 Discovery",
+      "phase_emoji": "🔬",
+      "last_active": "2026-08-08",
+      "active_status": "rolling",
+      "problem": "P3: Scholarly / Cliptude 都是海外 SaaS, 国内访问 + 支付 + 上传老师讲课视频 (版权) 都是 friction; fei 没拍板选哪个",
+      "solution": "(1) fei 拍板 1 个工具试水 (建议 Scholarly 免费版看效果); (2) 跑 1 个真实样本 (10 min 老师讲课视频 → 火柴人动画版); (3) 效果 OK 再谈付费"
+    },
+    {
+      "id": "samsung-vnand-slide-source-hunt",
+      "name": "🔍 Samsung V-NAND slide 出处追查 (research-agent 8-5)",
+      "description": "fei 拿到一张 Samsung \"High Bit Density Bonding V-NAND\" 官方 slide (含 18/20/22/24/26 年份层数对比 + Other Vendors vs Samsung 曲线 + 36%/Gen 等 bit density 增长), 想找原始出处",
+      "progress": "2 sessions: (1) **8-5 07:00 完整模式** — 多 web search 关键词组合, 查到 TechInsights NAND 文章 + Samsung Memory Tech Day 2025 + ISSCC 2026 paper 几条线索, 但未完成 trace; (2) **8-5 07:10 5-min quick lookup** — 限 5 分钟快速验证, 被 [Command interrupted] 打断, 未完成",
+      "phase": "🔬 Discovery",
+      "phase_emoji": "🔬",
+      "last_active": "2026-08-05",
+      "active_status": "stalled",
+      "problem": "P2: 第二轮 5-min quick lookup 被 interrupt 打断, 未出报告; 第一轮也只查到线索没定稿, slide 出处仍未 pinpoint",
+      "solution": "(1) PM 重跑 1 次 5-min quick lookup (避开 interrupt); (2) 或 fei 直接告知 slide 来源上下文 (e.g. 哪场会议拍的); (3) 定稿后归档到 NAND Flash 情报日报 KB"
+    },
+    {
+      "id": "qlc-nand-nearline-tco-research",
+      "name": "📊 QLC NAND nearline TCO 调研 (research-agent 8-5)",
+      "description": "fei 想要一份 QLC NAND vs HDD 在 nearline/读密集型场景 TCO 对比的中文深度报告",
+      "progress": "1 session (8-5 16:44 跑通): 调研框架覆盖 — (1) Nearline storage 定义 (vs online/offline 三层架构); (2) QLC eSSD vs HDD 全维度对比 ($/TB / W/TB / TB/U / IOPS / DWPD / BER / $/RU 7 维); (3) hyperscaler 部署案例; 必含 2026 年最新价格数据 (HDD $16-20/TB vs QLC eSSD $50-100/TB)",
+      "phase": "🚀 Deployed",
+      "phase_emoji": "🚀",
+      "last_active": "2026-08-05",
+      "active_status": "rolling",
+      "problem": "—",
+      "solution": "—"
+    },
+    {
+      "id": "archive-task-microsoft-skill-recorder",
+      "name": "📰 Microsoft Skill Recorder 公众号归档 (research-agent 8-9)",
+      "description": "fei 8-9 凌晨转发 mp.weixin.qq.com/s/Nm8V-SCp289 逛逛GitHub 公众号文章 (微软开源桌面工具 Skill Recorder), 让归档到 Obsidian vault",
+      "progress": "1 session 跑通 (8-9 0:23): 归档到 `Tech/AI/2026-08-09__Microsoft_Skill_Recorder_录屏生成Skill_逛逛GitHub.md` (6.8KB / 120 行). 一手验证补强: github.com/microsoft/skill-recorder 真实存在 (TypeScript + Electron + MIT + 2490 stars + v0.4.2 latest 2026-08-07); 与 Hermes Skill 体系对照 — 互补而非替代 (Hermes 决策密集型, Skill Recorder 动作密集型)",
+      "phase": "✅ Implemented",
+      "phase_emoji": "✅",
+      "last_active": "2026-08-09",
       "active_status": "active",
       "problem": "—",
       "solution": "—"
     },
     {
-      "id": "nvidia-veroberta-architecture-research",
-      "name": "🔬 英伟达 VeRoBERTa 架构深度调研 (research-agent 07-31)",
-      "description": "fei 学到一个新洞察: 英伟达当前产品是基于 2 年前的论文做的, 未来规划跟论文方向直接相关; 想了解 VeRoBERTa 推理和训练架构来推演未来产品方向",
-      "progress": "1 session 跑通 (07-31 07:23): 完成 VeRoBERTa 推理 + 训练架构调研; 3 份产出: (1) 调研报告 (md); (2) 论文推送; (3) 配套 skill (Hermes skill 库) 复制到 Obsidian vault; 通过飞书双发 (链接 + 附件)",
-      "phase": "🚀 Deployed",
-      "phase_emoji": "🚀",
-      "last_active": "2026-07-31",
-      "active_status": "rolling",
-      "problem": "—",
-      "solution": "—"
-    },
-    {
-      "id": "ipo-subscription-qa-weekly",
-      "name": "📊 新股申购 QA cron 周度化 (research-agent 07-31)",
-      "description": "fei 让把新股申购 QA cron 从每日 (工作日 8:30) 改成每周五 12:00 一次 — 检查整周是否有出入, 减少日报噪音",
-      "progress": "1 session 跑通 (07-31 09:02): cron job 0f7edca2fc2c 改 schedule 30 8 * * 1-5 → 0 12 * * 5; 周度 QA 报告框架调整 (基线日期 = 周五, 覆盖周一~周五 5 天日报, 检查数据漂移); W31 (07-27~31) 周报已出 (周二/三外部 API 失败已识别)",
+      "id": "ipo-subscription-qa-weekly-friday",
+      "name": "📅 新股申购 QA cron 周五化 (research-agent 8-4)",
+      "description": "fei 让把新股申购 QA cron 从每日 (周一~五 8:30) 改成每周五 12:00 一次, 减少日报噪音, 检查整周出入",
+      "progress": "1 session (8-4 8:25 schedule 调整): cron job 改 schedule `30 8 * * 1-5` → `0 12 * * 5`; 周度 QA 报告框架调整 (基线日期 = 周五, 覆盖周一~周五 5 天日报); 但本 session sqlite 抓不到 assistant 消息 (session 本身可能 timeout / 中断)",
       "phase": "🧪 Testing",
       "phase_emoji": "🧪",
-      "last_active": "2026-08-01",
+      "last_active": "2026-08-04",
       "active_status": "rolling",
-      "problem": "P2: 07-28/07-29 两天日报因外部 API 连接错误缺失 (CNInfo / 东方财富), 周报里只标失败但没真正恢复 — 外部 API 不稳定是长期问题, 不是 1 周偶发",
-      "solution": "(1) 周报里加 外部 API 健康 子项 (失败天数占比); (2) 加 fallback 数据源 (东方财富 → 同花顺); (3) 30 天统计后决定是否换主源"
+      "problem": "P2: 8-4 schedule 调整 session 没存到 assistant 回复 (空 session); 7-26 周报里外部 API 失败问题 (CNInfo/东方财富 07-28/29 两天日报缺失) 仍未解, 周报框架需加 外部 API 健康 子项",
+      "solution": "(1) PM 跑 `hermes cron show <job_id>` 验证 schedule 真的改成周五 12:00; (2) 周五 12:00 实跑一次验证 5 天日报覆盖; (3) 外部 API 加 fallback 数据源 (东方财富 → 同花顺), 30 天统计后决定是否换主源"
     }
   ],
   "rolling_projects": [
     {
       "name": "weekly-report cron (本任务)",
-      "progress": "周日 07:00 自动跑, 已稳定跑通 7 次 (06-14 / 06-28 / 07-05 / 07-12 / 07-19 / 07-26 / 本次); 4 源 union 模板 (filesystem + sessions.json + state.db + SKILL.md mtime) 稳定",
+      "progress": "周日 07:00 自动跑, 已稳定 7 次 (06-14 / 06-28 / 07-05 / 07-12 / 07-19 / 07-26 / 08-02 / 本次); 4 源 union 模板 (filesystem + sessions.json + state.db + SKILL.md mtime) 稳定, max-rule 应用避免 double-count",
       "phase": "🔁 Rolling",
       "phase_emoji": "🔁",
       "active_status": "rolling",
+      "last_active": "2026-08-09",
       "problem": "—",
       "solution": "—"
     },
     {
-      "name": "headroom-context-compression cron (my-pm daily)",
-      "progress": "my-pm profile 每日 02:00 跑 (07-27~08-01 已稳定 6 天), context 压缩层 v1 健康; 08-01 12:44 cron 被手动 paused (fei 操作)",
+      "name": "health-vault cron (pm-2 新上线 7x24)",
+      "progress": "pm-2 8-8 上线 health-vault skill + cron, 每小时 1 次, 7x24 跑; 本周 128 sessions 全部 health-vault cron (8-3 ~ 8-9); 跟新装 family-travel-planning + feihao-health-research 三个 skill 配套 (8-8 bulk install)",
       "phase": "🔁 Rolling",
       "phase_emoji": "🔁",
-      "active_status": "rolling",
-      "problem": "P2: 08-01 12:44 cron 被 paused, 需要 fei 确认是临时调试还是长期停用",
-      "solution": "(1) PM 在下次 session 里 ask fei 确认; (2) 如果长期停用, 移除 cron job 而不是只 paused; (3) 如果临时, 跑完即可恢复"
+      "active_status": "active",
+      "last_active": "2026-08-09",
+      "problem": "P2: 128 sessions / 7 天 = 每小时 1 次, 但 hourly cron 大多数应该是 SILENT (健康数据没新 entry 时不发飞书); 需要 verify cron 实际产出频率是否合理, 别刷屏",
+      "solution": "(1) PM 跑 `hermes cron logs <job_id>` 看实际 output 频率; (2) 如果 hourly 大部分 SILENT 没问题, 但要在 cron config 加 throttle (e.g. 只在 daily summary 飞书); (3) health-vault 数据实际存哪 (Obsidian? agentmemory slot?) 待确认"
     },
     {
-      "name": "memory-cleanup cron + agentmemory-integration (3 profiles daily)",
-      "progress": "memory-cleanup cron 每日 23:00 跑 (my-pm + pm-2 + pm-for-claude 3 profile 稳定 7 天); 07-30 pm-2 触发 USER 99.8% cleanup (从 99.8% 砍到 29.2%); 07-27 my-pm 跑通 (USER 34.3% → 29.2%); agentmemory-integration cron 每日 01:00 跑 (pm-2 全 OK, my-pm 07-31 WARN)",
+      "name": "memory-cleanup cron (3 profiles daily)",
+      "progress": "memory-cleanup cron 每日 23:00 跑 (my-pm + pm-2 + pm-for-claude 3 profile 稳定 6+ 天, 8-3 ~ 8-8); pm-for-claude 8-7 23:06 触发 USER 52.1% > 50% 阈值 全部砍到 50% 以下 (per-file no-op rule pitfall #37 完美应用)",
       "phase": "🔁 Rolling",
       "phase_emoji": "🔁",
       "active_status": "rolling",
-      "problem": "P1: agentmemory-usage-sop cron (07-26 22:00 pm-2) 跑完后报告 persistent failures detected, no auto-fix possible — 4 profiles 都 correctly configured 但 daemon health 仍有遗留问题; 不是 memory % 问题, 是 daemon 子系统问题",
-      "solution": "(1) 跑 memory_diagnose categories=daemon,leases,sessions 看具体哪个 subsystem 卡; (2) 如果 daemon 重启可解, 写 daemon health auto-restart SOP"
-    },
-    {
-      "name": "NIGHTLY-TODO cron (pm-2 daily 00:00)",
-      "progress": "pm-2 profile 每日 00:00 跑 (07-26~08-02 已稳定 7 天); 扫描 docs/NIGHTLY-TODO.md 全部 item Status 字段; 本周全部 0 done / 0 blocked / 0 pending — 清单干净, 系统健康",
-      "phase": "🔁 Rolling",
-      "phase_emoji": "🔁",
-      "active_status": "rolling",
+      "last_active": "2026-08-08",
       "problem": "—",
       "solution": "—"
     },
     {
-      "name": "Z-Library 每日下载 cron (research-agent daily 00:00)",
-      "progress": "research-agent 每日 00:00 跑, Lexile ≤ 500L 且 AR ≤ 3.0 (幼儿园~1 年级); 本周 7 天 0 本成功 (免费账户每日配额未消耗)",
+      "name": "agentmemory-integration cron (pm-2 daily 01:00)",
+      "progress": "pm-2 profile 每日 01:00 跑 (8-3 ~ 8-9 稳定 7 天, 7 sessions); 健康状态稳定, 上周 P1 persistent failures 报告可能已自动恢复",
       "phase": "🔁 Rolling",
       "phase_emoji": "🔁",
       "active_status": "rolling",
-      "problem": "P2: cron 跑但 7 天 0 本成功 — 是 cron 配置问题还是账户配额问题? 需要 zlibrary session 状态验证",
-      "solution": "(1) PM 跑一次 hermes status zlibrary 看 session 是否登录; (2) 如果账户无配额, 改阈值或换源; (3) cron 加 skip-empty 标记"
+      "last_active": "2026-08-09",
+      "problem": "P3: 上周 (7-26) P1 报告的 persistent failures 没在 final report 里 verify 是否真正恢复; 应该跑一次 memory_diagnose 看 daemon health 当前状态",
+      "solution": "(1) PM 跑 `memory_diagnose categories=daemon,leases,sessions` 看哪 subsystem 健康; (2) 如果仍卡, 跑 `memory_heal categories=leases,sessions`; (3) 健康后写 memory daemon health auto-recovery SOP"
     },
     {
-      "name": "AgentMemory unassigned review cron (weekly)",
-      "progress": "pm-2 每周日 22:00 跑 (07-26 22:00 跑通); 扫描 97 条 memory → 40 条 triage (Tier 1 hard-coded 6 + Tier 2 无 prefix 34)",
+      "name": "agentmemory-usage-sop + NIGHTLY-TODO cron (pm-2 weekly + daily)",
+      "progress": "agentmemory-usage-sop cron (pm-2 weekly) + NIGHTLY-TODO cron (pm-2 daily 00:00, 本周 7 sessions 全部 SILENT) 健康; pm-2 cron 矩阵本周 5 类 cron 稳定跑 (health-vault hourly + agentmemory-integration daily 01:00 + NIGHTLY-TODO daily 00:00 + memory-cleanup daily 23:00 + agentmemory-usage-sop weekly)",
       "phase": "🔁 Rolling",
       "phase_emoji": "🔁",
       "active_status": "rolling",
+      "last_active": "2026-08-09",
       "problem": "—",
       "solution": "—"
     }
@@ -169,91 +213,93 @@
   "problems": [
     {
       "priority": "P1",
-      "project": "feishu-channel-incident-0727",
-      "issue": "07-27 21:11 fei 报 所有 Profile 的飞书 Channel 都不通了, my-pm 跑全 9 profile 重启排查 — 根因不是 daemon 死, 是 Home channel 无效 配置冲突 (my-pm + research-agent 都配了同一个 oc_09d543, 后者反注册); 07-27 当晚重启后全 connected",
-      "solution": "(1) PM 跑全 profile im/v1/chats discover 确认各 profile 当前可达 chat 列表; (2) .env FEISHU_HOME_CHANNEL 字段已 7 周未更新, 必须 discover 不能信; (3) 写 feishu channel conflict SOP — 跨 profile 不能共用同一个 home channel",
-      "time": "1 天"
-    },
-    {
-      "priority": "P1",
-      "project": "skill-library-bloat-r3",
-      "issue": "3 周累计 246 个新 skill (上周 80 + 上上周 55 + 本周 56) — 实战验证窗口严重滞后, 装了但没人调用 占比可能 >60%; 本周新增 56 个全是 bulk install (my-pm 9 个 mlops/inference + research-agent 8 个 devops + writing-agent 9 个 umbrella skills), 没有任何 skill 被 read 验证",
-      "solution": "(1) PM 跑全 profile skill 调用率 统计 (grep session 日志里 skill_view 调用); (2) 30 天 0 调用的 skill 标 归档候选; (3) 写 skill 安装 SOP — 单 profile 单日 ≤3 硬上限",
+      "project": "skill-library-bloat-r4",
+      "issue": "4 周累计 >300 个新 skill (上周 56 + 上周 56 + 上上周 55 + 上上上周 80 = 247, 本周再加 57 = **304 个**); 本周 bulk install 6 个事件 (data-agent 11 + research-agent 15 + pm-for-claude 5 + web-ui-designer 4 + qual-agent 5 + pm-2 3 = 43 bulk), 大量重叠: research/academic-research/web-research-monitoring 3 个 research 类; kanban-orchestrator + kanban-operations; hermes-agent + hermes-operations + hermes-skill-architecture; coding-agent-clis + claude-code-operations; audio-music-production + ai-music-production; cloudflare-workers-deploy + cloudflare-workers-production-debug; diagrams + diagram-and-infographic-production + diagramming 3 个 diagram 类; design-systems + creative-rendering-workflows + web-design-workflows; github-bootstrap + github-pr-workflow + github-collaboration; 实战验证窗口严重滞后, 大量 skill 装了 0 调用",
+      "solution": "(1) PM 跑全 profile skill 调用率统计 (grep session 日志里 skill_view 调用); (2) 30 天 0 调用的 skill 标 归档候选 (本周预估 >60%); (3) 写 skill 安装 SOP — 单 profile 单日 ≤3 硬上限, 重叠 skill 装前必 merge; (4) 这次 bulk install 大概率是因为某 profile (data-agent / web-ui-designer / qual-agent) 本周 0 session 仍触发 install, 是 daemon 异常",
       "time": "3-5 天"
     },
     {
-      "priority": "P0",
-      "project": "agentmemory-persistent-failures",
-      "issue": "07-26 pm-2 agentmemory-integration cron 跑完报告 persistent failures detected, no auto-fix possible — 4 profiles 全部 correctly configured 但 daemon health 仍有遗留问题; 不是 memory % cap 问题, 是 daemon 子系统 (leases / sentinels / sessions 之一) 卡死",
-      "solution": "(1) PM 跑 memory_diagnose categories=daemon,leases,sessions 看具体哪个卡; (2) 如果 leases 卡, 跑 memory_heal categories=leases; (3) 写 agentmemory daemon health auto-recovery skill",
-      "time": "1 小时"
+      "priority": "P1",
+      "project": "mecha-challenge-production-not-deployed",
+      "issue": "fix 已 commit (02ce0d5 fix(mecha-deploy): unblock wrangler pages deploy), rawSubitems scope bug 已 surgical fix, PR #56 已 merge, 但 **production 仍是 pre-PR-#56 回滚版** (含 rawSubitems bug); fei 8-4 真机用 kiddo 仍会撞 task 7 → 500 ReferenceError",
+      "solution": "(1) PM 跑 `wrangler pages deploy` 重发 production 验证 Tip 29 fix 生效; (2) PM 跑 e2e smoke test (task 7 complete → 200 不再 500); (3) production 健康后再写 INCIDENTS.md post-mortem",
+      "time": "1-2 小时"
     },
     {
       "priority": "P2",
-      "project": "nand-flash-nan-display-fix",
-      "issue": "07-27 research-agent 自查发现 CNInfo 侧新股申购 nan 万股 NaN 显示问题, 当日修复 (CRITICAL 倒计时单源 + 数据漂移检查全过)",
-      "solution": "已自愈, 不算问题",
-      "time": "—"
+      "project": "feishu-channel-230002-still-down",
+      "issue": "research-agent 8-4 15:33 session 报\"飞书 home channel 持续 230002 不可用\" — bot 已 fallback 在对话里直接发, 但 systematic send 失败; .env FEISHU_HOME_CHANNEL 仍过期 (5 周未修, oc_09d543 vs bot 实际在 oc_b597b40a 岑斐灏 group); 本周 pm-2 + research-agent + my-pm + pm-for-claude 4 profile sessions.json aggregate 显示新 chat activity, 但 home channel 仍 230002",
+      "solution": "(1) PM 跑全 profile im/v1/chats discover 确认当前可达 chat; (2) final response 必须提醒 fei 修 .env 或保留空 (持续 5 周 pattern); (3) 写 feishu channel conflict SOP — 跨 profile 不能共用同一个 home channel",
+      "time": "30 分钟"
+    },
+    {
+      "priority": "P2",
+      "project": "ipo-subscription-qa-empty-session-0804",
+      "issue": "8-4 8:25 新股申购 QA cron 周五化 schedule 调整 session sqlite 抓不到 assistant 消息 (session 本身 timeout / 中断, 空 session); schedule 是否真的改成周五 12:00 没 verify",
+      "solution": "(1) PM 跑 `hermes cron show <job_id>` 看当前 schedule; (2) 周五 12:00 实跑一次验证 5 天日报覆盖; (3) 外部 API 加 fallback 数据源 (东方财富 → 同花顺), 30 天统计后决定是否换主源",
+      "time": "1 天"
     }
   ],
   "new_skills": {
-    "p1_my_pm_mlops_inference_0726": {
-      "category": "🧠 my-pm MLOps 推理/视觉 bulk 套装 (07-26 一次性装 9 个)",
-      "count": 9,
-      "trigger": "my-pm 07-26 单次 bulk install — 形成完整 LLM 推理 + 视觉模型 + 部分创意工具链",
-      "impact": "**LLM 推理** (4):\n- `vllm` · `llama-cpp` · `lm-evaluation-harness` · `segment-anything-model` (SAM)\n\n**创意 + 邮件 + 周报** (5):\n- `design-and-mockup-tools` · `interactive-visual-coding` · `weekly-report` (本任务) · `email-tools` · `media-content-tools`\n\n**实战**: `weekly-report` (本任务 cron) 已实战; 其余 8 个待启用"
+    "p1_research_agent_research_arsenal_0806": {
+      "category": "🔬 research-agent 调研/运营 bulk 套装 (08-06 一次性装 15 个)",
+      "count": 15,
+      "trigger": "research-agent 08-06 bulk install — 调研 + github + operations + creative 全栈基础设施",
+      "impact": "**调研** (3):\n- `research` · `academic-research` · `web-research-monitoring`\n\n**GitHub + 工程** (3):\n- `github-bootstrap` (37KB) · `engineering-workflows` · `workspace-operations`\n\n**Operations + 设计** (4):\n- `kanban-operations` · `claude-code-operations` · `hermes-operations` · `llm-operations`\n\n**Creative + 媒体** (3):\n- `diagramming` · `creative-coding-media` · `audio-music-production`\n\n**文档 + 设计系统** (2):\n- `document-processing` · `design-systems`\n\n**实战**: 8-4 中国 AI 服务器厂商调研 v2 重试用 firecrawl keyless (覆盖 web-research); 8-5 Samsung V-NAND 用 web search 多源 (覆盖 research); 8-9 archive 公众号 (覆盖 document-processing); **但 8-6 之后 16 个新 skill 中, 实际调用率待统计**"
     },
-    "p2_devops_research_agent_0730": {
-      "category": "🛠 research-agent devops 全栈基础 (07-30 一次性装 8 个)",
-      "count": 8,
-      "trigger": "research-agent 07-30 bulk install — dev / github / mcp / media 全栈基础设施",
-      "impact": "- `apple` (macOS automation) · `software-development` (engineering practices) · `mcp` (MCP client) · `github` (gh CLI workflow) · `autonomous-ai-agents` (subagent orchestration) · `gaming` · `email` (IMAP/SMTP) · `media` (YouTube/GIF/音乐)\n\n**实战**: research-agent 8-1 firecrawl 调研 + OpenMini 调研这 2 个 session 已经间接用了 `github` + `mcp` skill"
+    "p2_data_agent_full_stack_0805": {
+      "category": "🛠 data-agent 全栈工具 bulk 套装 (08-05 一次性装 11 个)",
+      "count": 11,
+      "trigger": "data-agent 08-05 bulk install — Apple + 学术 + kanban + 调试 + 软件工程 + github + 音乐 + 设计 + web + hermes + coding agent 全栈",
+      "impact": "**Apple + 学术** (2):\n- `apple-native-apps` · `academic-research-workflow`\n\n**核心方法论** (3):\n- `kanban-orchestrator` (17KB, 与 research-agent kanban-operations 重叠) · `systematic-debugging` (12KB) · `software-quality-workflows`\n\n**协作 + GitHub** (2):\n- `github-collaboration` (与 pm-for-claude github-pr-workflow / research-agent github-bootstrap 重叠) · `coding-agent-clis` (与 research-agent claude-code-operations 重叠)\n\n**创意 + 视觉** (3):\n- `ai-music-production` (与 research-agent audio-music-production 重叠) · `diagram-and-infographic-production` (与 research-agent diagramming 重叠) · `web-design-workflows`\n\n**Hermes 核心** (1):\n- `hermes-agent` (48KB, 与 research-agent hermes-operations + pm-for-claude hermes-skill-architecture 重叠)\n\n**实战**: data-agent 本周 0 session, 等 fei 委派数据/分析任务时启用"
     },
-    "p3_writing_agent_umbrella_0730": {
-      "category": "🎨 writing-agent 内容/创意/生产力 umbrella 套装 (07-30 一次性装 9 个)",
-      "count": 9,
-      "trigger": "writing-agent 07-30 bulk install — 内容创作 + 创意 + 生产力工具集",
-      "impact": "- `research-umbrella` · `humanizer` · `kanban` · `audiocraft` · `github-repo-management` · `creative-design-suite` · `coding-cli-agents` · `productivity` · `media-and-ai-music`\n\n**实战**: writing-agent 这周 0 session, 等 fei 委派内容创作任务时启用"
+    "p3_pm_for_claude_cloudflare_wechat_0805": {
+      "category": "☁️ pm-for-claude Cloudflare + 微信小程序 bulk 套装 (08-05 一次性装 5 个)",
+      "count": 5,
+      "trigger": "pm-for-claude 08-05 bulk install — 直接服务本周 mecha-challenge deploy + kiddo-scoreboard miniprogram-ci 上传",
+      "impact": "**Cloudflare 全栈** (3):\n- `cloudflare-workers-production-debug` (10KB) · `cloudflare-workers-deploy` (74KB) · `cc-pm-spawn-pitfalls` (75KB)\n\n**软件工程** (1):\n- `software-engineering-methodology` (31KB)\n\n**微信小程序** (1):\n- `wechat-miniprogram-ci-upload` (8KB) — **8-5 直接实战, kiddo-scoreboard miniprogram-ci upload 0.1.0 成功**\n\n**实战**: 5 个全部直接服务 mecha-challenge deploy blocker + kiddo-scoreboard 微信小程序 0.1.0 上线, 是本周**最高调用率 bulk install 事件**"
     },
-    "p4_cross_profile_image_gen_0729": {
-      "category": "🖼️ 跨 profile image-gen 工具 (07-29 一次性装 20 个, 10 profile × 2 skill)",
-      "count": 20,
-      "trigger": "07-29 全 10 profile 同时装 grok-image-to-video + apikey-image-gen (Hermes Web UI 图像生成入口)",
-      "impact": "**20 个安装事件**:\n- `grok-image-to-video`: 10 profile (my-pm / pm-2 / pm-for-claude / research-agent / data-agent / code-agent / qual-agent / web-ui-designer / writing-agent / _default_shared)\n- `apikey-image-gen`: 10 profile 同上\n\n**实战**: 这周 fei 没显式 trigger image 生成, 但 hermes Web UI 后端现在支持 grok + 自定义 API key"
-    },
-    "p5_my_pm_small_installs": {
-      "category": "🔧 my-pm 单点补充 (07-28 + 08-01 装 3 个)",
+    "p4_pm2_health_travel_pm_0808": {
+      "category": "💪 pm-2 健康 + 旅行 + PM bulk 套装 (08-08 一次性装 3 个)",
       "count": 3,
-      "trigger": "my-pm 单点 install, 跟 07-26 bulk 配套",
-      "impact": "- `headroom-context-compression` (07-28, 跟 my-pm cron 对应) · `coding-agent-clis` (07-28, 委派 Claude Code / Codex) · `communication-conventions` (08-01, PM Agent 回复规范)"
+      "trigger": "pm-2 08-08 bulk install — 直接服务本周 fei 健康 + 旅行 + PM 实践",
+      "impact": "- `family-travel-planning` (50KB) — 8-3 ~ 8-8 云南 8天7晚旅行规划实战\n- `health-vault` (32KB) — 8-8 cron 上线, 7x24 hourly 跑 (128 sessions / 7 天)\n- `pm-agent-practices` (17KB) — 等 pm-2 自我迭代时启用\n\n**实战**: 3 个全部**本周直接 trigger**, 健康 + 旅行 + PM 三件大事并行"
     },
-    "p6_research_agent_research_tools": {
-      "category": "🔬 research-agent 调研工具 (07-31 + 08-01 装 2 个)",
-      "count": 2,
-      "trigger": "research-agent 单点 install, 服务本周 2 个调研 session",
-      "impact": "- `nvidia-roadmap-prediction` (07-31, 英伟达论文 → 产品预测, 直接服务 VeRoBERTa 调研 session) · `release-tracker` (08-01, repo release 监控)"
+    "p5_qual_agent_research_writing_0806": {
+      "category": "✍️ qual-agent 调研/写作/创意 bulk 套装 (08-06 一次性装 5 个 + 1 patch)",
+      "count": 6,
+      "trigger": "qual-agent 08-06 bulk install — LLM 研究 + ASCII art + 论文写作 + 评估 harness + 创意 + 生产力",
+      "impact": "- `llm-research-workflows` · `ascii-art` (17KB) · `research-paper-writing` (103KB) · `evaluating-llms-harness` (PATCH 20KB, 加新功能) · `creative-rendering-workflows` · `productivity-service-integrations`\n\n**实战**: qual-agent 本周 0 session, 等 fei 委派内容质量/研究类任务时启用"
     },
-    "p7_pm2_travel_sop": {
-      "category": "✈️ pm-2 旅行 wishlist + preferences (08-01 装 2 个)",
-      "count": 2,
-      "trigger": "fei 8-1 启动旅行愿望清单体系, pm-2 落地为 2 个 skill",
-      "impact": "- `feihao-travel-wishlist` (5 个目的地: 东极岛/北海道/埃及/肯尼亚/美国西部, 已写 Obsidian 归档) · `feihao-travel-preferences` (4 项偏好: 新奇/不热/3 人/自然奇景)"
+    "p6_web_ui_designer_creative_0805": {
+      "category": "🎨 web-ui-designer 创意工具 bulk 套装 (08-05 一次性装 4 个)",
+      "count": 4,
+      "trigger": "web-ui-designer 08-05 bulk install — 图 + GitHub PR + PDF + 音频",
+      "impact": "- `diagrams` (13KB, 与 research-agent diagramming 重叠) · `github-pr-workflow` (13KB, 与 pm-for-claude cloudflare-workers-deploy 重叠) · `pdf-tools` (7KB) · `audio-tools` (9KB)\n\n**实战**: web-ui-designer 本周 0 session, 等 fei 委派视觉/UI 类任务时启用"
     },
-    "p8_shared_infrastructure": {
-      "category": "🔧 _default_shared 跨 profile 基础 (07-30 + 08-01 装 3 个)",
+    "p7_my_pm_practices_0803_0808": {
+      "category": "🔧 my-pm 通信 + 磁盘 + 备份 单点补充 (08-03 + 08-04 + 08-08 装 3 个)",
       "count": 3,
-      "trigger": "memory + 联网基础工具跨 profile 落地",
-      "impact": "- `memory-cleanup` (07-30, my-pm + pm-2 + pm-for-claude 已实战) · `agentmemory-integration` (08-01) · `firecrawl` (08-01, research-agent 8-1 已实战)"
+      "trigger": "my-pm 3 个单点 install, 跟本周 3 个实战场景一一对应",
+      "impact": "- `communication-conventions` (100KB, 08-03) — PM Agent 回复规范 (本周 weekly-report 输出格式用)\n- `baidu-netdisk-backup` (62KB, 08-04) — 8-7 8-8 磁盘清理 trim weekly-baidu.sh (936M → 128M) 实战\n- `disk-bloat-rootcause` (8KB, 08-08) — 8-7 8-8 磁盘盘点 (my-pm 23GB sandbox) 实战"
+    },
+    "p8_shared_infrastructure_0803_0809": {
+      "category": "🔧 _default_shared 跨 profile 基础设施 (08-03 ~ 08-09 装 7 个)",
+      "count": 7,
+      "trigger": "memory + 联网 + 健康研究 + 项目管理 跨 profile 基础设施落地",
+      "impact": "- `obsidian-personal-records` (08-04, 8-3 23:20 my-pm 实战提炼) · `agentmemory-integration` (08-06, 跨 profile memory 系统) · `ml-model-tooling` (08-06) · `memory-cleanup` (08-07, 3 profile daily cron 已实战) · `cronjob-management` (08-05 pm-2) · `feihao-health-research` (08-05 pm-2, 8-4 21:52 腰肌劳损搜索实战) · `gold-000307-tracker` (08-03 research-agent) · `pm-project-lifecycle` (08-03 pm-for-claude) · `hermes-skill-architecture` (08-03 pm-for-claude, 65KB) · `record-obsidian-base` (08-09 research-agent, 8-9 archive 公众号实战)"
     }
   },
   "hot_topics": [
-    "🔴 P0: agentmemory persistent failures (07-26 pm-2 cron 报告) — 4 profiles daemon health 仍有遗留问题, 不是 memory % cap 卡, 跑 memory_diagnose categories=daemon,leases,sessions 立刻可查",
-    "🟠 P1: 3 周累计 246 个新 skill (80+55+56), 实战验证窗口严重滞后 — bulk install 事件 5 个 (my-pm 9 / research-agent 8 / writing-agent 9 / 全 profile image-gen 20 / my-pm creative 9), 大量 skill 装了 0 调用",
-    "🟠 P1: feishu channel conflict (07-27 21:11 incident, 已恢复) — my-pm + research-agent 配同一个 oc_09d543 导致反注册; 写 feishu channel conflict SOP",
-    "🟡 P2: headroom-context-compression cron 08-01 12:44 被手动 paused, 需 fei 确认是临时调试还是长期停用",
-    "🟡 P2: Z-Library cron 7 天 0 本成功 — 是 cron 配置问题还是账户配额问题待 verify",
-    "🟡 P2: 新股申购 QA 07-28/29 两天日报因外部 API 失败缺失, 周报框架需加 外部 API 健康 子项",
-    "⚪ kiddo-scoreboard → 微信小程序迁移 (pm-for-claude 08-01, 8 决策点待拍板) — fei 个人项目, 不在 PM 主动范围 (2026-06-14 explicit)",
-    "⚪ 8 月 17 日 度假规划 + 旅行愿望清单 (pm-2 07-31 + 08-01) — fei 个人项目, 不在 PM 主动范围"
+    "🔴 P1: skill-library-bloat-r4 — 4 周累计 304 个新 skill (上周 56 + 上上周 55 + 上上上周 80 + 本周 57), 本周 6 个 bulk install 事件 大面积重叠 (research 类 3 个 / kanban 类 2 个 / hermes 类 3 个 / coding agent 类 2 个 / 音频类 2 个 / diagram 类 3 个), 实战验证窗口严重滞后, 0 session profile 仍触发 bulk install (data-agent/web-ui-designer/qual-agent 本周 0 session 仍 21 个新 skill)",
+    "🔴 P1: mecha-challenge production 仍 pre-PR-#56 回滚版 (含 rawSubitems scope bug) — fix 已 commit (02ce0d5) 但 production 没重 deploy, fei 真机 kiddo 仍会撞 task 7 → 500 ReferenceError, 需要 PM 跑 wrangler pages deploy 重发 + e2e smoke",
+    "🟠 P2: .env FEISHU_HOME_CHANNEL 第 5 周持续过期 (oc_09d543 vs bot 实际在 oc_b597b40a 岑斐灏 group), 本周 research-agent 8-4 15:33 session 报 230002 持续不可用, agent 已 fallback 在对话里直接发, 请 fei 修 .env 或保留空让 Tier 1 discover",
+    "🟠 P2: health-vault cron 上线 128 sessions / 7 天 = 每小时 1 次, 大部分应是 SILENT, 但 cron config 没 throttle 可能刷屏; 需要 verify 实际 output 频率 + 数据实际存储位置 (Obsidian / agentmemory slot?)",
+    "🟡 P3: 8-4 新股申购 QA cron 周五化 schedule 调整 session 空 (sqlite 抓不到 assistant 消息), schedule 是否真改成周五 12:00 没 verify; 外部 API 失败问题 (07-28/29 两天日报缺失) 仍未解",
+    "🟡 P3: agentmemory-usage-sop cron 上周 (7-26) P1 报告 persistent failures 没在 final report 里 verify 是否真正恢复, 跑 memory_diagnose 看 daemon health 当前状态",
+    "⚪ 8月15日 云南 8天7晚 旅行 (pm-2 + research-agent 8-3 ~ 8-8, 多次) — fei 个人项目, 不在 PM 主动范围; 含元阳梯田/抚仙湖 → 丽江+大理 7天 → 行程整理 → 航班查 → 8-8 玉龙雪山票 verify (云杉坪+蓝月谷+索道票 3 档行动建议)",
+    "⚪ 健康助手配置 + 腰肌劳损康复 + 手麻自查 (pm-2 8-3 ~ 8-8, 4 sessions) — fei 个人, 不在 PM 主动范围; health-vault cron 是这个的延伸",
+    "⚪ 小孩报班合同审查 (pm-2 8-4 22:43) + 百度网盘 iOS Shortcut verify (pm-2 8-3 23:05) — fei 个人, 不在 PM 主动范围",
+    "⚪ kiddo-scoreboard → 微信小程序 0.1.0 上线 (pm-for-claude 8-3 + 8-5, AppID wx0a69442415a53a67) — fei 个人项目 (虽然 mecha-challenge bug 修在 PM 范围, 但 scoreboard 本身 out of scope per 2026-06-14 explicit)"
   ]
 }
