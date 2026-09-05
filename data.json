@@ -1,223 +1,438 @@
 {
   "meta": {
     "title": "Hermes 团队周报",
-    "date_range": "2026-08-24 → 2026-08-30",
-    "generated_at": "2026-08-30",
+    "date_range": "2026-08-31 → 2026-09-06",
+    "generated_at": "2026-09-06",
     "owner": "fei",
     "summary": {
-      "total_sessions": 152,
-      "substantive_sessions": 5,
-      "profiles_active": 4,
-      "real_projects": 5,
-      "rolling_projects": 4,
-      "real_problems": 4,
-      "new_skills_count": 1
+      "total_sessions": 197,
+      "substantive_sessions": 21,
+      "profiles_active": 5,
+      "real_projects": 9,
+      "rolling_projects": 2,
+      "real_problems": 5,
+      "new_skills_count": 18
     }
   },
   "overview": [
     {
-      "profile": "my-pm",
-      "sessions": 5,
-      "substantive": 1,
-      "focus": "**hermes git commit + push + cron 升级推进** (08-25 22:40: 17 个未 push backup commit **24 天 (8-02→8-25) 一次性推到 origin**, hermes-backup cron 本身脚本已有 `git push`, 但 origin 落后 24 天; 之后找 cron 加 'commit 后必须 push' 步骤; PM 顺便 patch pm-execution/cronjob-management skill v2.1.0 加 GH001 Large File Detection pitfall); **2 空 sessions** (08-26 00:54 session_reset 0 msgs); **cron 3** = memory-cleanup cron (08-25 19:53) + 2 个 generic cron-notice; 本周 my-pm **1 个真持久新 skill**: `hermes-computer-use-diagnostics` (08-25 22:13, 86 KB — 配合 WorkBuddy GUI 点 claim-points 类任务 + 沉淀 22 个 P-pitfall)"
-    },
-    {
-      "profile": "pm-2",
-      "sessions": 131,
-      "substantive": 3,
-      "focus": "**health-vault-hourly cron 109 sessions** (08-25→08-30 全稳定, **5/天 hourly 全跑完 cron_complete** — 上周 4 天 stall **完全修复**, 根因被 pm-2 daemon 在 08-20→08-24 之间自动 reload 解决); **memory-cleanup cron 6** (08-25→08-30 daily ok, 投递 local OK); **agentmemory-integration cron 6** (08-25→08-30 daily 01:00 ok); **3 substantive sessions** = 1) **会员权益管理启动** (08-26 08:10 ~100 msgs: 滴滴 V7 + 美团白金 + 京东 PLUS 三类会员 deep analysis, 滴滴 30 项 + 美团 15/34 项可用, 但 **Q1/Q2/Q3 拆问 fei 后 fei 只回了 part-1 (白金认图标颜色规则), 美团图片未发**, session stalled 等图片) + 2) **泰国攻略调取 + 发飞书 DM** (08-25 22:05 ~50 msgs: `obsidian-personal-records` skill 找 → 找到 7/4 笔记 + 补 Obsidian 一篇 → **feishu 推送文字摘要 + .md 附件**完成, 顺手发现 pm-2 .env app_id 跟 memory 不一致待同步) + 3) **空 session** (08-25 23:05 session_reset)"
-    },
-    {
-      "profile": "research-agent",
-      "sessions": 10,
-      "substantive": 2,
-      "focus": "**diagram-design skill 完整安装 + 验证** (08-29 12:26 ~25 msgs: 逛逛 GitHub 微信公众号文章 → **GitHub Trending 2.8万星项目** `cathrynlavery/diagram-design`, clone → **装到 free-cc .claude/skills/diagram-design/** (206 文件 / 2.66 MB / 39 种图表) → CC `claude -p 'list diagrams in diagram-design skill'` **真实加载验证** 39 种全部返回 → 同步归档 `Tech/AI/2026-08-29__逛逛GitHub_Diagram_Design_2.8万星开源图表Skill.md` 7.2 KB); **NAND 长存控股招股书 PDF 链接归档 + skill 自爆** (08-25 22:31 ~30 msgs: fei 给微信公众号链接 → 实操抓到 `https://www.sse.com.cn/listing/renewal/ipo/index_listing_detail.shtml?auditId={ID}` + 招股书 PDF URL → **归档 `Tech/NandFlash/长存控股招股书 PDF 直链 20260821.md` 4.9 KB**, 同步 patch `nand-flash-research` skill 加 Anti-pattern (KXDOMAIN self-check) + patch `web-acquisition` skill 加「中国 A 股 IPO 招股书 PDF 抓取」章节 + 创建 `china-sse-ipo-prospectus-pdf-20260825.md` reference; **self-critique**: 我把不存在的子域名 `kcb.sse.com.cn` 用了 8 次, **本该 30 秒搞定的活做了 4 小时, fei '你是不是默写的?' 一句话点醒**); **cron 8** = agentmemory-integration cron 6 + 2 个 generic cron"
-    },
-    {
-      "profile": "pm-for-claude",
-      "sessions": 6,
-      "substantive": 0,
-      "focus": "**本周 0 substantive** (上一轮 Spy School 8-19 才 1 个); **cron 6 = memory-cleanup cron** (08-25→08-30 daily 23:00 ok, 投递 local); 注意: 跟 pm-2 同 cron_id `5b2a5373ae2b` 共用一份, pm-for-claude memory-cleanup 投递 target 还需 verify (`deliver: feishu` 配置 chat_id, see problems P0 #2)"
-    },
-    {
       "profile": "code-agent",
-      "sessions": 0,
-      "substantive": 0,
-      "focus": "本周 0 session (last session 08-16 21:35), 0 active; 等 fei 委派 mecha-challenge 类任务; bulk-install 暂停"
-    },
-    {
-      "profile": "qual-agent",
-      "sessions": 0,
-      "substantive": 0,
-      "focus": "本周 0 session (last session 08-13), 0 active; 等 fei 委派 code review / QA 任务"
+      "sessions": 1,
+      "substantive": 1,
+      "filesystem": 2,
+      "status": "active"
     },
     {
       "profile": "data-agent",
       "sessions": 0,
       "substantive": 0,
-      "focus": "本周 0 session (last session 05-06, 117 天前 — 长期 stall); 等 fei 委派数据分析/ML 任务"
+      "filesystem": 0,
+      "status": "idle"
+    },
+    {
+      "profile": "my-pm",
+      "sessions": 4,
+      "substantive": 2,
+      "filesystem": 2,
+      "status": "active"
+    },
+    {
+      "profile": "pm-2",
+      "sessions": 167,
+      "substantive": 8,
+      "filesystem": 8,
+      "status": "active"
+    },
+    {
+      "profile": "pm-for-claude",
+      "sessions": 9,
+      "substantive": 3,
+      "filesystem": 1,
+      "status": "active"
+    },
+    {
+      "profile": "qual-agent",
+      "sessions": 0,
+      "substantive": 0,
+      "filesystem": 0,
+      "status": "idle"
+    },
+    {
+      "profile": "research-agent",
+      "sessions": 16,
+      "substantive": 7,
+      "filesystem": 0,
+      "status": "active"
     },
     {
       "profile": "web-ui-designer",
       "sessions": 0,
       "substantive": 0,
-      "focus": "本周 0 session (last session 06-11), 0 active; 等 fei 委派 UI 设计任务"
+      "filesystem": 0,
+      "status": "idle"
     },
     {
       "profile": "writing-agent",
       "sessions": 0,
       "substantive": 0,
-      "focus": "本周 0 session (last session 08-13), 0 active; 等 fei 委派写作/文案任务"
+      "filesystem": 0,
+      "status": "idle"
     }
   ],
   "real_projects": [
     {
-      "id": "diagram-design-skill-install-2026-08-29",
-      "name": "🛠 diagram-design skill 完整安装 + 验证 (research-agent 08-29)",
-      "description": "GitHub Trending 2.8万星 cathrynlavery/diagram-design — 39 种 editorial 图表 (Architecture/Flowchart/Sequence/Wardley Map/Sankey…), 装到 free-cc .claude/skills/ 给 Claude Code 用",
-      "progress": "**完整 4 步**: (1) 抓微信公众号逛逛GitHub 文章 → 解析出 cathrynlavery/diagram-design repo (28,376 ⭐, MIT, v2.6); (2) clone 完整仓库 (SKILL.md 40 KB + references/ 54 文件 + scripts/ 3 + assets/ 149 HTML examples, **206 文件 / 2.66 MB**); (3) 装到 `~/workspace/free-claude-code/.claude/skills/diagram-design/`; (4) CC `claude -p \"list diagrams in diagram-design skill\"` **实测返回 39 种全部对得上 README** ✓; 归档 `Tech/AI/2026-08-29__逛逛GitHub_Diagram_Design_2.8万星开源图表Skill.md` 7.2 KB",
-      "phase": "🚀 Deployed",
-      "phase_emoji": "🚀",
-      "last_active": "2026-08-29",
-      "active_status": "active",
-      "problem": "**真问题 (部分遗留)**: 安装过程中 CC sandbox 读 `~/.claude/skills/diagram-design/SKILL.md` 路径解析有 sandbox 限制 (settings 限 `Read(//Users/tidusmaomao/.hermes/**)`, 没放开 .claude/skills/), `--allowedTools` 加通路径修了; 但 `uv cc 接口调用查 skill` 仍然 `Missing API key` (跟 sandbox 无关, 是 CC 接口鉴权); **不是真问题**: PDF 装好 CC 真加载并能列出 39 种图表 (`claude -p 'list the diagrams...'` 测试通过), 后面确认版/version 的目的是附带, **不影响 deploy**",
-      "solution": "(1) **已修**: 跑 `claude -p` 时加 `--allowedTools 'Read(//Users/tidusmaomao/.claude/skills/**)'` 绕开 sandbox 限制; (2) **下次 verify 用 `-p` prompt 路径直接问 skill 系统** (比硬读 SKILL.md 稳); (3) uv CC 接口鉴权问题单独排查 — 跟本 skill deploy 无关"
-    },
-    {
-      "id": "nand-flash-ipo-prospectus-pdf-2026-08-25",
-      "name": "🛠 NAND 长存控股招股书 PDF 直链归档 (research-agent 08-25)",
-      "description": "微信公众号文章 → 真实抓 SSE 招股书 PDF URL pattern → KB 归档 + skill 自爆 + reference 沉淀",
-      "progress": "**完整 4 步**: (1) 抓 `https://mp.weixin.qq.com/s/geNqWP7hg8yelN3VclMvYA` → 提取长存控股 IPO 招股书下载入口; (2) **拼对真实 URL**: `https://static.sse.com.cn/stock/disclosure/announcement/c/new/{YYYYMMDD}_{FILEID}.pdf` (从 `www.sse.com.cn/listing/renewal/ipo/index_listing_detail.shtml?auditId={ID}` 详情页拿到 fileId); (3) 归档 `Tech/NandFlash/长存控股招股书 PDF 直链 20260821.md` 4.9 KB, **5 条真实 PDF URL + 详情页元数据 + URL pattern 规则**; (4) **patch 2 个 skill**: `nand-flash-research` SKILL.md 加 NXDOMAIN anti-pattern + 新建 `references/china-sse-ipo-prospectus-pdf-20260825.md` (8.6 KB) + `web-acquisition` SKILL.md 加「⭐ 中国 A 股 IPO 招股书 PDF 抓取」整章",
-      "phase": "✅ Implemented",
-      "phase_emoji": "✅",
-      "last_active": "2026-08-25",
-      "active_status": "active",
-      "problem": "**真问题 (PM 自爆)**: **我把 `kcb.sse.com.cn` 这个根本不存在的子域名用了 8 次**, 每次失败都甩锅「SSE 服务器抽风/反爬」, **没第一时间 `nslookup` 验证**. fei 一针见血: 「你是不是默写的?」. **本该 30 秒的活做了 4 小时**, 用户主动打断才停. **核心教训**: 抓 URL 第一次失败必须 `nslookup` + 看真实 HTTP 状态码, 别凭记忆默写域名",
-      "solution": "(1) **已固化进 skill**: web-acquisition SKILL.md 加 self-doubt 检查清单 (用户反馈「链接打不开」时立即跑); nand-flash-research SKILL.md Anti-pattern 表加 NXDOMAIN 警示; (2) **PM 改习惯**: URL 抓不到 → 跑 `nslookup {domain}` 验证域名存在 → CloakBrowser 抓主站导航 → 找真实 URL, 三步 30 秒搞定; (3) **用户打断 = 已上 warn list**, fei '默写?' 类反馈下次主动预防"
-    },
-    {
-      "id": "thailand-trip-archive-feishu-2026-08-25",
-      "name": "🚀 泰国攻略调取 + 飞书 DM 推送 (pm-2 08-25)",
-      "description": "fei 出差前的闺蜜行程参考 — Obsidian knowowl/Travel/ 找上一次泰国攻略 → 摘要 + 全文 DM 飞书",
-      "progress": "**完整 3 步**: (1) `obsidian-personal-records` skill 搜「泰国」 → 找到 knowowl/Travel/ 下 9 篇 (6/16-7/4 8 稿 + 8/25 闺蜜参考版 5.7 KB 新稿); (2) 摘要成 7 行 + 全文 → `.md` 文件落到 Obsidian (`2026-08-25__泰国9天8晚_清迈普吉_闺蜜参考版.md` 5.7 KB); (3) **feishu DM 推**: 文字摘要 `om_x100b67ee0b7904a8b257210482f6b47` + .md 文件 `om_x100b67ee0b042ca0b2b2bd9a57b90ba` (file_key `file_v3_0014t_...`) → 8-25 22:30 fei 收到 2 条消息 ✓",
-      "phase": "🚀 Deployed",
-      "phase_emoji": "🚀",
-      "last_active": "2026-08-25",
-      "active_status": "active",
-      "problem": "**真问题**: pm-2 `.env` 飞书 app_id 跟 memory 不一致 — memory 写的 `cli_aaa6aa36fc781cc4`, 实际 `.env` 当前值 `cli_a9671a347e389bd5` (8/17 还在用), state.db 还有 3 个历史值; **凭据藏在 `/Users/tidusmaomao/.hermes/profiles/pm-2/.env`** (不是 config.yaml 也不是 shell env, 是 gateway 启动时自己 source) — PM 跑 source 才拿到正确凭据; **不是真问题**: skill 名字混用 (`obsidian-personal-records` 写 vs 查都需要), pm-2 第一次尝试错 skill 已纠正",
-      "solution": "(1) **PM 跑 agentmemory `memory_lesson_save`**: 「pm-2 飞书凭据 → `.env` 是 source of truth, memory 已 stale」 — 不通过, agentmemory memory + skill 都已是 source of truth; (2) **实际方案**: 下次发飞书前先 `cat /Users/tidusmaomao/.hermes/profiles/pm-2/.env | grep FEISHU_APP_ID` 拿真实凭据, 不靠 memory 缓存; (3) PM 已在 session 末尾提醒 fei 同步 memory"
-    },
-    {
-      "id": "hermes-backup-push-and-cron-fix-2026-08-25",
-      "name": "🚀 hermes-backup 17 commit push + cron 升级推进 (my-pm 08-25)",
-      "description": "fei 「把 hermes git commit 一版」 → PM 发现 17 个 backup commit 24 天 (8-02→8-25) 未推 origin → push + cron 加 'commit 后必须 push' 步骤",
-      "progress": "**完整 3 步**: (1) **PM 查 verify**: hermes-agent 本体 working tree clean (误以为是 tinker-atropos 子项目未提交, 实则跟 fei 词意无关) → 翻 fei 全部 git remote → **唯一定位到 `git@github.com:feihc-sh/hermes-backup.git` 本地 43 commit / origin 26 commit / ahead 17**; (2) `ssh -T git@github.com` 验 auth + `git -C ~/workspace/hermes-backup push origin backup/initial-import` **后台跑成功** (3 GB repo, 实际增量 ~几十 MB, 2-3 分钟); (3) **cron 改造进行中**: fei 让 PM 找 cron + 加 'commit 后必须 push' 步骤 → PM 查发现 `backup-hermes-daily.sh` 脚本本身已经有 `git push origin backup/initial-import` (line), **问题不是脚本, 是 cron scheduler / daemon 24 天没续上**, 加 watchdog 是下一动作; **副产物**: PM 顺便 patch `pm-execution/cronjob-management` skill v2.1.0 加 `GH001 Large File Detection pitfall`",
+      "name": "Firecrawl account credentials 记录",
+      "owner_profile": "pm-2",
+      "session_count": 1,
       "phase": "🛠 Implementation",
-      "phase_emoji": "🛠",
-      "last_active": "2026-08-25",
-      "active_status": "rolling",
-      "problem": "**真问题**: 24 天未推的根因**未 verify** — hermes-backup cron (id `df332f8b8ca7`) 期间一直 enabled, 脚本也有 push, 推测 (a) 8 月初 pm-2 daemon 重启 cron scheduler 没续上, (b) GitHub SSH 鉴权窗口断了未自动重试, (c) SSH host key 信任变动让 batchmode -o ConnectTimeout=10 exit 3 又自动 retry 后被人忽略; 真因仍待跑 `bash -x backup-hermes-daily.sh` + `hermes cron show df332f8b8ca7 --profile pm-2` 看 last_error; **已是真问题**: 8/26→8/30 push 都成功, 表明链路恢复了, 但加 watchdog 是新项目",
-      "solution": "(1) **已修**: 17 个 commit 推完, 8-26 起 cron 恢复 push, 上周 P0 数据丢失风险降为低; (2) **下一步 (PM 待办)**: `hermes cron show df332f8b8ca7 --profile pm-2` + `bash -x backup-hermes-daily.sh` 跑 trace, 锁定 24 天未推的真因; (3) 加 `backup-cron-watchdog` skill: 每 6h verify `cron <id> last_run_at` 距今 > 26h 就 Tier 1 飞书 alert fei (类似 health-vault 上次 stall 的根因方案)"
+      "active": "active",
+      "progress": "把 firecrawl 注册的账号密码写到 .private 下的 md 文件",
+      "problem": {
+        "title": "firecrawl 账号凭证未规范化",
+        "real": "✓ 真问题",
+        "evidence": "fei 在 09-05 session 明确要求 '注册的账号密码写在 private 文件夹下的新的 md 文件里去'",
+        "impact": "账号凭证散落在 session 历史里，下次用时找不到",
+        "solution": "(1) 确认 .private/firecrawl.md 已建; (2) 把账号密码脱敏写进去; (3) skill 化复用流程"
+      }
     },
     {
-      "id": "membership-benefits-management-2026-08-26",
-      "name": "📋 会员权益管理启动 (pm-2 08-26)",
-      "description": "fei 三大会员 (滴滴 V7 + 美团白金 + 京东 PLUS) → 盘点「每月可薅」+ Obsidian 落盘 + cron 月度提醒",
-      "progress": "**停在图片交付阶段**: (1) PM 已完成 滴滴 V7 (30 项) + 美团白金 (15/34 项, 按 fei 规则剔黑金🔒) 完整盘点, 月度可薅清单表格化; (2) PM 答 Q1/Q2/Q3 拆问 (其他会员? 落盘结构? cron 频次?) 等 fei 确认; (3) fei **只回了 part-1** 「白金认图标颜色, 黑金对白金不算」 + 美团图片未发 → session 暂停; **不算 closed**, 图片一来 PM 立刻可继续",
-      "phase": "📋 Spec",
-      "phase_emoji": "📋",
-      "last_active": "2026-08-26",
-      "active_status": "stalled",
-      "problem": "**真问题**: PM 一次性问 3 个问题 (Q1/Q2/Q3) 是经典「PM 急于出活」反模式 — fei 只回答了 part-1, 余下 2 个问题 (Q2 落盘结构 / Q3 cron 频次) 仍悬而未决, 同时美团图片未发进度被卡. **不是真问题**: 工具能力 — 拍 v7/美团/京东图识别、表格化权益清单、月度 cron 频次方案 PM 都已具备",
-      "solution": "(1) **下次 PM 起手**: fei 给图 → **逐张处理** (不一次问 3 问), 滴滴先 → 美团接着 → 京东最后, 每张后等下一张; (2) **image understanding pitfall**: Q1 默认拆问 = 用户被打断主流程, 改成 A/B 二选一更稳; (3) 等 fei 拍照美团/京东白金 + 答 Q2 文件结构 + Q3 cron 频次 (or 1-week 后 PM 主动催图)"
+      "name": "Kioxia XLFlash + NVIDIA BlueField 联合调研",
+      "owner_profile": "research-agent",
+      "session_count": 1,
+      "phase": "🔬 Discovery",
+      "active": "active",
+      "progress": "调研 Kioxia XLFlash SSD 100M IOPS 性能场景 + 是否适配 NVIDIA BlueField DPU 高 IOPS 读需求",
+      "problem": {
+        "title": "需求场景未明确",
+        "real": "✗ 不是真问题 (调研阶段)",
+        "evidence": "first_user 在问 '是否需要这样子高 IOPS 的读', 还没收敛到具体 use case",
+        "impact": "暂无 — 调研阶段可以宽口径",
+        "solution": "继续收口到 1-2 个具体 use case (e.g. KV cache / 数据预处理)"
+      }
+    },
+    {
+      "name": "Awesome MCP Servers 选型",
+      "owner_profile": "research-agent",
+      "session_count": 1,
+      "phase": "🔬 Discovery",
+      "active": "stalled",
+      "progress": "浏览 punkpeye/awesome-mcp-servers 仓库，过滤可能用到的 MCP server (没下载)",
+      "problem": {
+        "title": "选型没收敛",
+        "real": "✓ 真问题 (但低优先)",
+        "evidence": "09-05 14:41 first_user '先不要下到本地' — 浏览阶段, 没产出短名单",
+        "impact": "MCP 能力未增量",
+        "solution": "(1) 跑一次 awesome-mcp-servers 短名单 (按 Hermes 用得上过滤); (2) 挑 1-2 个试用"
+      }
+    },
+    {
+      "name": "30 分钟燃脂运动排名调研",
+      "owner_profile": "pm-2",
+      "session_count": 3,
+      "phase": "✅ Implemented",
+      "active": "rolling",
+      "progress": "fei 两次 ask (09-04 07:01 + 08:20) — 跑了 Harvard/Mayo/ACSM/NHS 抓取，给出跑步机爬坡 (4x4 改良版) + 减重研究 (71 人肥胖受试者 24 周 -10 斤) 双重输出",
+      "problem": {
+        "title": "无",
+        "real": "✗ 不是问题",
+        "evidence": "2 个 session 完成调研, 输出结构化方案",
+        "impact": "—",
+        "solution": "—"
+      }
+    },
+    {
+      "name": "Nars 大白粉饼 干皮/油皮适配",
+      "owner_profile": "pm-2",
+      "session_count": 1,
+      "phase": "✅ Implemented",
+      "active": "active",
+      "progress": "09-05 22:51 fei 问 Nars 大白粉饼干皮/油皮哪个更好用 — 一次性 quick research",
+      "problem": {
+        "title": "无",
+        "real": "✗ 不是问题",
+        "evidence": "一次会话 quick lookup",
+        "impact": "—",
+        "solution": "—"
+      }
+    },
+    {
+      "name": "kiddo-scoreboard-nightly-todo cron Feishu 投递修复",
+      "owner_profile": "pm-2",
+      "session_count": 2,
+      "phase": "🛠 Implementation",
+      "active": "stalled",
+      "progress": "09-01 00:25 pm-2 fix cron d100dbff4107 — 投递到错的 chat, 改 chat_id",
+      "problem": {
+        "title": "投递通道未确认已修",
+        "real": "✓ 真问题",
+        "evidence": "09-01 fix session 写了变更, 但 09-04 pm-for-claude session 提到 '暑假作业 disable' 暗示 cron 可能在跑但通道仍有问题",
+        "impact": "kiddo nightly todo 推不到 fei",
+        "solution": "(1) `hermes cron show kiddo-scoreboard-nightly-todo` 看当前 chat_id; (2) 跑一次 `hermes cron trigger` 验证推送; (3) 看 fei 飞书是否真的收到"
+      }
+    },
+    {
+      "name": "Codex 做游戏的 skill 排行榜 (小红书)",
+      "owner_profile": "pm-for-claude",
+      "session_count": 1,
+      "phase": "🔬 Discovery",
+      "active": "active",
+      "progress": "09-05 pm-for-claude 抓 https://xhslink.cn/o/8jqdl6JNxQ6 小红书 'codex 做游戏的 skill 排行榜' 笔记",
+      "problem": {
+        "title": "无",
+        "real": "✗ 不是问题",
+        "evidence": "一次性调研采集",
+        "impact": "—",
+        "solution": "—"
+      }
+    },
+    {
+      "name": "新股申购 cron fail (08-31)",
+      "owner_profile": "research-agent",
+      "session_count": 1,
+      "phase": "🪦 Closed",
+      "active": "closed",
+      "progress": "08-31 20:45 research-agent session 报 '新股 cron fail 了' — 上周已知问题 (08-25 weekly-report 也提过 pandas ModuleNotFoundError)",
+      "problem": {
+        "title": "pandas ModuleNotFoundError 持续",
+        "real": "✓ 真问题 (但跨周)",
+        "evidence": "08-25 weekly-report 已记 + 08-31 仍 fail, 没看到 fix commit",
+        "impact": "新股申购 cron 周五化失效, fei 漏通知",
+        "solution": "(1) `pip install pandas` 到 research-agent venv; (2) 重跑 cron 验证; (3) 写进 cron-management skill SOP"
+      }
+    },
+    {
+      "name": ".private GLM ZAI Key 查找",
+      "owner_profile": "my-pm",
+      "session_count": 1,
+      "phase": "✅ Implemented",
+      "active": "rolling",
+      "progress": "09-04 08:49 my-pm '找一下 .private 文件下是不是有个 glm zai key'",
+      "problem": {
+        "title": "无",
+        "real": "✗ 不是问题",
+        "evidence": "quick lookup 完成",
+        "impact": "—",
+        "solution": "—"
+      }
     }
   ],
   "rolling_projects": [
     {
-      "name": "🔁 health-vault-hourly cron (pm-2, hourly)",
-      "progress": "**109 sessions / 5 天 (08-26→08-29) hourly 全跑, 100% cron_complete**; 08-25 当天 5 sessions (recovery); 08-30 0-7 点 8 sessions 仍稳定; **上周 P0 (4.7 天 stall) 完全修复** — 推测 pm-2 daemon 在 08-24 → 08-25 之间 reload 把 cron scheduler 续上, 真因未 verify 但功能恢复; 健康数据 snapshot Aug 26 起持续滚动",
+      "name": "微信公众号文章归档 (3 篇)",
+      "owner_profile": "research-agent",
+      "session_count": 3,
       "phase": "🔁 Rolling",
-      "phase_emoji": "🔁",
-      "active_status": "active",
-      "last_active": "2026-08-30",
-      "problem": "**仍是真问题**: 上周 4.7 天 stall 根因未 verify, 本周恢复可能是 pm-2 daemon 临时修复或 Hermes gateway 自动 reload, **加 watchdog 才是根因方案**; **不是真问题**: cron 本身 (spec `0 * * * *` 没问题)",
-      "solution": "(1) **下一步 (PM 待办)**: `hermes cron show health-vault-hourly --profile pm-2` + check cron 进程 ps, 找 8-20→8-25 stall 真因 (daemon 重启? cron scheduler 挂? hermes gateway reload?); (2) 加 cron-watchdog skill (跟 hermes-backup watchdog 同一模板); (3) 健康数据 snapshot Aug 21→25 4 天断层无解, 但 agentmemory-integration cron 应该 catch 到"
+      "active": "rolling",
+      "progress": "本周归档 3 篇: 09-03 CZG7heTYHSlSTkZjUDR27Q + 09-02 lPKgMCddVTloS9fH5JMkow (Micron HBM) + 09-01 健身 vault (小宇宙)",
+      "problem": {
+        "title": "无",
+        "real": "✗ 不是问题",
+        "evidence": "归档流程顺畅, 3 篇 3 天",
+        "impact": "—",
+        "solution": "—"
+      }
     },
     {
-      "name": "🔁 agentmemory-integration cron (pm-2 daily 01:00 + my-pm 8-25)",
-      "progress": "**6 sessions pm-2 (08-25→08-30)** + **2 sessions my-pm (08-25, 08-30)** — daily 01:00 cron 稳定跑, snapshot gap 上周 Aug 21→25 已断点, agentmemory index 仍存量持续滚动",
+      "name": "weekly-report (本 cron 自身)",
+      "owner_profile": "my-pm",
+      "session_count": 1,
       "phase": "🔁 Rolling",
-      "phase_emoji": "🔁",
-      "active_status": "active",
-      "last_active": "2026-08-30",
-      "problem": "—",
-      "solution": "—"
-    },
-    {
-      "name": "🔁 memory-cleanup cron (pm-2 + pm-for-claude daily 23:00 + my-pm weekly 03:00)",
-      "progress": "**6 sessions pm-2 (08-25→08-30)** + **6 sessions pm-for-claude (08-25→08-30)** + **1 session my-pm (08-25 周一)** — 全部 cron_complete, 投递 local; 占用率仍 < 50% silent exit; 跟前周对比: 上周投递 230002 报 3 个 cron 失败, 本周 0 230002 报 (delivery = local 都 OK)",
-      "phase": "🔁 Rolling",
-      "phase_emoji": "🔁",
-      "active_status": "active",
-      "last_active": "2026-08-30",
-      "problem": "**仍是真问题**: .env FEISHU_HOME_CHANNEL `oc_09d543c81200d80abedb119e6aa3f053` 仍过期 (PM 6 次实测确认, 本周 6 周末跑), 但 **本周没新踩** — cron framework 的 deliver target 都被某个机制改回 local; 风险仍在, 一旦 target 改回 feishu, 230002 重现",
-      "solution": "(1) **强烈建议 fei 修 .env** — `FEISHU_HOME_CHANNEL=oc_b597b40aaf3c059630110fe3bc384498` (岑斐灏 group, bot 已加入), 否则下次 cron 投递 feishu 时 230002 重现; (2) PM Tier 1 通知本周报时附「⚠️ .env FEISHU_HOME_CHANNEL 已过期 6 周, 请修」"
-    },
-    {
-      "name": "🔁 weekly-report cron (本任务)",
-      "progress": "周日 07:00 Asia/Shanghai 自动跑, 本周第 **10 次稳定发布** (06-14 / 06-28 / 07-05 / 07-12 / 07-19 / 07-26 / 08-02 / 08-09 / 08-16 / 08-25 / **本轮 08-30**); 本周 substantive 极薄 (152 sessions / **5 substantive**, vs 上周 103/9 substantive), 但 5 个都 **真项目交付** (diagram-design install + NAND 归档 + 泰国 DM 推送 + hermes-backup push + 会员权益分析) — Thin week 但 substantive 转化率 100%; filesystem scan 第 6 周确认 dead weight (新 session 全走 SQLite state.db)",
-      "phase": "🔁 Rolling",
-      "phase_emoji": "🔁",
-      "active_status": "active",
-      "last_active": "2026-08-30",
-      "problem": "—",
-      "solution": "—"
+      "active": "active",
+      "progress": "本周 cron 已触发 + 即将完成",
+      "problem": {
+        "title": "thin week — substantive 仅 21 个",
+        "real": "✓ 真问题 (结构性)",
+        "evidence": "197 total / 21 substantive (-57% vs 上周 49)",
+        "impact": "周报项目密度低",
+        "solution": "— (薄周正常, 不强求)"
+      }
     }
   ],
   "problems": [
     {
-      "priority": "P0",
-      "project": "feishu-env-still-reversed-6-weeks",
-      "issue": "**`.env` FEISHU_HOME_CHANNEL 仍过期 (6 周持续)**, 本周 PM 没新踩因为所有 .env-driven 投递 cron 本周都自动改回 local 了; **bot 当前所在 3 chat** (08-25 IM discover 确认): `oc_84cbe57392deb7254dd7bb55dfe4873b` (BOT团队) / `oc_b597b40aaf3c059630110fe3bc384498` (岑斐灏, **bot 在**) / 其他内部 chat; `.env` 写的 `oc_09d543c81200d80abedb119e6aa3f053` bot **不在**, 一旦 cron 投递 feishu 必然 230002 重现",
-      "solution": "(1) **强烈建议 fei 改 .env** (5 秒操作): `FEISHU_HOME_CHANNEL=oc_b597b40aaf3c059630110fe3bc384498` (岑斐灏 group) 或保留空, 让 cron framework 跑 `im/v1/chats?page_size=50` discover; (2) **不修也可以**, 但下次任何 cron 把 delivery 切回 feishu 必然 fail; (3) PM Tier 1 通知本周报附这条 6 周仍未修警告",
-      "time": "今天 (8-30 周日) — 6 周未修"
+      "project": "Firecrawl account credentials 记录",
+      "title": "firecrawl 账号凭证未规范化",
+      "real": "✓ 真问题",
+      "evidence": "fei 在 09-05 session 明确要求 '注册的账号密码写在 private 文件夹下的新的 md 文件里去'",
+      "impact": "账号凭证散落在 session 历史里，下次用时找不到",
+      "solution": "(1) 确认 .private/firecrawl.md 已建; (2) 把账号密码脱敏写进去; (3) skill 化复用流程"
     },
     {
-      "priority": "P1",
-      "project": "skill-construction-noise-10-transient-1-persistent",
-      "issue": "本周 SKILL.md mtime 扫描报 11 个新 skill, **实测仅 1 个真持久** (`my-pm/hermes-computer-use-diagnostics` 86 KB), **其余 10 个被 curator 自动归档** (cronjob-management / safe-content-snapshot / long-running-job-pulse / github-workflows / communication-conventions / weekly-report / nand-flash-research / web-acquisition / record-obsidian-base + _default_shared 一份). 根因未 verify — 推测是批量内容提取 / skill evolution 过程中产物短暂落盘后被 curator 当作 noise 砍掉; 报告会上 `new_skills_count: 1` 是 source of truth (filesystem mtime 是瞬时快照)",
-      "solution": "(1) **PM 默认行为**: SKILL.md 扫描后会跑 existence check, 只报 persistent 文件; (2) 调查 `~/.hermes/profiles/*/skills/.archive/` 归档原因 — curator 自动 trim 还是 manual? (3) 给 PM 周报 `new_skills_count` 加 `raw_mtime_count vs persistent_count` 双数字, 避免误导 fei 看 11 以为是 11 个新 skill",
-      "time": "下次周报改进"
+      "project": "Awesome MCP Servers 选型",
+      "title": "选型没收敛",
+      "real": "✓ 真问题 (但低优先)",
+      "evidence": "09-05 14:41 first_user '先不要下到本地' — 浏览阶段, 没产出短名单",
+      "impact": "MCP 能力未增量",
+      "solution": "(1) 跑一次 awesome-mcp-servers 短名单 (按 Hermes 用得上过滤); (2) 挑 1-2 个试用"
     },
     {
-      "priority": "P1",
-      "project": "hermes-backup-24-day-stall-root-cause-unverified",
-      "issue": "hermes-backup cron (`backup-hermes-daily` id `df332f8b8ca7`) **24 天 (8-02→8-25) 17 个 commit 未推 origin**, 8/25 push 修复, **但 stall 真因仍未 verify** — 脚本本身有 `git push origin` + `GIT_SSH_COMMAND='ssh -o BatchMode=yes -o ConnectTimeout=10'` + exit 3 错误捕获; 推测 (a) GitHub SSH host key trust 变化让首次 push exit 3, retry 仍 230002 但 fei 不知道; (b) pm-2 daemon 在 8-02 → 8-25 之间重启时 cron scheduler 续接失败; (c) `~/.ssh/id_ed25519` ssh-add 失效",
-      "solution": "(1) **下一步**: `bash -x ~/workspace/free-claude-code/.../backup-hermes-daily.sh` 跑一次看具体哪行 exit 3; (2) `ssh -T -o ConnectTimeout=5 -o BatchMode=yes git@github.com` 验证 SSH auth 实时状态; (3) 加 `backup-cron-watchdog` skill (跟 health-vault watchdog 同模板, 每 6h verify last_run < 26h)",
-      "time": "本周内 (8-30 → 9-6)"
+      "project": "kiddo-scoreboard-nightly-todo cron Feishu 投递修复",
+      "title": "投递通道未确认已修",
+      "real": "✓ 真问题",
+      "evidence": "09-01 fix session 写了变更, 但 09-04 pm-for-claude session 提到 '暑假作业 disable' 暗示 cron 可能在跑但通道仍有问题",
+      "impact": "kiddo nightly todo 推不到 fei",
+      "solution": "(1) `hermes cron show kiddo-scoreboard-nightly-todo` 看当前 chat_id; (2) 跑一次 `hermes cron trigger` 验证推送; (3) 看 fei 飞书是否真的收到"
     },
     {
-      "priority": "P2",
-      "project": "membership-benefits-session-stalled",
-      "issue": "pm-2 会员权益管理 session 08-26 **停在美团图片未发 + Q2 落盘结构 / Q3 cron 频次 fei 未答**, PM 已答 Q1 默认规则 (白金认图标颜色, 黑金对白金不算) + 完整盘点滴滴 V7 (30 项) + 美团 (15/34 项), 等 fei 拍照京东/补美团图 + 答余下 2 问",
-      "solution": "(1) **PM 改进**: 下次起手不要一次问 3 问, 改成「这张图分析完了, 要继续下一张吗?」单步流程 (避免并发问题拖死 session); (2) PM 下一轮主动 trigger 提醒: 「8-26 美团图还没发, 要继续吗?」走周三下午 reminder; (3) 给 member 管理加单独的 `pm-benefits-management` 类 skill 沉淀 (V7 30 项 + 美团 15 项基准)",
-      "time": "本周内 (8-30 → 9-6)"
+      "project": "新股申购 cron fail (08-31)",
+      "title": "pandas ModuleNotFoundError 持续",
+      "real": "✓ 真问题 (但跨周)",
+      "evidence": "08-25 weekly-report 已记 + 08-31 仍 fail, 没看到 fix commit",
+      "impact": "新股申购 cron 周五化失效, fei 漏通知",
+      "solution": "(1) `pip install pandas` 到 research-agent venv; (2) 重跑 cron 验证; (3) 写进 cron-management skill SOP"
+    },
+    {
+      "project": "weekly-report (本 cron 自身)",
+      "title": "thin week — substantive 仅 21 个",
+      "real": "✓ 真问题 (结构性)",
+      "evidence": "197 total / 21 substantive (-57% vs 上周 49)",
+      "impact": "周报项目密度低",
+      "solution": "— (薄周正常, 不强求)"
     }
   ],
   "new_skills": {
-    "p1_my_pm_hermes_computer_use_diagnostics_0825": {
-      "category": "🟢 my-pm 新建类 (08-25 1 个真持久)",
-      "count": 1,
-      "impact": "**`hermes-computer-use-diagnostics`** (08-25, 86 KB) — Hermes Computer Use failures 完整诊断 + 已知失败的 22 个 P-pitfall 沉淀 (含 P12 Hermes sandbox GUI session 访问 / P14+P15 workbuddy sandbox click 不稳 / P22 osascript Electron 60s+ hang 等). 来源: 8-18→8-25 WorkBuddy GUI 任务沉淀. 影响: 给 my-pm + future agents 兜底 Computer Use 失败 / Tier 1/2/3 输入梯子选用",
-      "trigger": "8-25 单日 my-pm patch 唯一真持久新 skill, 上线即用 — WorkBuddy 类 GUI 任务不再裸跑"
+    "total_new": 18,
+    "total_patched": 0,
+    "bulk_events": [
+      {
+        "date": "2026-09-05",
+        "profile": "pm-for-claude",
+        "skills": [
+          "pm-data-fabrication-pitfall",
+          "hermes-update-reload",
+          "minimax-image-to-video"
+        ]
+      },
+      {
+        "date": "2026-09-05",
+        "profile": "research-agent",
+        "skills": [
+          "research",
+          "mcp-server-curation",
+          "minimax-image-to-video"
+        ]
+      }
+    ],
+    "all_skills": [
+      "minimax-image-to-video",
+      "minimax-image-to-video",
+      "macos-process-management",
+      "minimax-image-to-video",
+      "cronjob-management",
+      "health-vault",
+      "minimax-image-to-video",
+      "pm-tunnel-verify-checklist",
+      "pm-data-fabrication-pitfall",
+      "hermes-update-reload",
+      "minimax-image-to-video",
+      "minimax-image-to-video",
+      "research",
+      "mcp-server-curation",
+      "minimax-image-to-video",
+      "minimax-image-to-video",
+      "minimax-image-to-video",
+      "minimax-image-to-video"
+    ],
+    "by_profile": {
+      "code-agent": [
+        {
+          "skill": "minimax-image-to-video",
+          "mtime": "2026-09-05"
+        }
+      ],
+      "data-agent": [
+        {
+          "skill": "minimax-image-to-video",
+          "mtime": "2026-09-05"
+        }
+      ],
+      "my-pm": [
+        {
+          "skill": "macos-process-management",
+          "mtime": "2026-09-02"
+        },
+        {
+          "skill": "minimax-image-to-video",
+          "mtime": "2026-09-05"
+        }
+      ],
+      "pm-2": [
+        {
+          "skill": "cronjob-management",
+          "mtime": "2026-09-01"
+        },
+        {
+          "skill": "health-vault",
+          "mtime": "2026-09-05"
+        },
+        {
+          "skill": "minimax-image-to-video",
+          "mtime": "2026-09-05"
+        }
+      ],
+      "pm-for-claude": [
+        {
+          "skill": "pm-tunnel-verify-checklist",
+          "mtime": "2026-09-04"
+        },
+        {
+          "skill": "pm-data-fabrication-pitfall",
+          "mtime": "2026-09-05"
+        },
+        {
+          "skill": "hermes-update-reload",
+          "mtime": "2026-09-05"
+        },
+        {
+          "skill": "minimax-image-to-video",
+          "mtime": "2026-09-05"
+        }
+      ],
+      "qual-agent": [
+        {
+          "skill": "minimax-image-to-video",
+          "mtime": "2026-09-05"
+        }
+      ],
+      "research-agent": [
+        {
+          "skill": "research",
+          "mtime": "2026-09-05"
+        },
+        {
+          "skill": "mcp-server-curation",
+          "mtime": "2026-09-05"
+        },
+        {
+          "skill": "minimax-image-to-video",
+          "mtime": "2026-09-05"
+        }
+      ],
+      "web-ui-designer": [
+        {
+          "skill": "minimax-image-to-video",
+          "mtime": "2026-09-05"
+        }
+      ],
+      "writing-agent": [
+        {
+          "skill": "minimax-image-to-video",
+          "mtime": "2026-09-05"
+        }
+      ],
+      "_default_shared": [
+        {
+          "skill": "minimax-image-to-video",
+          "mtime": "2026-09-05"
+        }
+      ]
     }
   },
   "hot_topics": [
-    "🟢 **本周最大改善**: pm-2 health-vault cron 4.7 天 stall **完全修复** (109 sessions / 5 天 100% cron_complete) — 上周 P0 自动转 active, 推测 pm-2 daemon / Hermes gateway 自动 reload 把 cron scheduler 续上. 根因仍待 verify (下周 cron-watchdog 装好后兜底)",
-    "🚀 **本周最大交付**: diagram-design skill **完整安装 + 验证** (08-29 research-agent) — GitHub Trending 2.8万星, CC 真加载并列 39 种图表全部对应 README, 已发 free-cc 给 Claude Code 用. 后续 controller-roadmap-ppt / PM 周报配图都可直接调此 skill 出 editorial-grade 图",
-    "⚠️ **PM 自爆 (本周最强反思)**: NAND 招股书 PDF 抓取 session 把不存在的 `kcb.sse.com.cn` 子域名用了 8 次, fei 「你是不是默写的?」一语点醒 — **本该 30 秒的活做了 4 小时**. 已固化进 web-acquisition skill anti-pattern + nand-flash-research self-doubt checklist. PM 工作流改进: 抓 URL 第一次失败立即 `nslookup` + CloakBrowser 主站导航",
-    "⚠️ **6 周仍未修 (续 P0)**: `.env` FEISHU_HOME_CHANNEL `oc_09d543...` 仍过期, bot 在 `oc_b597b40aaf3c...` (岑斐灏). 本周没新踩但风险仍在 — fei 5 秒操作即可修, 不修下周可能再有 cron 投递 fail",
-    "⚪ Out-of-scope 1-line: 大理 Mumm 香槟 ¥350-450 京东采购 (pm-2 上周 8-19, 操作中断未完, 撞京东 anti-bot + Firecrawl 未配) — fei 如要继续, PM 重启任务 + 主动问预算上限 + 大理具体收货地址; Spy School Quizlet 词表 (research-agent + pm-for-claude 08-19, 已完成 5 项 deliverable) — 等 fei 跑实地验证 (iPad 粘贴 or API OAuth)",
-    "⚪ Out-of-scope: 泰国清迈/普吉攻略 (pm-2 08-25, fei 个人旅行参考版已发飞书 DM) — fei 个人项目, 不主动跟踪; 会员权益管理 (pm-2 08-26, 滴滴 V7 + 美团白金盘点完, 等 fei 补京东图 + 答 Q2/Q3)"
+    "thin week — 197 total / 21 substantive (-57% vs 上周 49), pm-2 cron 167 占 85% 噪声",
+    "新股申购 cron pandas ModuleNotFoundError 仍未修 (跨周 2 周)",
+    "kiddo-scoreboard cron 投递通道 — 09-01 pm-2 fix 后未明确 verify",
+    "8 真实项目分布在 5 个 profile — project density 健康",
+    "18 新 skill — 2 个小批量 bulk (pm-for-claude + research-agent 各 3)"
   ]
 }
