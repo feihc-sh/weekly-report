@@ -1,24 +1,24 @@
 {
   "meta": {
     "title": "Hermes 团队周报",
-    "date_range": "2026-08-31 → 2026-09-06",
-    "generated_at": "2026-09-06",
+    "date_range": "2026-09-07 → 2026-09-13",
+    "generated_at": "2026-09-13",
     "owner": "fei",
     "summary": {
-      "total_sessions": 197,
-      "substantive_sessions": 21,
+      "total_sessions": 226,
+      "substantive_sessions": 36,
       "profiles_active": 5,
-      "real_projects": 9,
+      "real_projects": 8,
       "rolling_projects": 2,
-      "real_problems": 5,
-      "new_skills_count": 18
+      "real_problems": 4,
+      "new_skills_count": 27
     }
   },
   "overview": [
     {
       "profile": "code-agent",
-      "sessions": 1,
-      "substantive": 1,
+      "sessions": 2,
+      "substantive": 2,
       "filesystem": 2,
       "status": "active"
     },
@@ -31,23 +31,23 @@
     },
     {
       "profile": "my-pm",
-      "sessions": 4,
-      "substantive": 2,
-      "filesystem": 2,
+      "sessions": 6,
+      "substantive": 4,
+      "filesystem": 0,
       "status": "active"
     },
     {
       "profile": "pm-2",
-      "sessions": 167,
-      "substantive": 8,
-      "filesystem": 8,
+      "sessions": 188,
+      "substantive": 16,
+      "filesystem": 5,
       "status": "active"
     },
     {
       "profile": "pm-for-claude",
-      "sessions": 9,
-      "substantive": 3,
-      "filesystem": 1,
+      "sessions": 19,
+      "substantive": 11,
+      "filesystem": 0,
       "status": "active"
     },
     {
@@ -59,8 +59,8 @@
     },
     {
       "profile": "research-agent",
-      "sessions": 16,
-      "substantive": 7,
+      "sessions": 11,
+      "substantive": 3,
       "filesystem": 0,
       "status": "active"
     },
@@ -81,136 +81,136 @@
   ],
   "real_projects": [
     {
-      "name": "Firecrawl account credentials 记录",
-      "owner_profile": "pm-2",
-      "session_count": 1,
-      "phase": "🛠 Implementation",
-      "active": "active",
-      "progress": "把 firecrawl 注册的账号密码写到 .private 下的 md 文件",
-      "problem": {
-        "title": "firecrawl 账号凭证未规范化",
-        "real": "✓ 真问题",
-        "evidence": "fei 在 09-05 session 明确要求 '注册的账号密码写在 private 文件夹下的新的 md 文件里去'",
-        "impact": "账号凭证散落在 session 历史里，下次用时找不到",
-        "solution": "(1) 确认 .private/firecrawl.md 已建; (2) 把账号密码脱敏写进去; (3) skill 化复用流程"
-      }
-    },
-    {
-      "name": "Kioxia XLFlash + NVIDIA BlueField 联合调研",
-      "owner_profile": "research-agent",
-      "session_count": 1,
+      "name": "香港身份申请（高才 B 类 + 优才 QMAS 调研）",
+      "owner_profile": "my-pm",
+      "session_count": 2,
       "phase": "🔬 Discovery",
       "active": "active",
-      "progress": "调研 Kioxia XLFlash SSD 100M IOPS 性能场景 + 是否适配 NVIDIA BlueField DPU 高 IOPS 读需求",
+      "progress": "09-12 fei 启动双线调研：高才走 B 类（合资格大学本科 + ≥3 年经验，A 类收入 <250 万不够），优才走 QMAS（门槛 12 项满足 6，本科不算分需硕博）。",
       "problem": {
-        "title": "需求场景未明确",
-        "real": "✗ 不是真问题 (调研阶段)",
-        "evidence": "first_user 在问 '是否需要这样子高 IOPS 的读', 还没收敛到具体 use case",
-        "impact": "暂无 — 调研阶段可以宽口径",
-        "solution": "继续收口到 1-2 个具体 use case (e.g. KV cache / 数据预处理)"
+        "title": "A 类收入门槛硬伤 + 续签诉求未在 B 类覆盖",
+        "real": "✓ 真问题（结构性）",
+        "evidence": "fei 09-12 first_user 明确 '我要申请香港人才计划', 09-12 17:56 session 问 'Q1 海外工作经验' 验证 B 类续签人留内地是否可行",
+        "impact": "高才 A 类 <250 万门槛卡死, 走 B 类后期续签想留内地可能遇阻 → 优才 QMAS 是 fallback 但需补硕博学历",
+        "solution": "(1) B 类冲刺准备 (合资格大学本科验证 + 3 年经验); (2) 优才 QMAS 同步调研 12 项门槛评分; (3) 资料包 ~/hk-ttps-2026/ + ~/hk-qmas-2026/ 持续沉淀"
       }
     },
     {
-      "name": "Awesome MCP Servers 选型",
-      "owner_profile": "research-agent",
-      "session_count": 1,
-      "phase": "🔬 Discovery",
-      "active": "stalled",
-      "progress": "浏览 punkpeye/awesome-mcp-servers 仓库，过滤可能用到的 MCP server (没下载)",
-      "problem": {
-        "title": "选型没收敛",
-        "real": "✓ 真问题 (但低优先)",
-        "evidence": "09-05 14:41 first_user '先不要下到本地' — 浏览阶段, 没产出短名单",
-        "impact": "MCP 能力未增量",
-        "solution": "(1) 跑一次 awesome-mcp-servers 短名单 (按 Hermes 用得上过滤); (2) 挑 1-2 个试用"
-      }
-    },
-    {
-      "name": "30 分钟燃脂运动排名调研",
+      "name": "iOS Shortcut 生成修复（generate_shortcut.py 重写）",
       "owner_profile": "pm-2",
       "session_count": 3,
       "phase": "✅ Implemented",
-      "active": "rolling",
-      "progress": "fei 两次 ask (09-04 07:01 + 08:20) — 跑了 Harvard/Mayo/ACSM/NHS 抓取，给出跑步机爬坡 (4x4 改良版) + 减重研究 (71 人肥胖受试者 24 周 -10 斤) 双重输出",
-      "problem": {
-        "title": "无",
-        "real": "✗ 不是问题",
-        "evidence": "2 个 session 完成调研, 输出结构化方案",
-        "impact": "—",
-        "solution": "—"
-      }
-    },
-    {
-      "name": "Nars 大白粉饼 干皮/油皮适配",
-      "owner_profile": "pm-2",
-      "session_count": 1,
-      "phase": "✅ Implemented",
       "active": "active",
-      "progress": "09-05 22:51 fei 问 Nars 大白粉饼干皮/油皮哪个更好用 — 一次性 quick research",
+      "progress": "09-09 pm-2 跑根因诊断 + 3 方案实测，确认 Apple shortcuts sign --mode anyone AEA1 格式本身就是问题（不是签名）。09-10 cc-2 委派跑重写 generate_shortcut.py。",
+      "problem": {
+        "title": "cc-2 委派 timeout 无产出",
+        "real": "✓ 真问题",
+        "evidence": "09-09 22:15 last_assistant 'cc-2 timeout 10 分钟 27 calls, 没产出新 generate_shortcut.py'",
+        "impact": "飞书 DM 发到 iPhone 的 .shortcut 仍有 '未知操作' / '不支持未签名' 报错, Health Export → Hermes 流程断",
+        "solution": "(1) cc-2 timeout 后 PM 5-signal 诊断 (jsonl 增量 + CPU%); (2) 不盲 retry → self-implement 重写 generate_shortcut.py; (3) 飞书 DM 端到端实测"
+      }
+    },
+    {
+      "name": "儿子眼镜近视档案 + 趋势图",
+      "owner_profile": "pm-2",
+      "session_count": 5,
+      "phase": "🛠 Implementation",
+      "active": "active",
+      "progress": "09-11 pm-2 跑 4 个 OCR session（2024-02-18 / 2025-03-21 / 2025-12-06 / 2026-05-16）从 inbox 32+ 张 ZEISS IOLMaster 报告提取数据，订正度数序列右眼 -1.00 → -2.00 → -2.25 → -2.50。09-12 沉淀新 skill longitudinal-medical-records-obsidian (36KB)。",
       "problem": {
         "title": "无",
         "real": "✗ 不是问题",
-        "evidence": "一次会话 quick lookup",
+        "evidence": "OCR 提取 + 趋势图渲染流畅, 飞书 DM 已发出 ✧",
         "impact": "—",
         "solution": "—"
       }
     },
     {
-      "name": "kiddo-scoreboard-nightly-todo cron Feishu 投递修复",
+      "name": "Health Vault 周报（Apple Health 自动化）",
       "owner_profile": "pm-2",
       "session_count": 2,
       "phase": "🛠 Implementation",
-      "active": "stalled",
-      "progress": "09-01 00:25 pm-2 fix cron d100dbff4107 — 投递到错的 chat, 改 chat_id",
+      "active": "active",
+      "progress": "09-08 pm-2 调研 '基于 Apple Health 解析后的 JSON 数据 + 现有 vault 结构 自动生成个性化周报' 开源 + 学术 idea 库（运动 + 饮食 + 营养推荐）。09-12 落地 health-vault skill (60KB) + memory-cleanup v1.5.0 patch。",
       "problem": {
-        "title": "投递通道未确认已修",
-        "real": "✓ 真问题",
-        "evidence": "09-01 fix session 写了变更, 但 09-04 pm-for-claude session 提到 '暑假作业 disable' 暗示 cron 可能在跑但通道仍有问题",
-        "impact": "kiddo nightly todo 推不到 fei",
-        "solution": "(1) `hermes cron show kiddo-scoreboard-nightly-todo` 看当前 chat_id; (2) 跑一次 `hermes cron trigger` 验证推送; (3) 看 fei 飞书是否真的收到"
+        "title": "W36 周报 v0.3 数据错误已修 (v0.4)",
+        "real": "✓ 真问题（已修）",
+        "evidence": "09-08 last_assistant '09-02 周三 🟢 优秀 (100)' 改 '无推荐 (跳过)' + 09-05 周六从优秀改回标准评分",
+        "impact": "营养推荐可能误推导致铁过量等风险, 已订正",
+        "solution": "v0.4 已发布, 09-12 memory-cleanup v1.5.0 patch 加 Partial commit 防误丢"
       }
     },
     {
-      "name": "Codex 做游戏的 skill 排行榜 (小红书)",
+      "name": "WorkBuddy 自动签到 cron",
+      "owner_profile": "pm-for-claude",
+      "session_count": 2,
+      "phase": "🛠 Implementation",
+      "active": "stalled",
+      "progress": "09-10 pm-for-claude 探索 WorkBuddy v5.3.11 领取积分入口失败（找不到'我的/积分/签到', Banner 关闭失败 + Electron 后台 scroll 被禁用）。09-11 按'昨天成功经验'重做 cron，但 fei 09-12 反问后承认'昨天没真正点成'。",
+      "problem": {
+        "title": "Electron 后台 scroll 限制 + 没真正点成",
+        "real": "✓ 真问题（路径不可行）",
+        "evidence": "09-11 last_assistant '昨天没真正点成 — 摸底了 1.5h, 找不到入口, 我停在等拍板'",
+        "impact": "签到 cron 即使建了也跑不通, 浪费 cron slot",
+        "solution": "(1) 暂停此 cron 等 fei 决策; (2) 探索 foreground mode 或 native-app-automation skill (09-13 新装); (3) WorkBuddy 升级提示可能是真正的入口解锁条件"
+      }
+    },
+    {
+      "name": "free-claude-code provider 配置修复",
+      "owner_profile": "pm-for-claude",
+      "session_count": 1,
+      "phase": "✅ Implemented",
+      "active": "active",
+      "progress": "09-10 pm-for-claude 把诊断 + fix 委派 free-cc 审核：根因是 .env MODEL_OPUS/SONNET/HAIKU 全错。Memory 已沉淀 (49%)。",
+      "problem": {
+        "title": "无",
+        "real": "✗ 不是问题",
+        "evidence": "100% 验证通过 + Memory 沉淀完毕",
+        "impact": "—",
+        "solution": "—"
+      }
+    },
+    {
+      "name": "pm-2 飞书卡顿诊断",
       "owner_profile": "pm-for-claude",
       "session_count": 1,
       "phase": "🔬 Discovery",
       "active": "active",
-      "progress": "09-05 pm-for-claude 抓 https://xhslink.cn/o/8jqdl6JNxQ6 小红书 'codex 做游戏的 skill 排行榜' 笔记",
+      "progress": "09-08 fei 报 'pm-2 经常对话两轮飞书就卡住了', pm-for-claude 摸出 3 profile 卡率: pm-2 8/648 (1.2%) / pm-for-claude 6/402 (1.5%) / my-pm 11/128 (8.6%, 显著高)。",
+      "problem": {
+        "title": "根因未收敛",
+        "real": "✓ 真问题（但低优先）",
+        "evidence": "09-08 探索全部结束, 10 min 没拍, 摆 4 选 1 等决策",
+        "impact": "my-pm 卡率显著高于其他 2 个 profile, 影响飞书体感",
+        "solution": "等 fei 拍 4 选 1（重启 gateway / 加 retry / 升级 proxy / 拆 message batch）"
+      }
+    },
+    {
+      "name": "美光 Gen5/Gen6 QLC eSSD 调研",
+      "owner_profile": "research-agent",
+      "session_count": 1,
+      "phase": "🔬 Discovery",
+      "active": "rolling",
+      "progress": "09-08 搜 Micron Gen5/Gen6 QLC eSSD 性能数据 + data sheet，飞书 Todo 建 '跟踪 2027 H1'。",
       "problem": {
         "title": "无",
         "real": "✗ 不是问题",
-        "evidence": "一次性调研采集",
+        "evidence": "调研 + Todo 沉淀, 数据 follow-up 排期",
         "impact": "—",
         "solution": "—"
       }
     },
     {
-      "name": "新股申购 cron fail (08-31)",
+      "name": "个人健康优化报告 v2",
       "owner_profile": "research-agent",
-      "session_count": 1,
-      "phase": "🪦 Closed",
-      "active": "closed",
-      "progress": "08-31 20:45 research-agent session 报 '新股 cron fail 了' — 上周已知问题 (08-25 weekly-report 也提过 pandas ModuleNotFoundError)",
-      "problem": {
-        "title": "pandas ModuleNotFoundError 持续",
-        "real": "✓ 真问题 (但跨周)",
-        "evidence": "08-25 weekly-report 已记 + 08-31 仍 fail, 没看到 fix commit",
-        "impact": "新股申购 cron 周五化失效, fei 漏通知",
-        "solution": "(1) `pip install pandas` 到 research-agent venv; (2) 重跑 cron 验证; (3) 写进 cron-management skill SOP"
-      }
-    },
-    {
-      "name": ".private GLM ZAI Key 查找",
-      "owner_profile": "my-pm",
       "session_count": 1,
       "phase": "✅ Implemented",
       "active": "rolling",
-      "progress": "09-04 08:49 my-pm '找一下 .private 文件下是不是有个 glm zai key'",
+      "progress": "09-10 research-agent 出 v2 报告 14KB（基于真实数据，不是网上搜的模板），存 ~/Documents/Obsidian/knowowl/Health/2026-09-10__个人健康优化报告_v2_基于真实数据.md。",
       "problem": {
         "title": "无",
         "real": "✗ 不是问题",
-        "evidence": "quick lookup 完成",
+        "evidence": "v2 报告交付完成, 路径明确",
         "impact": "—",
         "solution": "—"
       }
@@ -218,18 +218,18 @@
   ],
   "rolling_projects": [
     {
-      "name": "微信公众号文章归档 (3 篇)",
-      "owner_profile": "research-agent",
-      "session_count": 3,
+      "name": "memory-cleanup cron + skill 迭代",
+      "owner_profile": "pm-2",
+      "session_count": 1,
       "phase": "🔁 Rolling",
-      "active": "rolling",
-      "progress": "本周归档 3 篇: 09-03 CZG7heTYHSlSTkZjUDR27Q + 09-02 lPKgMCddVTloS9fH5JMkow (Micron HBM) + 09-01 健身 vault (小宇宙)",
+      "active": "active",
+      "progress": "09-12 pm-2 跑 'Memory 清理结果很糟糕 复盘'，沉淀 memory-cleanup v1.4.0 → v1.5.0 patch（加 Partial commit 段 line 165-194 防误丢）。",
       "problem": {
-        "title": "无",
-        "real": "✗ 不是问题",
-        "evidence": "归档流程顺畅, 3 篇 3 天",
-        "impact": "—",
-        "solution": "—"
+        "title": "Memory cleanup v1.4 误丢数据",
+        "real": "✓ 真问题（已 patch）",
+        "evidence": "09-12 first_user '最近一次 Memory 清理的结果好像很糟糕', v1.5.0 patch 完毕",
+        "impact": "已沉淀 skill, 跨周可复用",
+        "solution": "v1.5.0 patch + memory-cleanup skill 验证"
       }
     },
     {
@@ -238,201 +238,361 @@
       "session_count": 1,
       "phase": "🔁 Rolling",
       "active": "active",
-      "progress": "本周 cron 已触发 + 即将完成",
+      "progress": "本周 cron 已触发 + 即将完成。226 total / 36 substantive, pm-2 188 (83%) 仍为 cron 噪声。",
       "problem": {
-        "title": "thin week — substantive 仅 21 个",
-        "real": "✓ 真问题 (结构性)",
-        "evidence": "197 total / 21 substantive (-57% vs 上周 49)",
-        "impact": "周报项目密度低",
-        "solution": "— (薄周正常, 不强求)"
+        "title": "pm-2 cron 占比 83% — substantive 仅 16 个",
+        "real": "✓ 真问题（结构性）",
+        "evidence": "226 total / 36 substantive (-59% vs 上周 49 仍下滑)",
+        "impact": "周报 project density 进一步走低",
+        "solution": "(1) cron session 持续过滤; (2) 健康 backup + delivery audit cron 应合并到 housekeeping 段而非当独立 project"
       }
     }
   ],
   "problems": [
     {
-      "project": "Firecrawl account credentials 记录",
-      "title": "firecrawl 账号凭证未规范化",
+      "project": "香港身份申请（高才 B 类 + 优才 QMAS 调研）",
+      "title": "A 类收入门槛硬伤 + 续签想留内地",
+      "real": "✓ 真问题（结构性）",
+      "evidence": "fei 09-12 first_user '我要申请香港人才计划', 高才 A 类收入 <250 万不够",
+      "impact": "高才路径走 B 类但续签想人留内地可能遇阻, QMAS 12 项门槛需硕博",
+      "solution": "(1) B 类冲刺 (合资格大学本科 + 3 年经验); (2) QMAS 同步调研评分; (3) 资料包 ~/hk-ttps-2026/ + ~/hk-qmas-2026/ 沉淀"
+    },
+    {
+      "project": "iOS Shortcut 生成修复",
+      "title": "cc-2 委派 timeout 无产出",
       "real": "✓ 真问题",
-      "evidence": "fei 在 09-05 session 明确要求 '注册的账号密码写在 private 文件夹下的新的 md 文件里去'",
-      "impact": "账号凭证散落在 session 历史里，下次用时找不到",
-      "solution": "(1) 确认 .private/firecrawl.md 已建; (2) 把账号密码脱敏写进去; (3) skill 化复用流程"
+      "evidence": "09-09 22:15 last_assistant 'cc-2 timeout 10 分钟 27 calls, 没产出新 generate_shortcut.py'",
+      "impact": "飞书 DM 发到 iPhone 的 .shortcut 仍有 '未知操作' 报错",
+      "solution": "(1) 5-signal 诊断; (2) 不盲 retry → self-implement 重写; (3) 端到端实测"
     },
     {
-      "project": "Awesome MCP Servers 选型",
-      "title": "选型没收敛",
-      "real": "✓ 真问题 (但低优先)",
-      "evidence": "09-05 14:41 first_user '先不要下到本地' — 浏览阶段, 没产出短名单",
-      "impact": "MCP 能力未增量",
-      "solution": "(1) 跑一次 awesome-mcp-servers 短名单 (按 Hermes 用得上过滤); (2) 挑 1-2 个试用"
+      "project": "WorkBuddy 自动签到 cron",
+      "title": "Electron 后台 scroll 限制 + 没真正点成",
+      "real": "✓ 真问题（路径不可行）",
+      "evidence": "09-11 '昨天没真正点成, 找不到入口, Banner 关闭失败 + Electron 后台 scroll 被禁用'",
+      "impact": "签到 cron 跑不通, 浪费 cron slot",
+      "solution": "(1) 暂停 cron 等决策; (2) 探索 native-app-automation skill (09-13 新装); (3) WorkBuddy 升级可能是入口解锁条件"
     },
     {
-      "project": "kiddo-scoreboard-nightly-todo cron Feishu 投递修复",
-      "title": "投递通道未确认已修",
-      "real": "✓ 真问题",
-      "evidence": "09-01 fix session 写了变更, 但 09-04 pm-for-claude session 提到 '暑假作业 disable' 暗示 cron 可能在跑但通道仍有问题",
-      "impact": "kiddo nightly todo 推不到 fei",
-      "solution": "(1) `hermes cron show kiddo-scoreboard-nightly-todo` 看当前 chat_id; (2) 跑一次 `hermes cron trigger` 验证推送; (3) 看 fei 飞书是否真的收到"
-    },
-    {
-      "project": "新股申购 cron fail (08-31)",
-      "title": "pandas ModuleNotFoundError 持续",
-      "real": "✓ 真问题 (但跨周)",
-      "evidence": "08-25 weekly-report 已记 + 08-31 仍 fail, 没看到 fix commit",
-      "impact": "新股申购 cron 周五化失效, fei 漏通知",
-      "solution": "(1) `pip install pandas` 到 research-agent venv; (2) 重跑 cron 验证; (3) 写进 cron-management skill SOP"
+      "project": "pm-2 飞书卡顿诊断",
+      "title": "my-pm 卡率 8.6% 显著高于其他",
+      "real": "✓ 真问题（但低优先）",
+      "evidence": "09-08 摸出 3 profile 卡率 my-pm 11/128 vs pm-2 8/648 vs pm-for-claude 6/402",
+      "impact": "影响飞书体感",
+      "solution": "等 fei 拍 4 选 1（重启 gateway / retry / 升级 proxy / 拆 batch）"
     },
     {
       "project": "weekly-report (本 cron 自身)",
-      "title": "thin week — substantive 仅 21 个",
-      "real": "✓ 真问题 (结构性)",
-      "evidence": "197 total / 21 substantive (-57% vs 上周 49)",
-      "impact": "周报项目密度低",
-      "solution": "— (薄周正常, 不强求)"
+      "title": "pm-2 cron 占比 83% — substantive 仅 16 个",
+      "real": "✓ 真问题（结构性）",
+      "evidence": "226 total / 36 substantive, pm-2 188 cron 占 83%",
+      "impact": "周报 project density 持续走低",
+      "solution": "cron 持续过滤 + housekeeping 合并"
     }
   ],
   "new_skills": {
-    "total_new": 18,
+    "total_new": 27,
     "total_patched": 0,
     "bulk_events": [
       {
-        "date": "2026-09-05",
-        "profile": "pm-for-claude",
+        "date": "2026-09-12",
+        "profile": "my-pm",
         "skills": [
-          "pm-data-fabrication-pitfall",
-          "hermes-update-reload",
-          "minimax-image-to-video"
-        ]
+          "restricted-egress-research",
+          "dsh-harness-deployment",
+          "hermes-model-config",
+          "communication-conventions",
+          "project-history-recall"
+        ],
+        "purpose": "🚪 Sandbox 出海 + dsh 本地 LLM + Hermes 配置 / PM 协作规范"
       },
       {
-        "date": "2026-09-05",
-        "profile": "research-agent",
+        "date": "2026-09-12",
+        "profile": "pm-2",
         "skills": [
-          "research",
-          "mcp-server-curation",
-          "minimax-image-to-video"
-        ]
+          "longitudinal-medical-records-obsidian",
+          "memory-cleanup",
+          "screenshot-sharing-workaround",
+          "health-vault"
+        ],
+        "purpose": "🏥 眼镜 / 健康档案 vault + Memory 清理 SOP"
       }
     ],
-    "all_skills": [
-      "minimax-image-to-video",
-      "minimax-image-to-video",
-      "macos-process-management",
-      "minimax-image-to-video",
-      "cronjob-management",
-      "health-vault",
-      "minimax-image-to-video",
-      "pm-tunnel-verify-checklist",
-      "pm-data-fabrication-pitfall",
-      "hermes-update-reload",
-      "minimax-image-to-video",
-      "minimax-image-to-video",
-      "research",
-      "mcp-server-curation",
-      "minimax-image-to-video",
-      "minimax-image-to-video",
-      "minimax-image-to-video",
-      "minimax-image-to-video"
-    ],
-    "by_profile": {
-      "code-agent": [
+    "all_skills_by_category": {
+      "🚪 Sandbox 出海 + 网络": [
         {
-          "skill": "minimax-image-to-video",
-          "mtime": "2026-09-05"
-        }
-      ],
-      "data-agent": [
-        {
-          "skill": "minimax-image-to-video",
-          "mtime": "2026-09-05"
-        }
-      ],
-      "my-pm": [
-        {
-          "skill": "macos-process-management",
-          "mtime": "2026-09-02"
+          "skill": "restricted-egress-research",
+          "profile": "my-pm",
+          "mtime": "2026-09-12"
         },
         {
-          "skill": "minimax-image-to-video",
-          "mtime": "2026-09-05"
+          "skill": "baidu-netdisk-backup",
+          "profile": "my-pm",
+          "mtime": "2026-09-08"
+        }
+      ],
+      "🤖 本地 LLM 部署 (dsh 系列)": [
+        {
+          "skill": "dsh-harness-setup",
+          "profile": "my-pm",
+          "mtime": "2026-09-09"
+        },
+        {
+          "skill": "dsh-local-llm-deploy",
+          "profile": "my-pm",
+          "mtime": "2026-09-10"
+        },
+        {
+          "skill": "dsh-harness-deployment",
+          "profile": "my-pm",
+          "mtime": "2026-09-12"
+        }
+      ],
+      "🏥 健康 / 医疗档案": [
+        {
+          "skill": "longitudinal-medical-records-obsidian",
+          "profile": "pm-2",
+          "mtime": "2026-09-12"
+        },
+        {
+          "skill": "medical-records-vault",
+          "profile": "pm-2",
+          "mtime": "2026-09-11"
+        },
+        {
+          "skill": "health-vault",
+          "profile": "pm-2",
+          "mtime": "2026-09-12"
+        }
+      ],
+      "📱 飞书 / 协作": [
+        {
+          "skill": "lark-cli",
+          "profile": "my-pm",
+          "mtime": "2026-09-08"
+        },
+        {
+          "skill": "hermes-model-config",
+          "profile": "my-pm",
+          "mtime": "2026-09-12"
+        },
+        {
+          "skill": "communication-conventions",
+          "profile": "my-pm",
+          "mtime": "2026-09-12"
+        },
+        {
+          "skill": "project-history-recall",
+          "profile": "my-pm",
+          "mtime": "2026-09-12"
+        }
+      ],
+      "🔧 Cron / Debug / 自动化": [
+        {
+          "skill": "ios-shortcut-generation",
+          "profile": "pm-2",
+          "mtime": "2026-09-10"
+        },
+        {
+          "skill": "screenshot-sharing-workaround",
+          "profile": "pm-2",
+          "mtime": "2026-09-12"
+        },
+        {
+          "skill": "memory-cleanup",
+          "profile": "pm-2",
+          "mtime": "2026-09-12"
+        },
+        {
+          "skill": "pm-agent-practices",
+          "profile": "pm-2",
+          "mtime": "2026-09-08"
+        },
+        {
+          "skill": "cronjob-management",
+          "profile": "pm-for-claude",
+          "mtime": "2026-09-13"
+        },
+        {
+          "skill": "native-app-automation",
+          "profile": "pm-for-claude",
+          "mtime": "2026-09-13"
+        },
+        {
+          "skill": "pm-cc-dispatch-trigger-phrases",
+          "profile": "pm-for-claude",
+          "mtime": "2026-09-08"
+        },
+        {
+          "skill": "free-claude-code-stuck-diagnose",
+          "profile": "pm-for-claude",
+          "mtime": "2026-09-10"
+        },
+        {
+          "skill": "hermes-update-reload",
+          "profile": "pm-for-claude",
+          "mtime": "2026-09-08"
+        }
+      ],
+      "🔬 Research / 调研": [
+        {
+          "skill": "research",
+          "profile": "research-agent",
+          "mtime": "2026-09-10"
+        },
+        {
+          "skill": "research-toolchain-reliability",
+          "profile": "research-agent",
+          "mtime": "2026-09-10"
+        },
+        {
+          "skill": "github-bootstrap",
+          "profile": "research-agent",
+          "mtime": "2026-09-08"
+        },
+        {
+          "skill": "mcp-server-curation",
+          "profile": "research-agent",
+          "mtime": "2026-09-08"
+        },
+        {
+          "skill": "hermes-channel-routing",
+          "profile": "research-agent",
+          "mtime": "2026-09-09"
+        },
+        {
+          "skill": "hermes-cron-deliver-audit",
+          "profile": "research-agent",
+          "mtime": "2026-09-08"
+        }
+      ]
+    },
+    "by_profile": {
+      "my-pm": [
+        {
+          "skill": "restricted-egress-research",
+          "mtime": "2026-09-12"
+        },
+        {
+          "skill": "baidu-netdisk-backup",
+          "mtime": "2026-09-08"
+        },
+        {
+          "skill": "dsh-harness-setup",
+          "mtime": "2026-09-09"
+        },
+        {
+          "skill": "dsh-local-llm-deploy",
+          "mtime": "2026-09-10"
+        },
+        {
+          "skill": "dsh-harness-deployment",
+          "mtime": "2026-09-12"
+        },
+        {
+          "skill": "lark-cli",
+          "mtime": "2026-09-08"
+        },
+        {
+          "skill": "hermes-model-config",
+          "mtime": "2026-09-12"
+        },
+        {
+          "skill": "communication-conventions",
+          "mtime": "2026-09-12"
+        },
+        {
+          "skill": "project-history-recall",
+          "mtime": "2026-09-12"
         }
       ],
       "pm-2": [
         {
-          "skill": "cronjob-management",
-          "mtime": "2026-09-01"
+          "skill": "pm-agent-practices",
+          "mtime": "2026-09-08"
+        },
+        {
+          "skill": "ios-shortcut-generation",
+          "mtime": "2026-09-10"
+        },
+        {
+          "skill": "medical-records-vault",
+          "mtime": "2026-09-11"
+        },
+        {
+          "skill": "longitudinal-medical-records-obsidian",
+          "mtime": "2026-09-12"
+        },
+        {
+          "skill": "memory-cleanup",
+          "mtime": "2026-09-12"
+        },
+        {
+          "skill": "screenshot-sharing-workaround",
+          "mtime": "2026-09-12"
         },
         {
           "skill": "health-vault",
-          "mtime": "2026-09-05"
-        },
-        {
-          "skill": "minimax-image-to-video",
-          "mtime": "2026-09-05"
+          "mtime": "2026-09-12"
         }
       ],
       "pm-for-claude": [
         {
-          "skill": "pm-tunnel-verify-checklist",
-          "mtime": "2026-09-04"
-        },
-        {
-          "skill": "pm-data-fabrication-pitfall",
-          "mtime": "2026-09-05"
+          "skill": "pm-cc-dispatch-trigger-phrases",
+          "mtime": "2026-09-08"
         },
         {
           "skill": "hermes-update-reload",
-          "mtime": "2026-09-05"
+          "mtime": "2026-09-08"
         },
         {
-          "skill": "minimax-image-to-video",
-          "mtime": "2026-09-05"
-        }
-      ],
-      "qual-agent": [
+          "skill": "free-claude-code-stuck-diagnose",
+          "mtime": "2026-09-10"
+        },
         {
-          "skill": "minimax-image-to-video",
-          "mtime": "2026-09-05"
+          "skill": "cronjob-management",
+          "mtime": "2026-09-13"
+        },
+        {
+          "skill": "native-app-automation",
+          "mtime": "2026-09-13"
         }
       ],
       "research-agent": [
         {
-          "skill": "research",
-          "mtime": "2026-09-05"
+          "skill": "github-bootstrap",
+          "mtime": "2026-09-08"
         },
         {
           "skill": "mcp-server-curation",
-          "mtime": "2026-09-05"
+          "mtime": "2026-09-08"
         },
         {
-          "skill": "minimax-image-to-video",
-          "mtime": "2026-09-05"
-        }
-      ],
-      "web-ui-designer": [
+          "skill": "hermes-cron-deliver-audit",
+          "mtime": "2026-09-08"
+        },
         {
-          "skill": "minimax-image-to-video",
-          "mtime": "2026-09-05"
-        }
-      ],
-      "writing-agent": [
+          "skill": "hermes-channel-routing",
+          "mtime": "2026-09-09"
+        },
         {
-          "skill": "minimax-image-to-video",
-          "mtime": "2026-09-05"
-        }
-      ],
-      "_default_shared": [
+          "skill": "research",
+          "mtime": "2026-09-10"
+        },
         {
-          "skill": "minimax-image-to-video",
-          "mtime": "2026-09-05"
+          "skill": "research-toolchain-reliability",
+          "mtime": "2026-09-10"
         }
       ]
     }
   },
   "hot_topics": [
-    "thin week — 197 total / 21 substantive (-57% vs 上周 49), pm-2 cron 167 占 85% 噪声",
-    "新股申购 cron pandas ModuleNotFoundError 仍未修 (跨周 2 周)",
-    "kiddo-scoreboard cron 投递通道 — 09-01 pm-2 fix 后未明确 verify",
-    "8 真实项目分布在 5 个 profile — project density 健康",
-    "18 新 skill — 2 个小批量 bulk (pm-for-claude + research-agent 各 3)"
+    "🚨 香港身份双线启动 — 高才 A 类收入卡死走 B 类, 优才 QMAS 12 项门槛需硕博, 资料包 ~/hk-ttps-2026/ + ~/hk-qmas-2026/ 沉淀中",
+    "🚨 pm-2 cron 占比 83% — 226 total / 36 substantive (-22% vs 上周 49), health-vault + backup-hermes-daily + cron 多重叠加",
+    "🚨 WorkBuddy 自动签到 cron 路径不可行 — Electron 后台 scroll 限制, native-app-automation skill 09-13 新装可能是出路",
+    "🟢 Health Vault 周报 v2 + memory-cleanup v1.5.0 patch + 儿子眼镜档案 vault 三连 — pm-2 周内最强输出周",
+    "🟢 27 新 skill — 2 个 bulk event (09-12 my-pm 5 + pm-2 4), 健康档案 + dsh 本地 LLM 双线扩张",
+    "🟢 free-claude-code provider 配置修完 + memory-cleanup v1.5.0 patch + 长医疗档案 skill — 跨 5 个真实项目落地",
+    "⚪ iOS Shortcut 重写 cc-2 timeout 后未续跑 — 飞书 DM Health Export → Hermes 流程仍断, 等 PM self-implement"
   ]
 }
