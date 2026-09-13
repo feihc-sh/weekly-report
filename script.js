@@ -12,6 +12,7 @@ function el(tag, attrs = {}, children = []) {
   for (const [k, v] of Object.entries(attrs)) {
     if (k === 'class') node.className = v;
     else if (k === 'text') node.textContent = v;
+    else if (k === 'html') node.innerHTML = v;
     else node.setAttribute(k, v);
   }
   for (const c of [].concat(children)) {
@@ -131,18 +132,34 @@ function renderProblems(rows) {
 }
 
 function renderSkills(skillsObj) {
-  const entries = Object.entries(skillsObj);
-  const total = entries.reduce((s, [, v]) => s + (v.count || 0), 0);
+  // 新 shape (2026-09-06+): { total_new, total_patched, bulk_events:[], all_skills_by_category:{} }
+  // 旧 shape: { "类别": {category, count, trigger, impact}, ... }
+  const total = skillsObj.total_new ?? Object.entries(skillsObj).reduce((s, [, v]) => s + (v.count || 0), 0);
   document.getElementById('skills-count').textContent = String(total);
   const tbody = document.querySelector('#skills-table tbody');
   tbody.innerHTML = '';
-  for (const [key, v] of entries) {
-    tbody.appendChild(el('tr', {}, [
-      el('td', { text: v.category, class: 'mono' }),
-      el('td', { text: String(v.count), class: 'num' }),
-      el('td', { text: v.trigger }),
-      el('td', { text: v.impact }),
-    ]));
+
+  if (skillsObj.all_skills_by_category) {
+    // 新 shape: 每类别一行, skills 列在第二列逐行列出 (skill @profile · date)
+    for (const [cat, skills] of Object.entries(skillsObj.all_skills_by_category)) {
+      const skillLines = skills.map(s => `${s.skill} <span class="mono dim">@${s.profile || '?'} · ${s.mtime || ''}</span>`).join('<br>');
+      tbody.appendChild(el('tr', {}, [
+        el('td', { text: cat, class: 'mono' }),
+        el('td', { html: skillLines }),
+        el('td', { text: String(skills.length), class: 'num' }),
+        el('td', { text: (skillsObj.bulk_events || []).filter(b => b.purpose && b.skills && b.skills.some(x => skills.some(s => s.skill === x))).map(b => b.purpose).join('；') || '—' }),
+      ]));
+    }
+  } else {
+    // 旧 shape 兼容
+    for (const [key, v] of Object.entries(skillsObj)) {
+      tbody.appendChild(el('tr', {}, [
+        el('td', { text: v.category, class: 'mono' }),
+        el('td', { text: String(v.count), class: 'num' }),
+        el('td', { text: v.trigger }),
+        el('td', { text: v.impact }),
+      ]));
+    }
   }
 }
 
