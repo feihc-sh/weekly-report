@@ -1,31 +1,31 @@
 {
   "meta": {
     "title": "Hermes 团队周报",
-    "date_range": "2026-09-21 → 2026-09-27",
-    "generated_at": "2026-09-27",
+    "date_range": "2026-09-28 → 2026-10-04",
+    "generated_at": "2026-10-04",
     "owner": "fei",
     "summary": {
-      "total_sessions": 181,
-      "substantive_sessions": 14,
+      "total_sessions": 208,
+      "substantive_sessions": 13,
       "profiles_active": 4,
-      "real_projects": 6,
+      "real_projects": 5,
       "rolling_projects": 2,
       "real_problems": 4,
-      "new_skills_count": 15
+      "new_skills_count": 11
     }
   },
   "overview": [
     {
       "profile": "my-pm",
-      "sessions": 3,
-      "substantive": 1,
+      "sessions": 2,
+      "substantive": 0,
       "filesystem": 0,
-      "status": "active"
+      "status": "dormant"
     },
     {
       "profile": "pm-2",
-      "sessions": 151,
-      "substantive": 6,
+      "sessions": 173,
+      "substantive": 1,
       "filesystem": 0,
       "status": "active"
     },
@@ -38,8 +38,8 @@
     },
     {
       "profile": "research-agent",
-      "sessions": 11,
-      "substantive": 4,
+      "sessions": 14,
+      "substantive": 6,
       "filesystem": 0,
       "status": "active"
     },
@@ -81,271 +81,233 @@
   ],
   "real_projects": [
     {
-      "name": "xianyu-bot 风控节流守卫 + bb21d02 commit",
-      "owner_profile": "my-pm",
-      "session_count": 1,
+      "name": "Singapore Tech Week 报告大纲（NVIDIA + Micron + 北美 CSP）",
+      "owner_profile": "pm-for-claude + research-agent",
+      "session_count": 4,
       "phase_emoji": "🛠",
-      "phase": "Implementation → Testing",
+      "phase": "Implementation",
       "active_status": "rolling",
-      "last_active": "2026-09-22",
-      "description": "fei 问闲鱼 bot 还能不能用 → 顺手跑巡检撞上风控节流 → 修第三只 bug",
-      "progress": "09-22 fei 问「闲鱼 bot 翻出来看一下还 work 吗」，my-pm 顺手跑 daily-check 巡检发现 /im 页面卡骨架屏（16 个 skeleton）— 判定账号级风控节流（不是封号），已全部停手等冷却；同时落 commit bb21d02，给 daily-check 加节流守卫「数据没加载就明说疑似风控节流，永不假报无未读」+ 侧栏水合重试 20s。",
-      "problem": "高密度自动化（登录+扫描+下架+探测同日）触发账号级数据节流 — daily-check v1 撞到节流会假报「无未读」，已修复但 V8 商品 1083564447359 仍下架需 10/24 cron 提醒重上。",
-      "solution": "(1) 节流守卫已落地 (bb21d02) — 永不拿空数据骗 fei；(2) 等 10/24 cron 触发重上架决策；(3) 巡检密度需长期克制避免再次触发节流。"
+      "last_active": "2026-09-30",
+      "description": "fei 要在 Singapore Tech Week 现场聚焦 NAND/Enterprise SSD + AI Data Center Infrastructure，写 5 个最相关 keynote 的报告大纲",
+      "progress": "research-agent 09-28 锁定 NVIDIA 4 个舞台（Mainstage + Cloud & AI Infrastructure + Data Centre World + OCP Tech Day）完整 keynote 清单 + 09-27 Micron Singapore 4 站点招聘地图（铺路 career recon）→ pm-for-claude 09-30 完成 K2/K3 外部资料第二轮调研（FMS 2026 NVIDIA 博客全文 + cuFile API 开源 + Vera CPU 3.21x x86 等 2 篇官方全文已读 + 标题级核实）；CSP 横向调研（Microsoft/AWS/Google Cloud 硬件技术 keynote）由 research-agent 09-29 接力。",
+      "problem": "research-agent 09-29 报「Firecrawl + EXA 外部搜索全挂」，CSP 横向素材只能基于训练数据+公开信息整理（非 verified 报告）— 现场前需 manual verify。",
+      "solution": "(1) pm-for-claude 已交付的 2 篇官方全文 + cuFile 源码链接先用；(2) CSP 横向部分 fei 到现场后用 OCP Tech Day 实物 keynote + vendor booth 资料补；(3) 后续如长期需要，建议给 research-agent 配 fallback 工具链（web-research-fallbacks skill 本周新装可复用）。"
     },
     {
-      "name": "WorkBuddy 登录态过期诊断 (HTTP 401 x 5天)",
-      "owner_profile": "pm-for-claude",
-      "session_count": 1,
-      "phase_emoji": "🧪",
-      "phase": "Testing → Root cause identified",
-      "active_status": "rolling",
-      "last_active": "2026-09-24",
-      "description": "09-23 → 09-27 连续 5 天 workbuddy-daily-points cron 全部 HTTP 401 失败",
-      "progress": "09-24 pm-for-claude 深度诊断：3 种 UA/域名头组合探测全 401，根因是服务端把 token 拉黑且桌面端「open -a」不足以触发前台 token 刷新 — 必须 fei 真正在前台交互/重新登录。09-21/22 cron 累计 700 积分，09-23 起中断至今。",
-      "problem": "WorkBuddy 桌面端 token 需前台交互刷新，cron 的非交互路径无法自愈 — fei 需手动打开一次桌面端登录恢复 cron。",
-      "solution": "(1) fei 在方便时打开 WorkBuddy 桌面端登录一次；(2) 后续考虑加「fei 提醒 cron」：登录态过期超过 2 天推送飞书 DM 主动提醒；(3) 中长期探索脚本主动唤起登录面板的方案（Computer Use fallback）。"
-    },
-    {
-      "name": "kiddo-scoreboard M1-M6 补卡模块交付",
-      "owner_profile": "pm-for-claude",
-      "session_count": 1,
+      "name": "NAND/存储产业链归档周（BiCS9/10 + LPDDR6 + Synopsys + Jev）",
+      "owner_profile": "research-agent",
+      "session_count": 5,
       "phase_emoji": "✅",
-      "phase": "Implemented → Testing",
+      "phase": "Implemented → Archived",
       "active_status": "rolling",
-      "last_active": "2026-09-22",
-      "description": "fei 09-22 报「出门打卡时间不到不能打」→ 排查发现是补卡 (Makeup) 模块未做",
-      "progress": "CC 交付 6 commits（M1 建表 → M6 测试），typecheck 干净、单测 18/18、全量 565/565 通过；小孩提交补卡、重复提交拦截 (409)、PM 审批列表全绿；抓到 1 个 bug — PM 批准接口 500，已 root-cause（approve 原子 batch 里 awarded_event_id 占位值导致外键失败），修复进行中。",
-      "problem": "PM 批准补卡接口 500（外键约束 + 原子 batch 占位值 bug）— 修复中未合并。",
-      "solution": "(1) 等 fei review CC 提交；(2) PM 批准后回归审计（task_completions.awarded_event_id 必须指向 audit_log.audit_id）；(3) kiddo-scoreboard 整体仍 out-of-scope，PM 不主动 follow bug fix。"
+      "last_active": "2026-10-01",
+      "description": "连续 1 周密集归档 NAND/DRAM/AI Infra 产业链一手资料 — 半导体行业观察 + MooreNEWS + 官方 PDF",
+      "progress": "9-23 长鑫 LPDDR6 (5.3KB / 129 行 → NandFlash/ 目录) → 9-26 铠侠 BiCS9/BiCS10 + XL-FLASH + LC9 路线图（半导体芯闻）→ 9-22 Jev System One Model (Hermes v0.21.3 集成调研 → Tech/AI/) → 10-01 Synopsys 2026 Investor Day 原报告（119 页 PPT + 5 页新闻稿已下载归档）；全部 5 篇交付含 TL;DR + 规格表 + 信源交叉验证。",
+      "problem": "无 — 4 篇全部跑通归档链路，无 retry、无 fail。但本周密集度（5 篇/9 天）vs 上周（1 篇/周）= 6x 加速，需关注是否可持续（research-agent SQLite 26 sessions 本周占 14）。",
+      "solution": "无需动作 — 持续按需触发；如 fei 想放缓节奏可限制每周归档上限（暂不建议，fei Singapore 行程可能需快速 onboard）。"
     },
     {
-      "name": "HealthExporter Shortcut 上传 health-vault",
+      "name": "WorkBuddy 登录态 401 根因定位 + 桌面端启动验证",
+      "owner_profile": "pm-for-claude",
+      "session_count": 2,
+      "phase_emoji": "🧪",
+      "phase": "Testing",
+      "active_status": "rolling",
+      "last_active": "2026-09-30",
+      "description": "上周 5 天 HTTP 401 断签根因收尾 + 本周桌面端启动验证",
+      "progress": "pm-for-claude 09-24 定位根因（服务端 token 作废 + 本地脚本仓库非 git clone 无升级通道 + WorkBuddy 9-27 desktop 打开 → 9-30 「allow once」藏起来的真相（安全设计 = 命令带 [HIGH] Pipe to interpreter 等内容级安全发现时 broad permanent allowlist 被故意隐藏，不是 bug）。",
+      "problem": "本地脚本仓库非 git clone → 升级通道断裂，GitHub 查询工具本轮不可用 — WorkBuddy 401 修复后如服务端再 rotate token 仍会复发。",
+      "solution": "(1) fei 方便时打开一次 WorkBuddy 桌面端登录即恢复（已多次验证）；(2) 后续如想根治，把本地脚本仓库迁到 git clone（一次性动作，pm-for-claude 可代办）；(3) 飞书 DM 过期主动提醒 cron 还在评估（上周 hot topic 留下未决）。"
+    },
+    {
+      "name": "新加坡一日游（米捂槽酒店锚点 + Travel 目录补索引）",
       "owner_profile": "pm-2",
       "session_count": 1,
       "phase_emoji": "🚀",
-      "phase": "Implemented → Deployed",
+      "phase": "Deployed",
       "active_status": "rolling",
-      "last_active": "2026-09-22",
-      "description": "fei 09-22 问 shortcut 怎么上传 health 数据 → 工程侧全绿收工",
-      "progress": "Swift 代码（CC 写 + pm-2 修 3 个幻觉 API）typecheck 0 error；完整构建 BUILD SUCCEEDED；Shortcut 触发链路 (Health Auto Export → health-vault cron 读取 → Obsidian knowowl 入库) 全绿，等 fei 真机 Shortcut 试跑一次即可转 Deployed。",
-      "problem": "暂无真机 end-to-end 验证（fei 须在 iPhone 触发一次 Shortcut 看入库结果）— 工程侧已 full green。",
-      "solution": "(1) fei 跑一次 iPhone Shortcut 触发验证；(2) 如失败 pm-2 看 health-vault 入库 log 排查；(3) 通过后本项目标记 Deployed 进入 Rolling 状态。"
+      "last_active": "2026-09-27",
+      "description": "fei 09-28 新加坡一日游规划，PM 落 obsidian 行程文档 + Travel 目录首次索引",
+      "progress": "pm-2 09-27 帮 fei 生成 v3 时间表（8 点出发）+ 两个死线（17:30 空中花园 / 19:45 灯秀）+ 天气 Plan B + 决策记录（美术馆>博物馆）；落地 knowowl/Travel/2026-09-28__新加坡一日游_8点出发_v3.md (3.2KB) + 顺手补了 Travel 目录 _index.md（之前没索引，是隐性 debt）。",
+      "problem": "无新问题 — Travel 目录 _index.md 是顺手补的（不算本周新功能债务）；Singapore Tech Week 报告（见上）才是本次行程主要 deliverable。",
+      "solution": "(1) 行程已部署，fei 现场用即可；(2) Travel/_index.md 后续如新增 trip 保持同步更新。"
     },
     {
-      "name": "微信公众号 NAND/存储 调研归档 (×2)",
+      "name": "Z-Library 工具链升级（zlibrary skill 落地 + A to Z 26 本下载管线）",
       "owner_profile": "research-agent",
-      "session_count": 2,
-      "phase_emoji": "🔬",
-      "phase": "Discovery → Spec",
-      "active_status": "rolling",
-      "last_active": "2026-09-26",
-      "description": "本周 2 篇微信公众号调研归档入 Obsidian knowowl/NandFlash",
-      "progress": "09-23 归档《长鑫 LPDDR6 细节披露 首发小米 18Fold》5.3 KB / 129 行；09-26 归档《铠侠 BiCS9 / BiCS10 + XL-FLASH 路线图》— 走 flash-kb-ingestion skill 输出结构化 Markdown。两条归档连续滚动，无新问题。",
-      "problem": "暂无问题 — flash-kb-ingestion skill 连续 2 周跑通，输出稳定。",
-      "solution": "续接 flash-kb-ingestion 原型输出；下周 fei 若要三星 / 海力士 / 美光对比报告可直接派生。"
-    },
-    {
-      "name": "Jev System One Model Hermes v0.21.3 集成调研",
-      "owner_profile": "research-agent",
-      "session_count": 1,
-      "phase_emoji": "🔬",
-      "phase": "Discovery",
-      "active_status": "rolling",
-      "last_active": "2026-09-22",
-      "description": "fei 09-22 调研 Jev System One Model 是否支持 Hermes 集成",
-      "progress": "产出 13 KB / 304 行 Markdown 报告归档至 Obsidian knowowl/Tech/AI/2026-09-22__Jev_System_One_Model_Hermes_v0.21.3_集成调研.md — 含 Hermes v0.21.3 集成可行性、API surface、对标 MiniMax-M3 的能力差距分析。",
-      "problem": "fei 看报告后无后续 action（5 天零 session）— 暂记 stalled，等 fei 拍板是否推进实际集成。",
-      "solution": "(1) 列入 hot_topics 等 fei 决策；(2) 若推进则委派 research-agent 出 POC 计划或 code-agent 写适配层。"
+      "session_count": 3,
+      "phase_emoji": "🚀",
+      "phase": "Deployed",
+      "active_status": "active",
+      "last_active": "2026-10-03",
+      "description": "CloakBrowser 抗反爬管线落地 + Skill 升级为 _default_shared + 26 本 A to Z 英文儿童书 cron 自动续下",
+      "progress": "9-28 pm-2 web-spa-scraping-pitfalls (skill 沉淀 SPA 反爬坑) → 9-29 research-agent ai-infra-storage-vendor-strategy → 9-30 research-agent 帮 fei 下载 5 本英文老书（贝尔实验室/创新者窘境/新机器灵魂/Rules of Work/Edison 传）→ 10-01 zlibrary-daily-download skill + research umbrella skill 落地 research-agent → 10-02 fei 要找「塞尔达王国之泪 Piggyback 攻略书」跑通 CloakBrowser 抗反爬（唯一找到法语周边设定集，Piggyback 无 epub）→ 10-03 zlibrary skill 升级为 _default_shared（跨 profile 复用）。",
+      "problem": "Z-Library 持续反爬（DiamWall）+ fei 找英文版塞尔达攻略书 zlib 没货（Piggyback 攻略集只 PDF 不 epub）— 塞尔达需求算未达成，但管线本身稳定。",
+      "solution": "(1) zlibrary skill 已沉淀 9 个 pitfall（含 DiamWall / eapi message= 假成功 / file.downloadLink 等）；(2) A to Z 26 本 cron 9-30 起每天 9:30 续下（cron 350f6a24019e）；(3) 塞尔达攻略建议 fei 切 Piggyback 官网 PDF 或 Steam 数字版（zlib 路径不通）。"
     }
   ],
   "rolling_projects": [
     {
-      "name": "pm-2 健康档案 vault (hourly cron × 126 sessions)",
+      "name": "pm-2 健康档案 vault (hourly cron × 152 sessions)",
       "owner_profile": "pm-2",
       "phase_emoji": "🔁",
+      "phase": "Rolling",
       "active_status": "rolling",
-      "last_active": "2026-09-27",
-      "description": "health-vault-hourly cron 每小时跑一次，本周累计 126 sessions（pm-2 总 cron 145 的 87%）",
-      "progress": "持续滚动运行；HealthExporter Shortcut 上传链路 (09-22 工程收工) 等 fei 真机验证即转 Deployed；weekly-health-report cron 每周日 22:00 输出。",
-      "problem": "无新问题 — cron 已稳定，但 hourly 频率仍占 pm-2 substantive 计数的 87%，周对比的 substantive_sessions 数字需用心看。",
+      "last_active": "2026-10-04",
+      "description": "health-vault-hourly cron 每小时跑一次，本周累计 152 sessions = pm-2 总 cron 172 的 88%（vs 上周 87% 持平）",
+      "progress": "持续滚动运行；HealthExporter Shortcut 上传链路（9-22 工程收工）等 fei 真机 3 个物理步骤（连线 → Xcode 登 Apple ID → 手机开开发者模式）即转 Deployed；weekly-health-report cron 每周日 22:00 输出。",
+      "problem": "无新问题 — cron 已稳定，但 hourly 频率仍占 pm-2 substantive 计数的 88%，周对比的 substantive_sessions 数字需用心看。",
       "solution": "继续保留 hourly cron 周期；周报持续把 substantive vs cron 分开计 (substantive_sessions 字段已落地)。"
     },
     {
-      "name": "Z-Library 每日儿童书下载 (research-agent cron)",
-      "owner_profile": "research-agent",
+      "name": "AgentMemory 整合 + memory-cleanup cron",
+      "owner_profile": "pm-2",
       "phase_emoji": "🔁",
+      "phase": "Rolling",
       "active_status": "rolling",
-      "last_active": "2026-09-27",
-      "description": "Z-Library 每日下载 cron (0 0 * * *) — 本周连续 5 天触发，全部 Lexile/AR 阈值过滤",
-      "progress": "9-21/24/25/26/27 连续 5 天触发，pending 33 本 Cat in the Hat's Learning Library 系列全部超阈值（Lexile > 500L 或 AR > 3.0）跳过；阈值守门策略正确，避免给小孩读偏难的英文书。",
-      "problem": "无新问题 — 阈值过滤策略稳定，连续 5 天正确跳过。",
-      "solution": "续接阈值过滤；如 Lexile/AR 数据库更新可考虑降低阈值到 400L / 2.5 扩展可选范围。"
+      "last_active": "2026-10-04",
+      "description": "agentmemory-integration cron 本周 7 sessions + pm-memory-management (my-pm) 1 session + 8 个 [SILENT] cron 占 research-agent",
+      "progress": "agentmemory MCP server 集成工作持续滚动；memory-cleanup cron (50% 阈值模式) 5 步 SOP 跑通；本周新装 pm-data-fabrication-pitfall skill (pm-for-claude) 把「数据没真造就明说没造」固化为 agent 铁律。",
+      "problem": "[SILENT] cron 8 次（research-agent 8 / pm-2 7 / pm-for-claude 7）= 沉默运行的 cron 触发无可见信号，fei 不知道跑了没 — 需观察是否真需要这么多 silent cron。",
+      "solution": "(1) memory-cleanup 跑通后保留；(2) [SILENT] cron 数量下次周报对比是否下降（持续监控）；(3) 不主动治理 — fei 没问就先观察。"
     }
   ],
   "problems": [
     {
-      "priority": "P0",
-      "project": "WorkBuddy 每日积分 cron",
-      "issue": "09-23 → 09-27 连续 5 天 HTTP 401 失败（登录态过期），fei 累计断签 5 天",
-      "solution": "fei 方便时打开一次 WorkBuddy 桌面端登录即恢复；后续加飞书 DM 主动提醒机制",
-      "time": "2026-09-23 ~ 2026-09-27"
-    },
-    {
+      "issue": "research-agent Firecrawl + EXA 外部搜索工具 09-29 全挂，CSP 横向调研（Microsoft/AWS/Google Cloud）只能基于训练数据整理 = 非 verified 报告",
       "priority": "P1",
-      "project": "xianyu-bot 账号级风控节流",
-      "issue": "09-22 高密度自动化触发节流，/im 页面卡骨架屏 16 个 skeleton，商品列表/会话列表读不到（已停手自愈）",
-      "solution": "(1) 节流守卫 bb21d02 已落地（永不假报无未读）；(2) 巡检密度长期克制避免再触发；(3) 10/24 cron 提醒 V8 商品 1083564447359 重上架",
-      "time": "2026-09-22"
+      "project": "Singapore Tech Week 报告大纲",
+      "solution": "(1) 已交付的 2 篇官方全文先用；(2) fei 现场用 OCP Tech Day keynote + vendor booth 补 CSP 部分；(3) 后续给 research-agent 配 web-research-fallbacks skill（本周新装）做 fallback 工具链。",
+      "time": "2026-09-29"
     },
     {
-      "priority": "P1",
-      "project": "kiddo-scoreboard PM 批准补卡接口 500",
-      "issue": "approve 原子 batch 里 task_completions.awarded_event_id 用占位值导致外键失败 — CC 抓 bug 已 root-cause，修复进行中未合并",
-      "solution": "(1) 等 fei review CC 提交；(2) PM 批准后回归 audit_log.audit_id 外键；(3) kiddo-scoreboard 整体仍 out-of-scope，PM 不主动 follow",
-      "time": "2026-09-22"
-    },
-    {
+      "issue": "pm-2 / pm-for-claude / research-agent 本周累计 22 个 [SILENT] cron 触发（research-agent 8 + pm-2 7 + pm-for-claude 7），fei 不知道跑了没",
       "priority": "P2",
-      "project": "filesystem scan 连续 4 周 0 命中",
-      "issue": "sessions/*.jsonl 是 4 月份老归档，新 session 全部走 SQLite — filesystem scan 是 dead weight",
-      "solution": "继续保留 filesystem scan 作为兜底（<1s 代价），下次 Step 1 SOP 可显式跳过减少噪音",
-      "time": "2026-09-21 ~ 2026-09-27"
+      "project": "cron 沉默运行监控",
+      "solution": "暂不治理 — 下次周报对比数量趋势，如持续高 [SILENT] 占比再考虑给 cron 加 Discord/Feishu 通知；fei 没主动问就先观察（避免过度工程化）。",
+      "time": "2026-09-28 ~ 2026-10-04"
+    },
+    {
+      "issue": "Z-Library 找英文版「塞尔达王国之泪 Piggyback 攻略书」无 epub（Piggyback 只 PDF 不 epub），fei 需求未达成",
+      "priority": "P3",
+      "project": "Z-Library 工具链",
+      "solution": "管线本身稳定（9 个 pitfall 已沉淀），单本书缺失不算真问题；建议 fei 改走 Piggyback 官网 PDF 或 Steam 数字版。",
+      "time": "2026-10-01"
+    },
+    {
+      "issue": "WorkBuddy 本地脚本仓库非 git clone → 升级通道断裂 + 服务端 token 再 rotate 会复发 401（上周 P0，本周已收尾但根因未根治）",
+      "priority": "P3",
+      "project": "WorkBuddy 登录态",
+      "solution": "fei 方便时打开桌面端登录即恢复（已多次验证）；如想根治，让 pm-for-claude 一次性把本地脚本仓库迁到 git clone。",
+      "time": "2026-09-30"
     }
   ],
   "new_skills": {
-    "total_new": 15,
-    "total_patched": 4,
+    "total_new": 11,
+    "total_patched": 0,
     "bulk_events": [
       {
-        "date": "2026-09-22",
-        "purpose": "🍎 Apple Native + Hermes 平台层 skill 整合 (6 skills)",
+        "date": "2026-09-30",
+        "purpose": "pm-for-claude cron + Web research + 安全治理套件 (6 skills)",
         "skills": [
-          "apple-native-apps",
-          "productivity-service-integrations",
-          "feihao-visual-feedback",
-          "kanban-system",
-          "hermes-skill-architecture",
-          "llm-operations"
-        ]
-      },
-      {
-        "date": "2026-09-22",
-        "purpose": "🩺 iOS App + 健康数据上传链路 (3 skills)",
-        "skills": [
-          "ios-app-dev",
-          "ios-shortcut-generation",
-          "health-vault"
+          "web-research-fallbacks",
+          "cronjob-management",
+          "native-app-automation",
+          "session-replay-automation",
+          "pm-data-fabrication-pitfall",
+          "hermes-approvals-allowlist"
         ]
       }
     ],
-    "all_skills_by_category": {
-      "🍎 Apple Native 应用集成 (Memo / Reminders / FindMy / Mail)": [
-        {
-          "skill": "apple-native-apps",
-          "profile": "_default_shared",
-          "mtime": "2026-09-22"
-        }
+    "by_profile": {
+      "pm-2": [
+        "web-spa-scraping-pitfalls"
       ],
-      "🔗 Hermes 跨 Profile Skill 架构 + 工作流 (LLM / Kanban / Hermes Skill Architecture)": [
-        {
-          "skill": "kanban-system",
-          "profile": "_default_shared",
-          "mtime": "2026-09-22"
-        },
-        {
-          "skill": "hermes-skill-architecture",
-          "profile": "_default_shared",
-          "mtime": "2026-09-22"
-        },
-        {
-          "skill": "llm-operations",
-          "profile": "_default_shared",
-          "mtime": "2026-09-22"
-        }
+      "research-agent": [
+        "ai-infra-storage-vendor-strategy",
+        "research",
+        "zlibrary-daily-download"
       ],
-      "📐 fei 视觉协调偏好 + 跨 Profile 服务集成": [
-        {
-          "skill": "feihao-visual-feedback",
-          "profile": "_default_shared",
-          "mtime": "2026-09-22"
-        },
-        {
-          "skill": "productivity-service-integrations",
-          "profile": "_default_shared",
-          "mtime": "2026-09-22"
-        }
+      "pm-for-claude": [
+        "web-research-fallbacks",
+        "cronjob-management",
+        "native-app-automation",
+        "session-replay-automation",
+        "pm-data-fabrication-pitfall",
+        "hermes-approvals-allowlist"
       ],
-      "🩺 iOS App + Shortcut 健康上传链路": [
-        {
-          "skill": "ios-app-dev",
-          "profile": "pm-2",
-          "mtime": "2026-09-22"
-        },
-        {
-          "skill": "ios-shortcut-generation",
-          "profile": "pm-2",
-          "mtime": "2026-09-22"
-        },
-        {
-          "skill": "health-vault",
-          "profile": "pm-2",
-          "mtime": "2026-09-22"
-        }
-      ],
-      "⏰ PM Cron + 闲鱼运营 MCP 工具": [
-        {
-          "skill": "cronjob-management",
-          "profile": "my-pm",
-          "mtime": "2026-09-26"
-        },
-        {
-          "skill": "xianyu-mcp-tools",
-          "profile": "my-pm",
-          "mtime": "2026-09-26"
-        }
-      ],
-      "💾 磁盘清理 + PM 项目历史回溯": [
-        {
-          "skill": "disk-bloat-rootcause",
-          "profile": "my-pm",
-          "mtime": "2026-09-22"
-        },
-        {
-          "skill": "project-history-recall",
-          "profile": "my-pm",
-          "mtime": "2026-09-22"
-        }
+      "_default_shared": [
+        "zlibrary"
       ]
     },
-    "by_profile": {
-      "_default_shared": [
-        "apple-native-apps",
-        "productivity-service-integrations",
-        "feihao-visual-feedback",
-        "kanban-system",
-        "hermes-skill-architecture",
-        "llm-operations"
+    "all_skills_by_category": {
+      "🛡️ pm-for-claude 安全/治理 + cron 套件（6 skills）": [
+        {
+          "mtime": "2026-09-30",
+          "profile": "pm-for-claude",
+          "skill": "web-research-fallbacks"
+        },
+        {
+          "mtime": "2026-09-30",
+          "profile": "pm-for-claude",
+          "skill": "cronjob-management"
+        },
+        {
+          "mtime": "2026-09-30",
+          "profile": "pm-for-claude",
+          "skill": "native-app-automation"
+        },
+        {
+          "mtime": "2026-09-30",
+          "profile": "pm-for-claude",
+          "skill": "session-replay-automation"
+        },
+        {
+          "mtime": "2026-09-30",
+          "profile": "pm-for-claude",
+          "skill": "pm-data-fabrication-pitfall"
+        },
+        {
+          "mtime": "2026-09-30",
+          "profile": "pm-for-claude",
+          "skill": "hermes-approvals-allowlist"
+        }
       ],
-      "pm-2": [
-        "ios-app-dev",
-        "ios-shortcut-generation",
-        "health-vault"
+      "📚 Z-Library 全栈工具链（4 skills，跨 profile）": [
+        {
+          "mtime": "2026-09-28",
+          "profile": "pm-2",
+          "skill": "web-spa-scraping-pitfalls"
+        },
+        {
+          "mtime": "2026-10-01",
+          "profile": "research-agent",
+          "skill": "research"
+        },
+        {
+          "mtime": "2026-10-01",
+          "profile": "research-agent",
+          "skill": "zlibrary-daily-download"
+        },
+        {
+          "mtime": "2026-10-03",
+          "profile": "_default_shared",
+          "skill": "zlibrary"
+        }
       ],
-      "my-pm": [
-        "cronjob-management",
-        "xianyu-mcp-tools",
-        "disk-bloat-rootcause",
-        "project-history-recall"
+      "🏗️ AI Infra + 存储厂商战略调研": [
+        {
+          "mtime": "2026-09-29",
+          "profile": "research-agent",
+          "skill": "ai-infra-storage-vendor-strategy"
+        }
       ]
     }
   },
   "hot_topics": [
-    "🚨 WorkBuddy 登录态 5 天 HTTP 401 — fei 打开桌面端一次即恢复，要不要加「过期 2 天飞书 DM 主动提醒」cron？",
-    "📦 xianyu-bot 节流守卫 bb21d02 已落，V8 商品 1083564447359 仍下架 — 10/24 cron 提醒重上架决策要不要提前？",
-    "🩺 HealthExporter Shortcut 工程收工 — fei iPhone 真机验证一次即可转 Deployed，要不要把 weekly-health-report cron 的「健康推送」接入 Shortcut 链路？",
-    "🛠️ kiddo-scoreboard PM 批准补卡接口 500 — CC root-cause 完成, 等 fei review (kiddo-scoreboard 整体仍 out-of-scope)",
-    "📚 Jev System One Model Hermes v0.21.3 集成调研报告已归档 — fei 5 天未拍板要不要推进实际集成 POC？",
-    "📈 pm-2 hourly cron (health-vault) 126 sessions 占周总 cron 87% — substantive_sessions 字段已落地, 周报数字已可读但 cron 自身需不需要降级到 2-4 次/天？"
+    "🚨 Singapore Tech Week 09-29 → 10-01 现场 — PM 报告大纲（NVIDIA K2/K3 + CSP 横向）已就位 5 个 keynote，CSP 部分依赖 fei 现场补",
+    "📚 Z-Library 工具链升级为 _default_shared — fei 后续找英文电子书可跨 profile 复用，塞尔达攻略书走 Piggyback PDF 替代",
+    "🛡️ pm-for-claude 新装 6 个治理 skill（data-fabrication / approvals-allowlist / cronjob-management）— agent 撒谎 + 安全策略 + cron 三条防线齐了",
+    "📊 pm-2 cron 噪声 88% 持续 — health-vault hourly + memory-cleanup cron 都是必要的，但 [SILENT] cron 22 个/周值得观察"
   ]
 }
