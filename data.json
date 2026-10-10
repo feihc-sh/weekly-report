@@ -1,54 +1,61 @@
 {
   "meta": {
     "title": "Hermes 团队周报",
-    "date_range": "2026-09-28 → 2026-10-04",
-    "generated_at": "2026-10-04",
+    "date_range": "2026-10-05 → 2026-10-11",
+    "generated_at": "2026-10-11",
     "owner": "fei",
     "summary": {
-      "total_sessions": 208,
-      "substantive_sessions": 13,
-      "profiles_active": 4,
-      "real_projects": 5,
+      "total_sessions": 229,
+      "substantive_sessions": 36,
+      "profiles_active": 6,
+      "real_projects": 4,
       "rolling_projects": 2,
       "real_problems": 4,
-      "new_skills_count": 11
+      "new_skills_count": 19
     }
   },
   "overview": [
     {
       "profile": "my-pm",
-      "sessions": 2,
-      "substantive": 0,
-      "filesystem": 0,
-      "status": "dormant"
+      "sessions": 4,
+      "substantive": 2,
+      "filesystem": 1,
+      "status": "active"
     },
     {
       "profile": "pm-2",
-      "sessions": 173,
-      "substantive": 1,
+      "sessions": 175,
+      "substantive": 6,
       "filesystem": 0,
       "status": "active"
     },
     {
       "profile": "pm-for-claude",
-      "sessions": 16,
+      "sessions": 17,
       "substantive": 3,
       "filesystem": 0,
       "status": "active"
     },
     {
       "profile": "research-agent",
-      "sessions": 14,
-      "substantive": 6,
+      "sessions": 19,
+      "substantive": 11,
       "filesystem": 0,
       "status": "active"
     },
     {
       "profile": "code-agent",
-      "sessions": 0,
-      "substantive": 0,
-      "filesystem": 0,
-      "status": "dormant"
+      "sessions": 3,
+      "substantive": 3,
+      "filesystem": 2,
+      "status": "active"
+    },
+    {
+      "profile": "writing-agent",
+      "sessions": 11,
+      "substantive": 11,
+      "filesystem": 5,
+      "status": "active"
     },
     {
       "profile": "data-agent",
@@ -65,13 +72,6 @@
       "status": "dormant"
     },
     {
-      "profile": "writing-agent",
-      "sessions": 0,
-      "substantive": 0,
-      "filesystem": 0,
-      "status": "dormant"
-    },
-    {
       "profile": "web-ui-designer",
       "sessions": 0,
       "substantive": 0,
@@ -81,233 +81,207 @@
   ],
   "real_projects": [
     {
-      "name": "Singapore Tech Week 报告大纲（NVIDIA + Micron + 北美 CSP）",
-      "owner_profile": "pm-for-claude + research-agent",
+      "name": "Singapore Tech Week 2026 报告归档周（展商巡礼 + Batch2 精读 + GB300/KV Cache 收尾）",
+      "owner_profile": "research-agent",
+      "session_count": 6,
+      "phase_emoji": "🚀",
+      "phase": "Deployed → Maintenance",
+      "active_status": "rolling",
+      "last_active": "2026-10-11",
+      "description": "STW 2026 现场交付收尾 + 多份 HTML/PPTX/PDF 报告归档到 knowowl/Tech/STW-2026/",
+      "progress": "10-05 KV Cache 深度分析（TuringData ContextCube）HTML 完工 11 张 slide + 5 张图 → 10-07 GB300 × Vera Rubin 官方 Guideline 14 张 slide PPT 式 HTML 总结 + 5 张图 → 10-08 STW 2026 展商巡礼一司一页（11 家参展方 × 20 张现场图，15 页 HTML PPT）→ 10-09 Batch2 120 页精读（论点论据支撑性审计 11/13 页通过 + 4 处修复）→ 10-10 一司一页 v3 白底蓝金版精修（16 页绿色→深蓝换色 + slide 截图并列）→ 10-11 基金账（中证 1000 指数增强 A 加仓高点回撤 -15.45%）。",
+      "problem": "STW 2026 已收尾，10-11 唯一 substantive 是基金个人事务（fei 自己的加仓亏损复盘）— 本周是收尾 + 一件私事，fei 下一站未知。",
+      "solution": "(1) STW 报告 5 件已全部交付归档 knowowl/Tech/STW-2026/，fei 后续如需补充现场资料按 obsidian 索引找即可；(2) 基金建议 fei 等中证 1000 PE 分位 < 60% 再考虑加仓（数据待 research-agent 补）；(3) 下周如无新主线，research-agent 主动归档窗口会放缓。"
+    },
+    {
+      "name": "writing-agent lark-cli 跨 app 飞书 DM 失败（ou_c0eeb64 收件人 open_id cross app 99992361）",
+      "owner_profile": "writing-agent + pm-for-claude",
       "session_count": 4,
       "phase_emoji": "🛠",
-      "phase": "Implementation",
-      "active_status": "rolling",
-      "last_active": "2026-09-30",
-      "description": "fei 要在 Singapore Tech Week 现场聚焦 NAND/Enterprise SSD + AI Data Center Infrastructure，写 5 个最相关 keynote 的报告大纲",
-      "progress": "research-agent 09-28 锁定 NVIDIA 4 个舞台（Mainstage + Cloud & AI Infrastructure + Data Centre World + OCP Tech Day）完整 keynote 清单 + 09-27 Micron Singapore 4 站点招聘地图（铺路 career recon）→ pm-for-claude 09-30 完成 K2/K3 外部资料第二轮调研（FMS 2026 NVIDIA 博客全文 + cuFile API 开源 + Vera CPU 3.21x x86 等 2 篇官方全文已读 + 标题级核实）；CSP 横向调研（Microsoft/AWS/Google Cloud 硬件技术 keynote）由 research-agent 09-29 接力。",
-      "problem": "research-agent 09-29 报「Firecrawl + EXA 外部搜索全挂」，CSP 横向素材只能基于训练数据+公开信息整理（非 verified 报告）— 现场前需 manual verify。",
-      "solution": "(1) pm-for-claude 已交付的 2 篇官方全文 + cuFile 源码链接先用；(2) CSP 横向部分 fei 到现场后用 OCP Tech Day 实物 keynote + vendor booth 资料补；(3) 后续如长期需要，建议给 research-agent 配 fallback 工具链（web-research-fallbacks skill 本周新装可复用）。"
+      "phase": "Implementation → Diagnosed",
+      "active_status": "stalled",
+      "last_active": "2026-10-10",
+      "description": "writing-agent 10-10 尝试用 lark-cli 给 fei 发问候 DM，三次都报 99992361 open_id cross app — bot 跟收件人不跨租户",
+      "progress": "writing-agent 10-10 跑 3 次同一个任务全部失败（错误一致：99992361 open_id cross app），明确不会编造 message_id；pm-for-claude 10-10 接力：从 lark-cli 加密存储解出 secrets，联系通讯录接口确认权限 code=0，但缺 fei 邮箱/手机号没法瞎猜 — 卡在「fei 自己确认收件人渠道」。",
+      "problem": "✓ 真问题 — writing-agent 当前 lark-cli 登录的飞书 app/租户跟收件人 ou_c0eeb64... 不跨租户可达，需 fei 提供 (a) 同一租户的收件人 open_id 或 (b) 同租户的 email/手机号让通讯录反查。",
+      "solution": "(1) fei 给 writing-agent 一个同租户的 open_id 或手机号；(2) 或切到 my-pm 已验证的 FEISHU_APP_ID (cli_a9671b8896b9dbcb) + FEISHU_HOME_CHANNEL (oc_09d543...) 通道；(3) pm-for-claude 已在帮 fei 跟踪写入材料等拍板。"
     },
     {
-      "name": "NAND/存储产业链归档周（BiCS9/10 + LPDDR6 + Synopsys + Jev）",
-      "owner_profile": "research-agent",
-      "session_count": 5,
-      "phase_emoji": "✅",
-      "phase": "Implemented → Archived",
-      "active_status": "rolling",
-      "last_active": "2026-10-01",
-      "description": "连续 1 周密集归档 NAND/DRAM/AI Infra 产业链一手资料 — 半导体行业观察 + MooreNEWS + 官方 PDF",
-      "progress": "9-23 长鑫 LPDDR6 (5.3KB / 129 行 → NandFlash/ 目录) → 9-26 铠侠 BiCS9/BiCS10 + XL-FLASH + LC9 路线图（半导体芯闻）→ 9-22 Jev System One Model (Hermes v0.21.3 集成调研 → Tech/AI/) → 10-01 Synopsys 2026 Investor Day 原报告（119 页 PPT + 5 页新闻稿已下载归档）；全部 5 篇交付含 TL;DR + 规格表 + 信源交叉验证。",
-      "problem": "无 — 4 篇全部跑通归档链路，无 retry、无 fail。但本周密集度（5 篇/9 天）vs 上周（1 篇/周）= 6x 加速，需关注是否可持续（research-agent SQLite 26 sessions 本周占 14）。",
-      "solution": "无需动作 — 持续按需触发；如 fei 想放缓节奏可限制每周归档上限（暂不建议，fei Singapore 行程可能需快速 onboard）。"
-    },
-    {
-      "name": "WorkBuddy 登录态 401 根因定位 + 桌面端启动验证",
-      "owner_profile": "pm-for-claude",
-      "session_count": 2,
-      "phase_emoji": "🧪",
-      "phase": "Testing",
-      "active_status": "rolling",
-      "last_active": "2026-09-30",
-      "description": "上周 5 天 HTTP 401 断签根因收尾 + 本周桌面端启动验证",
-      "progress": "pm-for-claude 09-24 定位根因（服务端 token 作废 + 本地脚本仓库非 git clone 无升级通道 + WorkBuddy 9-27 desktop 打开 → 9-30 「allow once」藏起来的真相（安全设计 = 命令带 [HIGH] Pipe to interpreter 等内容级安全发现时 broad permanent allowlist 被故意隐藏，不是 bug）。",
-      "problem": "本地脚本仓库非 git clone → 升级通道断裂，GitHub 查询工具本轮不可用 — WorkBuddy 401 修复后如服务端再 rotate token 仍会复发。",
-      "solution": "(1) fei 方便时打开一次 WorkBuddy 桌面端登录即恢复（已多次验证）；(2) 后续如想根治，把本地脚本仓库迁到 git clone（一次性动作，pm-for-claude 可代办）；(3) 飞书 DM 过期主动提醒 cron 还在评估（上周 hot topic 留下未决）。"
-    },
-    {
-      "name": "新加坡一日游（米捂槽酒店锚点 + Travel 目录补索引）",
+      "name": "pm-2 memory-cleanup cron 孪生 job 根因收尾（pm-2 + pm-for-claude 双跑 job_id 5b2a5373ae2b）",
       "owner_profile": "pm-2",
       "session_count": 1,
+      "phase_emoji": "✅",
+      "phase": "Implemented",
+      "active_status": "rolling",
+      "last_active": "2026-10-09",
+      "description": "fei 10-09 报「cron 静默埋掉 abort 真相」— pm-2 反思 SILENT 用法，主动汇报 3 层病根",
+      "progress": "pm-2 10-09 主动把 cron 失败信号从 SILENT 改为 ABORT 报告，挖出 3 层病根：(1) 孪生 job — pm-2 + pm-for-claude jobs.json 各一份 5b2a5373ae2b，23:00 双跑；(2) skill 加载失败 — memory-cleanup skill 之前 missing；(3) profile 身份冲突 — 同 id 跨 profile 重复注册。修复完成，三层全治好。",
+      "problem": "✓ 部分真问题 — cron SILENT 规则被滥用埋掉 abort 信号，这本身就是 PM Agent 自己要修的设计问题；孪生 job 跑两次 = 重复劳动但功能 OK；后续 cron 静默规则应改「有 abort 就报，无事才静默」。",
+      "solution": "(1) pm-2 已在 10-09 把 SILENT 规则明文化为「SILENT 仅在没东西可报时用，要么报要么 SILENT」；(2) memory-cleanup skill 本周 10-09 新装 pm-2，跨 profile 同步装 pm-for-claude；(3) 孪生 job 清理已加 cronjob-management skill SOP，下次新建 cron 自动防重复。"
+    },
+    {
+      "name": "STW 2026 slide 截图合并 PDF + STW report 横纵矩阵",
+      "owner_profile": "pm-for-claude + research-agent",
+      "session_count": 2,
       "phase_emoji": "🚀",
       "phase": "Deployed",
       "active_status": "rolling",
-      "last_active": "2026-09-27",
-      "description": "fei 09-28 新加坡一日游规划，PM 落 obsidian 行程文档 + Travel 目录首次索引",
-      "progress": "pm-2 09-27 帮 fei 生成 v3 时间表（8 点出发）+ 两个死线（17:30 空中花园 / 19:45 灯秀）+ 天气 Plan B + 决策记录（美术馆>博物馆）；落地 knowowl/Travel/2026-09-28__新加坡一日游_8点出发_v3.md (3.2KB) + 顺手补了 Travel 目录 _index.md（之前没索引，是隐性 debt）。",
-      "problem": "无新问题 — Travel 目录 _index.md 是顺手补的（不算本周新功能债务）；Singapore Tech Week 报告（见上）才是本次行程主要 deliverable。",
-      "solution": "(1) 行程已部署，fei 现场用即可；(2) Travel/_index.md 后续如新增 trip 保持同步更新。"
-    },
-    {
-      "name": "Z-Library 工具链升级（zlibrary skill 落地 + A to Z 26 本下载管线）",
-      "owner_profile": "research-agent",
-      "session_count": 3,
-      "phase_emoji": "🚀",
-      "phase": "Deployed",
-      "active_status": "active",
-      "last_active": "2026-10-03",
-      "description": "CloakBrowser 抗反爬管线落地 + Skill 升级为 _default_shared + 26 本 A to Z 英文儿童书 cron 自动续下",
-      "progress": "9-28 pm-2 web-spa-scraping-pitfalls (skill 沉淀 SPA 反爬坑) → 9-29 research-agent ai-infra-storage-vendor-strategy → 9-30 research-agent 帮 fei 下载 5 本英文老书（贝尔实验室/创新者窘境/新机器灵魂/Rules of Work/Edison 传）→ 10-01 zlibrary-daily-download skill + research umbrella skill 落地 research-agent → 10-02 fei 要找「塞尔达王国之泪 Piggyback 攻略书」跑通 CloakBrowser 抗反爬（唯一找到法语周边设定集，Piggyback 无 epub）→ 10-03 zlibrary skill 升级为 _default_shared（跨 profile 复用）。",
-      "problem": "Z-Library 持续反爬（DiamWall）+ fei 找英文版塞尔达攻略书 zlib 没货（Piggyback 攻略集只 PDF 不 epub）— 塞尔达需求算未达成，但管线本身稳定。",
-      "solution": "(1) zlibrary skill 已沉淀 9 个 pitfall（含 DiamWall / eapi message= 假成功 / file.downloadLink 等）；(2) A to Z 26 本 cron 9-30 起每天 9:30 续下（cron 350f6a24019e）；(3) 塞尔达攻略建议 fei 切 Piggyback 官网 PDF 或 Steam 数字版（zlib 路径不通）。"
+      "last_active": "2026-10-10",
+      "description": "STW 报告配套交付物 — 截图合并 PDF + 一司一页精修",
+      "progress": "pm-for-claude 10-08 把 fei 之前发的 STW slide 截图合并成 1 个 PDF（9 页，4.7MB，Asia Tech x Data Center 2026 Daniel Nishball 「What are Today's Constraints?」演讲）横版 A4 发回 fei；research-agent 10-10 把 16 页 STW 一司一页 PPT 精修为绿色→深蓝换色 + slide 截图并列底部（一司一页 v3 白底蓝金版）。",
+      "problem": "无 — 两件都是 fei 直接 deliverable 收尾动作，没出新坑。",
+      "solution": "(1) PDF 已直发 fei DM 附件（9 页 4.7MB）；(2) 一司一页 v3 已落 knowowl/Tech/STW-2026/2026-10-10__STW2026_一司一页_v3_白底_概要关键数据_蓝金版.pptx，Keynote 打开即用；(3) STW 整体归档到 knowowl/Tech/STW-2026/ 共 5 件 + Batch2 精读。"
     }
   ],
   "rolling_projects": [
     {
-      "name": "pm-2 健康档案 vault (hourly cron × 152 sessions)",
+      "name": "pm-2 health-vault hourly cron × 165 sessions",
       "owner_profile": "pm-2",
       "phase_emoji": "🔁",
       "phase": "Rolling",
       "active_status": "rolling",
-      "last_active": "2026-10-04",
-      "description": "health-vault-hourly cron 每小时跑一次，本周累计 152 sessions = pm-2 总 cron 172 的 88%（vs 上周 87% 持平）",
-      "progress": "持续滚动运行；HealthExporter Shortcut 上传链路（9-22 工程收工）等 fei 真机 3 个物理步骤（连线 → Xcode 登 Apple ID → 手机开开发者模式）即转 Deployed；weekly-health-report cron 每周日 22:00 输出。",
-      "problem": "无新问题 — cron 已稳定，但 hourly 频率仍占 pm-2 substantive 计数的 88%，周对比的 substantive_sessions 数字需用心看。",
-      "solution": "继续保留 hourly cron 周期；周报持续把 substantive vs cron 分开计 (substantive_sessions 字段已落地)。"
+      "last_active": "2026-10-11",
+      "description": "health-vault skill + health-vault-hourly cron 每小时跑一次，本周累计 ~165 sessions = pm-2 总 175 的 94%（比上周 88% 进一步抬高）",
+      "progress": "持续滚动；10-09 pm-2 新装 health-vault / memory-cleanup / cronjob-management 3 个 cron ops skill；weekly-health-report cron 每周日 22:00 持续输出；HealthExporter Shortcut 上传链路待 fei 真机 3 步（连线 → Xcode 登 Apple ID → 手机开开发者模式）转 Deployed。",
+      "problem": "无新问题 — hourly cron 占 pm-2 substantive 比例进一步抬高至 94%，周对比数字需用心解读。",
+      "solution": "(1) 保留 hourly 频率；(2) 周报持续把 substantive vs cron 分开计（substantive_sessions 字段已固化）。"
     },
     {
-      "name": "AgentMemory 整合 + memory-cleanup cron",
-      "owner_profile": "pm-2",
+      "name": "AgentMemory MCP 整合 + memory-cleanup cron（pm-2 + pm-for-claude 双跑）",
+      "owner_profile": "pm-2 + pm-for-claude",
       "phase_emoji": "🔁",
       "phase": "Rolling",
       "active_status": "rolling",
-      "last_active": "2026-10-04",
-      "description": "agentmemory-integration cron 本周 7 sessions + pm-memory-management (my-pm) 1 session + 8 个 [SILENT] cron 占 research-agent",
-      "progress": "agentmemory MCP server 集成工作持续滚动；memory-cleanup cron (50% 阈值模式) 5 步 SOP 跑通；本周新装 pm-data-fabrication-pitfall skill (pm-for-claude) 把「数据没真造就明说没造」固化为 agent 铁律。",
-      "problem": "[SILENT] cron 8 次（research-agent 8 / pm-2 7 / pm-for-claude 7）= 沉默运行的 cron 触发无可见信号，fei 不知道跑了没 — 需观察是否真需要这么多 silent cron。",
-      "solution": "(1) memory-cleanup 跑通后保留；(2) [SILENT] cron 数量下次周报对比是否下降（持续监控）；(3) 不主动治理 — fei 没问就先观察。"
+      "last_active": "2026-10-11",
+      "description": "agentmemory-integration cron + memory-cleanup cron 双 profile 跑；本周 10-09 新装 cronjob-management skill 把孪生 job 防重复沉淀进 SOP",
+      "progress": "agentmemory MCP server 持续整合；10-09 新装 cronjob-management skill（含 SOP 防孪生 job）；pm-2 / pm-for-claude 各自装 memory-cleanup skill；10-09 pm-2 反思 SILENT 用法 → 3 层病根报告 → 修复完成。",
+      "problem": "✓ 部分真 — 孪生 job 5b2a5373ae2b 在 pm-2 + pm-for-claude 各一份已修复；但 [SILENT] cron 本周估计仍有 20+ 个静默触发（pm-2 7 + pm-for-claude 7 + research-agent 8）= fei 看不到信号。",
+      "solution": "(1) cronjob-management SOP 已生效；(2) [SILENT] cron 数量观察下期对比；(3) 不主动治理 — fei 没问就先观察。"
     }
   ],
   "problems": [
     {
-      "issue": "research-agent Firecrawl + EXA 外部搜索工具 09-29 全挂，CSP 横向调研（Microsoft/AWS/Google Cloud）只能基于训练数据整理 = 非 verified 报告",
+      "issue": "writing-agent lark-cli 跨 app 飞书 DM 失败（ou_c0eeb64... 收件人 open_id cross app 99992361）— 卡在 fei 自己提供同租户的 open_id 或手机号",
       "priority": "P1",
-      "project": "Singapore Tech Week 报告大纲",
-      "solution": "(1) 已交付的 2 篇官方全文先用；(2) fei 现场用 OCP Tech Day keynote + vendor booth 补 CSP 部分；(3) 后续给 research-agent 配 web-research-fallbacks skill（本周新装）做 fallback 工具链。",
-      "time": "2026-09-29"
+      "project": "writing-agent 飞书 DM",
+      "solution": "fei 给 writing-agent 一个同租户的 open_id 或手机号；或切到 my-pm 已验证通道 FEISHU_APP_ID (cli_a9671b8896b9dbcb) + FEISHU_HOME_CHANNEL (oc_09d543c81200d80abedb119e6aa3f053)。",
+      "time": "2026-10-10"
     },
     {
-      "issue": "pm-2 / pm-for-claude / research-agent 本周累计 22 个 [SILENT] cron 触发（research-agent 8 + pm-2 7 + pm-for-claude 7），fei 不知道跑了没",
+      "issue": "pm-2 memory-cleanup cron 孪生 job 5b2a5373ae2b 跨 profile 双跑（pm-2 + pm-for-claude jobs.json 各一份，23:00 双触发）— 10-09 已修",
       "priority": "P2",
-      "project": "cron 沉默运行监控",
-      "solution": "暂不治理 — 下次周报对比数量趋势，如持续高 [SILENT] 占比再考虑给 cron 加 Discord/Feishu 通知；fei 没主动问就先观察（避免过度工程化）。",
-      "time": "2026-09-28 ~ 2026-10-04"
+      "project": "AgentMemory cron",
+      "solution": "10-09 已加 cronjob-management skill SOP 防孪生 job；建议补一次 jobs.json cross-profile diff 验证两边已对齐。",
+      "time": "2026-10-09"
     },
     {
-      "issue": "Z-Library 找英文版「塞尔达王国之泪 Piggyback 攻略书」无 epub（Piggyback 只 PDF 不 epub），fei 需求未达成",
-      "priority": "P3",
-      "project": "Z-Library 工具链",
-      "solution": "管线本身稳定（9 个 pitfall 已沉淀），单本书缺失不算真问题；建议 fei 改走 Piggyback 官网 PDF 或 Steam 数字版。",
-      "time": "2026-10-01"
+      "issue": "[SILENT] cron 累计 20+ 个静默触发（pm-2 7 + pm-for-claude 7 + research-agent 8）— fei 看不到信号",
+      "priority": "P2",
+      "project": "cron 静默监控",
+      "solution": "暂不治理 — 下期周报对比数量趋势；如持续高占比再考虑给 cron 加 Discord/Feishu 通知。fei 没主动问就先观察。",
+      "time": "2026-10-05 ~ 2026-10-11"
     },
     {
-      "issue": "WorkBuddy 本地脚本仓库非 git clone → 升级通道断裂 + 服务端 token 再 rotate 会复发 401（上周 P0，本周已收尾但根因未根治）",
+      "issue": "fei 加仓「天弘中证 1000 指数增强 A」在 6 月高点（净值 1.7428），当前 1.4735，回撤 -15.45% — 个人投资",
       "priority": "P3",
-      "project": "WorkBuddy 登录态",
-      "solution": "fei 方便时打开桌面端登录即恢复（已多次验证）；如想根治，让 pm-for-claude 一次性把本地脚本仓库迁到 git clone。",
-      "time": "2026-09-30"
+      "project": "基金个人复盘",
+      "solution": "research-agent 10-11 已收数据，待补 PE 分位 + 指数同类基金横向对比；建议 fei 等 PE 分位 < 60% 再考虑加仓。",
+      "time": "2026-10-11"
     }
   ],
   "new_skills": {
-    "total_new": 11,
+    "total_new": 19,
     "total_patched": 0,
     "bulk_events": [
       {
-        "date": "2026-09-30",
-        "purpose": "pm-for-claude cron + Web research + 安全治理套件 (6 skills)",
+        "date": "2026-10-10",
+        "purpose": "research-agent PPT/HTML 报告工作流 6 件套（pptx-refine / conference-deck / tech-expo / pptx-deck / html-ppt / pptx-editing）",
         "skills": [
-          "web-research-fallbacks",
+          "pptx-refine-workflow",
+          "conference-deck-ppt",
+          "tech-expo-report",
+          "pptx-deck-refinement",
+          "html-ppt-deck-builder",
+          "pptx-deck-editing"
+        ]
+      },
+      {
+        "date": "2026-10-09",
+        "purpose": "pm-2 cron ops 三件套（cronjob-management / memory-cleanup / health-vault）",
+        "skills": [
           "cronjob-management",
-          "native-app-automation",
-          "session-replay-automation",
-          "pm-data-fabrication-pitfall",
-          "hermes-approvals-allowlist"
+          "memory-cleanup",
+          "health-vault"
         ]
       }
     ],
     "by_profile": {
-      "pm-2": [
-        "web-spa-scraping-pitfalls"
+      "my-pm": [
+        "baidu-netdisk-backup",
+        "kids-reading-level-lookup",
+        "hermes-model-config"
       ],
-      "research-agent": [
-        "ai-infra-storage-vendor-strategy",
-        "research",
-        "zlibrary-daily-download"
+      "pm-2": [
+        "web-spa-scraping-pitfalls",
+        "cronjob-management",
+        "memory-cleanup",
+        "health-vault"
       ],
       "pm-for-claude": [
-        "web-research-fallbacks",
-        "cronjob-management",
-        "native-app-automation",
-        "session-replay-automation",
-        "pm-data-fabrication-pitfall",
-        "hermes-approvals-allowlist"
+        "memory-cleanup",
+        "hermes-profile-dispatch"
       ],
-      "_default_shared": [
-        "zlibrary"
+      "research-agent": [
+        "html-event-report",
+        "ppt-slide-explainer",
+        "image-attachment-recovery",
+        "image-pdf-triage",
+        "pptx-refine-workflow",
+        "conference-deck-ppt",
+        "tech-expo-report",
+        "pptx-deck-refinement",
+        "html-ppt-deck-builder",
+        "pptx-deck-editing"
       ]
     },
     "all_skills_by_category": {
-      "🛡️ pm-for-claude 安全/治理 + cron 套件（6 skills）": [
-        {
-          "mtime": "2026-09-30",
-          "profile": "pm-for-claude",
-          "skill": "web-research-fallbacks"
-        },
-        {
-          "mtime": "2026-09-30",
-          "profile": "pm-for-claude",
-          "skill": "cronjob-management"
-        },
-        {
-          "mtime": "2026-09-30",
-          "profile": "pm-for-claude",
-          "skill": "native-app-automation"
-        },
-        {
-          "mtime": "2026-09-30",
-          "profile": "pm-for-claude",
-          "skill": "session-replay-automation"
-        },
-        {
-          "mtime": "2026-09-30",
-          "profile": "pm-for-claude",
-          "skill": "pm-data-fabrication-pitfall"
-        },
-        {
-          "mtime": "2026-09-30",
-          "profile": "pm-for-claude",
-          "skill": "hermes-approvals-allowlist"
-        }
+      "📊 research-agent PPT/HTML 报告工作流 6 件套 (10-10 装)": [
+        {"mtime": "2026-10-10", "profile": "research-agent", "skill": "pptx-refine-workflow"},
+        {"mtime": "2026-10-10", "profile": "research-agent", "skill": "conference-deck-ppt"},
+        {"mtime": "2026-10-10", "profile": "research-agent", "skill": "tech-expo-report"},
+        {"mtime": "2026-10-10", "profile": "research-agent", "skill": "pptx-deck-refinement"},
+        {"mtime": "2026-10-10", "profile": "research-agent", "skill": "html-ppt-deck-builder"},
+        {"mtime": "2026-10-10", "profile": "research-agent", "skill": "pptx-deck-editing"}
       ],
-      "📚 Z-Library 全栈工具链（4 skills，跨 profile）": [
-        {
-          "mtime": "2026-09-28",
-          "profile": "pm-2",
-          "skill": "web-spa-scraping-pitfalls"
-        },
-        {
-          "mtime": "2026-10-01",
-          "profile": "research-agent",
-          "skill": "research"
-        },
-        {
-          "mtime": "2026-10-01",
-          "profile": "research-agent",
-          "skill": "zlibrary-daily-download"
-        },
-        {
-          "mtime": "2026-10-03",
-          "profile": "_default_shared",
-          "skill": "zlibrary"
-        }
+      "⚙️ pm-2 cron ops 三件套 (10-09 装)": [
+        {"mtime": "2026-10-09", "profile": "pm-2", "skill": "cronjob-management"},
+        {"mtime": "2026-10-09", "profile": "pm-2", "skill": "memory-cleanup"},
+        {"mtime": "2026-10-09", "profile": "pm-2", "skill": "health-vault"}
       ],
-      "🏗️ AI Infra + 存储厂商战略调研": [
-        {
-          "mtime": "2026-09-29",
-          "profile": "research-agent",
-          "skill": "ai-infra-storage-vendor-strategy"
-        }
+      "📚 research-agent 单点新增 (HTML 报告 / ppt explainer / 图档分类 4 件)": [
+        {"mtime": "2026-10-05", "profile": "research-agent", "skill": "html-event-report"},
+        {"mtime": "2026-10-07", "profile": "research-agent", "skill": "ppt-slide-explainer"},
+        {"mtime": "2026-10-08", "profile": "research-agent", "skill": "image-attachment-recovery"},
+        {"mtime": "2026-10-09", "profile": "research-agent", "skill": "image-pdf-triage"}
+      ],
+      "🤝 pm-for-claude memory + 调度 2 件 (10-09/10 装)": [
+        {"mtime": "2026-10-09", "profile": "pm-for-claude", "skill": "memory-cleanup"},
+        {"mtime": "2026-10-10", "profile": "pm-for-claude", "skill": "hermes-profile-dispatch"}
+      ],
+      "🌐 my-pm 单点新增 3 件 (百度网盘备份 / 娃阅读分级 / Hermes model 配置)": [
+        {"mtime": "2026-10-05", "profile": "my-pm", "skill": "baidu-netdisk-backup"},
+        {"mtime": "2026-10-05", "profile": "my-pm", "skill": "kids-reading-level-lookup"},
+        {"mtime": "2026-10-07", "profile": "my-pm", "skill": "hermes-model-config"}
+      ],
+      "🛠️ pm-2 单点 web-spa-scraping (10-07 装)": [
+        {"mtime": "2026-10-07", "profile": "pm-2", "skill": "web-spa-scraping-pitfalls"}
       ]
     }
   },
   "hot_topics": [
-    "🚨 Singapore Tech Week 09-29 → 10-01 现场 — PM 报告大纲（NVIDIA K2/K3 + CSP 横向）已就位 5 个 keynote，CSP 部分依赖 fei 现场补",
-    "📚 Z-Library 工具链升级为 _default_shared — fei 后续找英文电子书可跨 profile 复用，塞尔达攻略书走 Piggyback PDF 替代",
-    "🛡️ pm-for-claude 新装 6 个治理 skill（data-fabrication / approvals-allowlist / cronjob-management）— agent 撒谎 + 安全策略 + cron 三条防线齐了",
-    "📊 pm-2 cron 噪声 88% 持续 — health-vault hourly + memory-cleanup cron 都是必要的，但 [SILENT] cron 22 个/周值得观察"
+    "🚨 writing-agent lark-cli 跨 app DM 失败 — fei 需提供同租户的 open_id 或手机号，或切到 my-pm 已验证通道 (P1, 卡 1 天)",
+    "📊 research-agent PPT/HTML 工作流 6 件套落地 (10-10) — STW 一司一页 v3 已能用，下一站报告直接套",
+    "⚙️ pm-2 cron ops 三件套 (cronjob-management / memory-cleanup / health-vault) 10-09 装齐 — 孪生 job 防重复 SOP 进 skill",
+    "📈 research-agent STW 2026 5 件报告归档 knowowl/Tech/STW-2026/ — fei 下一站未知，本周是收尾 + 一件私事 (基金亏损复盘)"
   ]
 }
