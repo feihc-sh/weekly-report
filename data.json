@@ -10,7 +10,7 @@
       "profiles_active": 6,
       "real_projects": 4,
       "rolling_projects": 2,
-      "real_problems": 4,
+      "real_problems": 5,
       "new_skills_count": 20
     }
   },
@@ -178,6 +178,13 @@
       "project": "AgentMemory 治理",
       "solution": "10-21 已当场按 SOP Pitfall 8 (MCP 工具不收 agentId → 走 REST am_rest.py) 补写, 并新增 agentmemory-usage-audit skill 每周扫 '4 个在用 5 个零调用'。残留: workspace/memory-triage/server.py 已退役但文件还在, 下次清理。",
       "time": "2026-10-21"
+    },
+    {
+      "issue": "God's Eye View 的 Cesium ion token 仍未配置 — .env 第 57 行 CESIUM_ION_TOKEN= 为空，Google Photorealistic 3D Tiles + Cesium World Terrain 无法加载，地球只有 2D 底图 (flat globe)。已暂停每日 22:00 的自动配置 cron (3 次无进展: 10-27/10-28/10-29)，等 fei 在电脑前完成 ion 登录授权。",
+      "priority": "P3",
+      "project": "God's Eye View",
+      "solution": "fei 在 https://ion.cesium.com/tokens 用 Google 账号 cenfeihao@gmail.com 登录并复制 token；或自行写入 ~/workspace/gods-eye-view/.env 的 CESIUM_ION_TOKEN= 行 (保持 chmod 600)。之后跑 ~/workspace/gods-eye-view/set-ion-token.sh (已封装: 写 .env → 只杀 GEV 自己的 vite → 重启 → 验证 bundle)，再到 https://ion.cesium.com/assetdepot 把 Google Photorealistic 3D Tiles 加进 My Assets (免费 Community plan 必须，否则地球仍是平的)。最后 npm run dev -- --host localhost --port 4173 打开 http://localhost:4173/ 实测确认 3D 地球 + 地形真的渲染出来。⚠️ 坑: Vite 热重启不刷新 .env，必须 kill 进程完整重启；别用 lsof -ti tcp:4173 杀光 (github-daily-digest 也在该端口)。",
+      "time": "2026-10-30"
     }
   ],
   "new_skills": {
