@@ -1,546 +1,291 @@
 {
   "meta": {
     "title": "Hermes 团队周报",
-    "date_range": "2026-10-25 → 2026-11-01",
-    "generated_at": "2026-11-01",
+    "date_range": "2026-11-02 → 2026-11-08",
+    "generated_at": "2026-11-08",
     "owner": "fei",
     "summary": {
-      "total_sessions": 257,
-      "substantive_sessions": 35,
-      "profiles_active": 6,
+      "total_sessions": 196,
+      "substantive_sessions": 6,
+      "profiles_active": 4,
       "real_projects": 4,
       "rolling_projects": 3,
       "real_problems": 6,
-      "new_skills_count": 40
+      "new_skills_count": 10
     }
   },
   "overview": [
     {
       "profile": "pm-2",
-      "sessions": 186,
-      "substantive": 1,
-      "filesystem": 0,
-      "status": "active",
-      "note": "185 cron, substantive 1",
-      "focus": "health-vault hourly cron 主导 (176 cron) + 备份/体检报告"
+      "sessions": 159,
+      "substantive": 0,
+      "focus": "health-vault hourly cron 绝对主导 (152/159), 无真人对话",
+      "note": "152 次 health-vault + 7 次 agentmemory-integration, 全是 cron"
     },
     {
       "profile": "pm-for-claude",
-      "sessions": 32,
-      "substantive": 9,
-      "filesystem": 0,
-      "status": "active",
-      "note": "23 cron, substantive 9",
-      "focus": "成就墙 3D 视觉管线 + kiddo 打卡 cutoff UX"
+      "sessions": 22,
+      "substantive": 2,
+      "focus": "成就墙配色 prompt 交付 + Fighter V2 e2e 重锚被中断",
+      "note": "20 次为 memory-cleanup / nightly-todo / workbuddy cron"
     },
     {
       "profile": "research-agent",
-      "sessions": 20,
-      "substantive": 11,
-      "filesystem": 0,
-      "status": "active",
-      "note": "9 cron, substantive 11",
-      "focus": "存储/AI 基建归档 + KV cache 命中率学术调研"
-    },
-    {
-      "profile": "code-agent",
-      "sessions": 8,
-      "substantive": 8,
-      "filesystem": 0,
-      "status": "active",
-      "note": "0 cron, substantive 8",
-      "focus": "kiddo-scoreboard 缺陷修复 (block scope / asset 404)"
-    },
-    {
-      "profile": "writing-agent",
-      "sessions": 7,
-      "substantive": 5,
-      "filesystem": 0,
-      "status": "active",
-      "note": "2 cron, substantive 5",
-      "focus": "God's Eye 停摆 + PPT skill 审计安装"
+      "sessions": 12,
+      "substantive": 3,
+      "focus": "存储/AI 基建知识归档 + 研究工具链 skill 化",
+      "note": "9 次 cron (Z-Library 每日 + 系列监控 + IPO)"
     },
     {
       "profile": "my-pm",
-      "sessions": 4,
+      "sessions": 3,
       "substantive": 1,
-      "filesystem": 0,
-      "status": "active",
-      "note": "3 cron, substantive 1",
-      "focus": "PM 运维: skill 装给 3 个 profile + 周报治理"
+      "focus": "家庭 WiFi 卡顿实测诊断 + 周报发布",
+      "note": "2 次 cron (memory cleanup + 本周周报)"
     }
   ],
   "real_projects": [
     {
-      "name": "Kiddo Scoreboard — 打卡截止时间 UX 修复 + Fighter V2 图标 404 + Item #017 家长推送",
-      "owner_profile": "pm-for-claude / code-agent",
-      "session_count": 11,
-      "phase_emoji": "🛠",
-      "phase": "Implementation",
-      "active_status": "active",
-      "last_active": "2026-11-01",
-      "description": "本周把 kiddo-scoreboard 从「截止前就变灰」的视觉误伤改到「截止前正常可点 + 橙色倒计时, 过点才真锁定」, 并修掉 Fighter V2 商店图标 404 与 rawSubitems 块作用域 ReferenceError",
-      "progress": "10-25 code-agent 修 rawSubitems 块作用域 (c2e7f83) + 重锚 summer-homework e2e spec 到 Item #016 §2 语义 (a1a524e, cdc49e5); 10-26/10-27 pm-for-claude 定位到根因是纯前端视觉 bug (服务端一直允许提早打卡), 写好修复并推 GitHub (723ece2 → 4d61739 merge 到 main), 10-27 早上 07:34 黄金窗口用真实渲染截图一屏同时验收截止线两侧两种状态; 10-27 code-agent 修 Fighter V2 shop modal 三类装备图标 404 (ee6ae5d, 改绑 V1 真实 asset); 10-30 起 code-agent 在 feature/017-parent-notify 分支实施 Item #017「打卡全完成时 Bark 微信通知家长」.",
-      "problem": "✓ 真问题: Item #017 仍停在未提交状态 — feature/017-parent-notify 工作区有 10 个改动文件 (新增 src/routes/admin/notify.ts、src/utils/notify.ts、docs/017-parent-notify-spec.md, 修改 src/utils/coin.ts / src/routes/me/tasks.ts / src/worker.ts / admin 前端) 全部 uncommitted, 且 10-31 那次 code-agent session 中途断在「Now the coin.ts helper for real N/N counts」, 没有完成报告. 上周 P0 (rawSubitems 500) 本周确已修复并 commit, 不再是问题.",
-      "solution": "(1) code-agent 补完 coin.ts 的真实 N/N 计数 + route 挂载点, 跑 typecheck + 相关 e2e; (2) 走 PM 常规验收路径 (Qual Agent 验证 → PM 合并), 或直接 commit 到 feature 分支等 fei review; (3) PM 跟踪 item #017 spec 文档已写好, 需确认 Bark device key 从哪来 (fei 侧一次性配置) 再合并, 否则推送功能上线即空转."
-    },
-    {
-      "name": "成就墙 3D 视觉管线 — AI 底图 + 程序刻字 + Three.js 成就殿堂",
-      "owner_profile": "pm-for-claude",
-      "session_count": 6,
+      "name": "家庭网络诊断 — 2.4GHz 空口拥塞定位",
+      "owner_profile": "my-pm",
+      "session_count": 1,
       "phase_emoji": "🚀",
       "phase": "Deployed",
       "active_status": "active",
-      "last_active": "2026-11-01",
-      "description": "从「奖牌参考图 → 抠图 PNG → 程序确定性刻字」到整面成就墙, 最后升级成 Three.js 暗色展馆形态的 3D 成就殿堂, 并挂 Tailscale 对外提供服务",
-      "progress": "10-28 跑通「保图改字」管线 — 文字由程序确定性刻上去而非 AI 猜, 产出 medal-ref 基准图; 10-29 整面成就墙 v2 出炉 (8 个奖项 1:1 铺满, 892KB PNG); 10-30 抠图去白边 (cutout_medals.py + defringe_medals.py) 后升级 3D 版成就殿堂 (Three.js 暗色展馆 / 40 枚奖牌悬浮环形排布 / 可拖拽旋转); 11-01 单文件版 1.84MB 双击即开 (无 CORS 问题), server 挂上 Tailscale, 单文件版 / 开发版 / 40 张奖牌素材三项实测全 200, Tailscale IP 链路通.",
-      "problem": "✓ 真问题 (轻微): vision 工具本周抽风 3 次读不到图, 导致 pm-for-claude 放弃视觉自查改用 PIL 数值验证 (std 49.6 / bright 7% / gold 1.7% / 弹窗 bright 5.2%) 并直接把 MEDIA 交给 fei 拍板; 当前 40 枚奖牌里 6/40 仍是 demo 占位数据, 且服务依赖 Tailscale 内网, fei 在非 Tailscale 网络下打不开.",
-      "solution": "(1) 奖牌素材补齐到 40/40 (把 demo 名字换成真实成就定义, 复用 10-28 已跑通的程序刻字管线批量出图); (2) 若要公网访问, 把 3D 展馆静态产物挂 CF Pages (仓库已有 kiddo-scoreboard-cf-pages 惯例) 而非依赖 Tailscale; (3) vision 抽风时继续走 PIL 数值 + fei 目测双通道, 不用烧轮次反复重试读图."
+      "last_active": "1 天前 (11-07)",
+      "description": "Mac WiFi 卡顿 + 小米母婴监控转圈, 逐跳抓链路数据定位真因",
+      "progress": "实测 Mac 信号 -22dBm / SNR 59dB 却抖动 ±15ms, 对比同网段设备延迟定位到 .142 (小米协议 + 无本地端口 + avg 212ms) 为最差链路. 给出 4 步修复顺序, 首条是把路由器 2.4GHz 信道从自动 Ch3 改固定 Ch1.",
+      "problem": "路由器「自动信道」选到 Ch3 与邻居 Ch6/7/8/10 全部交叠, 是可改配置而非硬件故障 — 结论已交付, 待 fei 在米家 app 实测验证.",
+      "solution": "(1) 米家/WiMiFi app 固定 2.4GHz 信道 = 1; (2) 摄像头挪近路由器减少遮挡; (3) 复测各设备延迟确认 .142 回到健康区间; (4) 若仍卡再考虑把摄像头切 5GHz 或改用有线."
     },
     {
-      "name": "存储与 AI 基建知识库 — Micron/IBM/SNIA 归档 + KV cache 命中率学术调研",
+      "name": "Z-Library 自动下载管线 — 网盘双向审计稳态",
       "owner_profile": "research-agent",
-      "session_count": 14,
+      "session_count": 7,
+      "phase_emoji": "🚀",
+      "phase": "Deployed",
+      "active_status": "active",
+      "last_active": "今天 (11-08 00:01)",
+      "description": "Node + Playwright + CloakBrowser 管线, 每日 0:00 跑批, 结果自动归档百度网盘",
+      "progress": "本周 7 次跑批全部成功: preflight 修好 node libsimdjson、quota-check 显示 10/10 额度、test-verify 59/59 通过、audit_remote2 双向核对 54/54 完全一致 (网盘 5 目录 54 本 = 本地 54 本, only_remote 0 / only_local 0). 3 处 size 差异经正文比对判定为 epub 重压缩, 非内容错配.",
+      "problem": "队列 todo 段已空 (54 本全部下载完成), 每日跑批现在只做无变化的审计 — 管线处于稳定态但没有新输入, 每日消耗一次 agent run 而产出为零.",
+      "solution": "(1) 短期无需动作, 现有 skill 已把「无新书」作为正常态输出; (2) 中期把该 cron 从 agent-run 降级为 no-agent 脚本模式 (跟 pm-2 的 disk_check 同款), 只在 matched 数变化时才唤 agent; (3) 等有新书需求再加进 TODO-queue.md."
+    },
+    {
+      "name": "存储与 AI 基建知识库 — HBM/DRAM/NAND 归档",
+      "owner_profile": "research-agent",
+      "session_count": 3,
       "phase_emoji": "🔬",
       "phase": "Discovery",
-      "active_status": "active",
-      "last_active": "2026-11-01",
-      "description": "把 Micron 代次史、SNIA SFF-TA-1042 规范、IBM FlashCore 全系、LMCache SSD-KV 后备层测试等原始材料逐字归档进 Obsidian knowowl, 同时产出 2026 年内 KV cache 命中率的方法全景图",
-      "progress": "10-25 归档 Micron 公众号文章并发现「内部 Gen 编号比对外品牌快 2」的惯例 + G10 整个代次被放弃; 10-26 SNIA SFF-TA-1042 规范原文逐页转写 1043 行/51KB + slide 存 KB; 10-27 LMCache SSD-KV 后备层测试解读归档, 并用 3 个并行 agent 做学术调研 (11 篇直接测量不同 workload 下 KV 命中率的 2026 论文, 63 个 arXiv 链接全部验证 200) + 提升命中率的完整方法族全景图 (radix tree / prefix cache / SGLang / LMCache 等); 10-28 IBM FlashCore 全系深挖 19.9KB (8 年代次史 + 平台规格 + 运维红线); 10-29 装 web-access skill 并把行内出处角标接进爬虫流程, Demo 跑通; 10-31 归档 Q1-27 Earnings Deck PDF, 产出 XPU vs NVIDIA (XHEART X7 Ultra vs NVIDIA Thor) 参数对比, 明确标注「行业旗舰=Thor」是分析性推定; 11-01 新增 ai-infra-storage-vendor-strategy skill.",
-      "problem": "✓ 真问题 (方法论层): 10-27 的三轮并行调研里有一轮 subagent 只返回到最后一句「Let me do a final extraction round for precise numbers and verify venue dates」就 end_reason=agent_close, 没有落盘完整结论 — 另两轮正常完成, 说明并行调研需要落盘校验而非只看 exit status. 另外 research-agent 的「系列监控」cron (833249f7d65d) 本周 last_status=error, 报错是脚本路径不存在.",
-      "solution": "(1) 并行调研 subagent 必须要求「结论写入文件 + 返回路径」, PM 校验文件存在再采信; (2) 833249f7d65d 的 check_series_kv_cache.py 已被 content-series-monitoring skill 取代, 应把 cron 指向新脚本或直接停掉这个失效 job (它每周白跑一次); (3) 归档节奏保持每次 1-2 篇深度, 不要再叠加新主题, 当前 Micron/IBM/SNIA 三家硬件材料已足够支撑 ai-infra-storage-vendor-strategy skill 的输出."
+      "active_status": "rolling",
+      "last_active": "4 天前 (11-03)",
+      "description": "微信公众号长文/信息图逐字归档进 Obsidian knowowl, 覆盖 HBM 路线图与全球存储产能",
+      "progress": "本周归档 2 篇高价值长文: 《HBM路线图371页全解读》(KAIST TERALAB 371 页) 与《全球存储产能地图 DRAM(HBM) & NAND》(8 张信息图, 2026Q4 晶圆产能拆解). 同期把归档流程固化成 skill: nand-flash-research + image-pdf-triage (图像 PDF 走 contact sheet + vision).",
+      "problem": "11-03 那次归档靠的是手工 curl + 微信 iPhone UA 绕过 web_extract, 流程本身没问题 — 真正的卡点是没有稳定的反爬策略, CloakBrowser 一旦不可用就得回退到手工.",
+      "solution": "(1) web-acquisition skill 已写「搜狗微信跳板」+ 媒体站拦截绕过两节, 归档前先按 skill 走; (2) 研究工具链 401/timeout 类问题统一走 research-toolchain-reliability 的 DNS+VPN+key 三段诊断; (3) 长期把公众号源做成 RSS 镜像, 减少反爬依赖."
     },
     {
-      "name": "God's Eye View 3D 地球 — Cesium ion token 阻塞, cron 已停",
-      "owner_profile": "writing-agent",
-      "session_count": 3,
-      "phase_emoji": "🪦",
-      "phase": "Closed",
-      "active_status": "stalled",
-      "last_active": "2026-10-30",
-      "description": "技术链路本身已全部跑通 (node@24 修好 / npm ci / doctor 全 OK / 8794 项测试 0 失败 / dev server 数据正常), 唯一卡点是 Cesium ion token 需要 fei 的 Google 账号授权",
-      "progress": "10-28 writing-agent 确认整条注入链路 (含 .env → loadEnv() → import.meta.env.CESIUM_ION_TOKEN → 浏览器 bundle) 用占位 token 实测跑通并抓包验证 (asset 2275207 / 1 请求路由正确), node@24 的 Abort trap: 6 也已修 (opt/simdjson 软链改指 Cellar 5.0.5); 10-30 fei 指示「god's eye cron 先停掉, 在 my pm 的周报里记录一个 todo, 暂时优先级放低, track 着」, writing-agent 已 pause 每日 22:00 的 cron 并把 TODO 写进周报 problems 数组 (P3).",
-      "problem": "✗ 不是技术问题 (阻塞在账号授权): Cesium 自带默认 token 已是死的 (asset 2275207/1/3 全返 401 INVALID_TOKEN), 没有绕过登录的捷径; 剩下唯一需要的就是 fei 在 ion.cesium.com 登录拿 token, cron 再跑也只能重复「问用户要 token」, 3 次无进展 (10-27/10-28/10-29) 属噪音, 故已暂停.",
-      "solution": "已按 fei 指示降为 P3 track, TODO 落在 cron/todo/gods-eye-ion-token.md, 恢复条件与完整步骤都在文件里: (1) fei 在 https://ion.cesium.com/tokens 用 cenfeihao@gmail.com 登录复制 token; (2) 写入 ~/workspace/gods-eye-view/.env 的 CESIUM_ION_TOKEN= (保持 chmod 600); (3) 跑 set-ion-token.sh (会只杀 GEV 自己的 vite, 端口 4173 是共享的别 lsof -ti 全杀); (4) 到 assetdepot 把 Google Photorealistic 3D Tiles 加进 My Assets, 免费 Community plan 不加地球仍是平的. 恢复时注意: Vite 热重启不刷新 .env, 必须完整 kill vite 进程重启."
+      "name": "DeepSeek Harness (dsh) 本地部署",
+      "owner_profile": "my-pm",
+      "session_count": 1,
+      "phase_emoji": "✅",
+      "phase": "Implemented",
+      "active_status": "rolling",
+      "last_active": "4 天前 (11-04)",
+      "description": "dsh web 本地服务 + LLM provider 配置 + 外网隧道访问",
+      "progress": "11-04 落地 dsh-harness-deployment skill, 覆盖 npm 全局安装 / dsh web 本地服务 / provider 配置 (minimax-cn、zai/GLM、DeepSeek 官方、任意 openai 或 anthropic compatible gateway) / 外网域名隧道. workspace 下 deepseek-harness 与 dsharness 两个目录已有实际工程.",
+      "problem": "仓库 AGENTS.md 明确 dsh 的 pre-stable API 会变更, 且已废弃 session JSONL 迁移路径 — skill 里记录的是当时的配置形态, 上游升级后 provider 配置与启动命令可能已漂移, 需要一次真实跑通验证.",
+      "solution": "(1) 跑一次 `dsh web` + 指定 provider 实测启动, 确认 skill 里的命令仍有效; (2) 记录当前 dsh 版本号到 skill frontmatter, 升级时对比; (3) 把「dsh 启动前置检查」写成与 Z-Library preflight 同款的脚本, 避免每次手工排查."
     }
   ],
   "rolling_projects": [
     {
-      "name": "pm-2 health-vault hourly cron (本周 176 sessions = pm-2 总数 95%)",
+      "name": "pm-2 health-vault hourly cron (152/159 = 97% 的 pm-2 会话)",
       "owner_profile": "pm-2",
-      "session_count": 176,
+      "session_count": 152,
       "phase_emoji": "🔁",
       "phase": "Rolling",
-      "active_status": "rolling",
-      "last_active": "2026-11-01",
-      "description": "health-vault skill + health-vault-hourly cron 每小时跑 1 次, 本周 176 cron sessions (上周 168), 占 pm-2 会话数 95%",
-      "progress": "cron 本身健康 — 11-01 07:00 仍准点跑, 02:00-07:00 连续 6 次 end_reason=cron_complete, last_status=ok; 10-27 新增 health-vault skill 落地 (74KB); pm-2 同期还承接了 10-31 体检报告 PDF 归档 (曙光医院 B-Light 脱敏, 结论是肌瘤在长 + 贫血没好, 建议 1-2 周内挂妇科) 和 backup-hermes-daily 每日 GitHub 备份 (10-31 push OK, 535 files changed).",
-      "problem": "✓ 真问题 (备份侧, 高优先级): backup-hermes-weekly-baidu 本周连续 2 次上传失败 — 10-24 和 10-31 日志都是「No such file or directory」, 本地 533MB 归档生成了但没传上百度, 而日志里的错误提示「bypy token may have expired」是误导. 实际根因是脚本第 47 行 BYPY=\"...python ...bypy_direct.py -s 419430400\" 整个字符串加了引号, 第 76 行 \"$BYPY\" 被 bash 当成单个文件名执行, 从没真正调起 bypy; bypy token 本身有效 (info 正常返回 Quota 100GB / Used 74.6GB).",
-      "solution": "(1) 改 backup-hermes-weekly-baidu.sh 第 47 行为数组或拆成 BYPY_PY/BYPY_SCRIPT 两个变量, 调用时不用整体引号 (或直接 bash -c 展开); (2) 修完手动跑一次上传验证「upload OK」再让 cron 恢复, 别信 token 过期提示; (3) 顺带修 daily backup 的 rsync 报错「skills/ecc: unlinkat: Directory not empty」, 那是 backup/initial-import 分支的并发写冲突, 不致命但每次都报; (4) 建议加一条断言: 上传失败时把归档大小和 quota 余量一起记进日志, 否则失败和 token 过期两种根因分不清."
+      "active_status": "active",
+      "last_active": "今天 (11-08 01:03 agentmemory health check)",
+      "description": "每小时跑一次的 agentmemory 健康巡检, 持续产出本地报告",
+      "progress": "本周 152 次 hourly 跑批全部 completed 状态, 最近一次 11-08 01:03 正常. 另有 7 次 agentmemory-integration 每日 01:00 健康检查也全绿. 所有 cron 的 last_run 均为 ok.",
+      "problem": "不是故障, 是结构性噪声 — 152 次 session 占了全周 196 次的 78%, 把真实人工会话压到 6 次 (3%). 总数指标若不做 cron/substantive 拆分, 会严重误导周对比.",
+      "solution": "(1) meta.summary 已分 total_sessions 与 substantive_sessions 两个字段, overview 每 profile 也拆 total/substantive; (2) 长期把 hourly health-vault 改成 no-agent 脚本模式 (跟 disk-space-daily-3am 同款), 只在检测到异常时唤 agent; (3) 本周已落地的 skill: 跨周遗留 TODO 机制 + cron 分类算法, 后续周报沿用."
     },
     {
-      "name": "pm-for-claude 每日 cron 矩阵 (memory-cleanup / workbuddy / kiddo 备份与 todo)",
+      "name": "pm-for-claude 每日 cron 矩阵 (memory-cleanup / nightly-todo / workbuddy / kiddo 备份)",
       "owner_profile": "pm-for-claude",
-      "session_count": 16,
+      "session_count": 20,
       "phase_emoji": "🔁",
       "phase": "Rolling",
-      "active_status": "rolling",
-      "last_active": "2026-11-01",
-      "description": "pm-for-claude 上周刚加的 daily-points cron 本周接管了固定产出, 每天 03:00 准时出一份 2.7KB 报告, 另加 memory-cleanup 50% 阈值清理与 kiddo 备份/夜间 todo",
-      "progress": "cb7d11d10914 (workbuddy-daily-points, 每日 03:00) 本周 8 天无中断, 每天产出 ~2.7KB 报告; 5b2a5373ae2b (Daily Memory Cleanup 50% threshold) 10-31 23:00 正常; kiddo-scoreboard-daily-backup 与 nightly-todo 两个 cron 也保持 ok; 10-28 新增 kiddo-scoreboard-ops skill 固化这批运维动作, 10-28 cc-pm-spawn-pitfalls (88KB) 记录 CC 派单踩坑.",
-      "problem": "✓ 真问题 (轻微, 偏噪音): pm-for-claude 本周 16 个 cron sessions + 6 substantive, cron:substantive 比接近 3:1; 其中 memory-cleanup 7 次 / cron deliver 类 16 次, 每天 03:00 的固定报告对 fei 属于低信息密度重复推送, 但当前 deliver 到本地未外发, 实际影响有限.",
-      "solution": "(1) workbuddy-daily-points 这类每日同格式报告, 建议只在有变化或异常时才推 fei, 平时写文件即可; (2) memory-cleanup 50% 阈值可以适度提高 (比如 75%) 减少空跑, skill pm-memory-management 里已有 75% 提醒 / 95% block 的分级规则可复用; (3) 保持 cron 与 substantive 的区分统计 (本周 pm-for-claude cron 16 / substantive 6), 免得被绝对数字误导."
+      "active_status": "active",
+      "last_active": "今天 (11-08 03:01 workbuddy-daily-points)",
+      "description": "4 条每日 cron 组成记忆清理 + 需求池推进 + 积分 + 备份的自动流水线",
+      "progress": "本周 20 次 cron 全部 completed, last_run 全 ok. nightly-todo 在 11-07 00:03 提交 04fae88, 记录了 11-06 那晚的第 6 次孤儿工作抢救 + 状态漂移修复. workbuddy-daily-points 11-08 03:01 正常.",
+      "problem": "nightly-todo 的 commit 步骤已连续 8 晚被 2h 预算砍掉 (10-22/10-25/10-26/10-28/10-30/11-01/11-04/10-05), 靠下���晚「抢救孤儿工作」才补回来 — 代码写完了但要等下一轮才能进 git, 状态漂移累积.",
+      "solution": "(1) 并行 CC 数量降到 1, 或把 commit 提到每个 CC stage 内部 (每个 stage 自己 commit, PM 只做归档); (2) 每晚 cron 开头先 `git status` 检查是否有上轮孤儿改动, 有就先补 commit 再开新活; (3) 两条 lineage (feat/fighter-v2-rpg vs main) 已分叉 28/42 commits, 需一次 reconcile merge — cron 红灯规则禁 merge, 需 fei 拍板."
     },
     {
       "name": "PM 技能库治理 — 跨 profile 分发 + 遗留 TODO 跟踪机制",
       "owner_profile": "my-pm",
-      "session_count": 4,
+      "session_count": 1,
       "phase_emoji": "🔁",
       "phase": "Rolling",
       "active_status": "active",
-      "last_active": "2026-11-01",
-      "description": "本周 PM 侧主要做两件事: 把 skill 按用途精准分发到对应 profile, 以及建立跨周遗留 TODO 的持久化跟踪机制",
-      "progress": "10-26 新增 devops/taobao-automation + devops/xianyu-mcp-tools 两个渠道 skill (淘宝桌面版重装 / 登录态判定 / 闲鱼 goofish 免登录价格情报); 10-28 装 3 个 skill 到指定 profile 并逐一验证 — huashu-design → writing-agent (258 文件 9.5MB, frontmatter ✓)、web-access → research-agent、zhangxuefeng → pm-2; 10-30 本 skill 自身 (weekly-report) 补入「跨周遗留 TODO 机制」章节, 配合 cron/todo/ 目录把 God's Eye token 这类「fei 要求 track 但暂不做」的事项持久化, 避免下周被 problems 数组重写时静默抹掉; 10-29 新增 install-skill-to-agent-profile 固化跨 profile 安装流程.",
-      "problem": "✓ 真问题 (治理层): 遗留 TODO 机制本周刚落地, 目前只覆盖 2 个文件 (gods-eye-ion-token.md / kiddo-scoreboard-pm-action-items.md); 而本周 40 个新装 skill 里, research-agent 一个 profile 独占 14 个, 存在能力过度集中在单一 profile 的倾向 — 其他 profile (data-agent / qual-agent / web-ui-designer) 本周 0 session 0 skill, 沉没成本在累积.",
-      "solution": "(1) PM 下次做分发时先跑一遍 profile 能力盘点 (哪些 skill 装在没人用的 profile 上), 把僵尸安装找出来; (2) 遗留 TODO 机制扩到每周 review 时检查一遍 cron/todo/ 目录, 解决一项就删一项 (skill 里已规定完成时清理); (3) 跨周 TODO 的去重规则已写死 (同 project + 同 issue 语义用本周新数据覆盖), 继续照做即可, 无需额外改动."
+      "last_active": "今天 (11-08 07:00 周报)",
+      "description": "周报数据采集 + 遗留 TODO 持久化 + 跨 profile skill 分发治理",
+      "progress": "本周装 10 个新 skill (4 类别), 其中 7 个落在 research-agent, 2 个 my-pm, 1 个 _default_shared. 遗留 TODO 机制正常运转: 两个 cron/todo/*.md (kiddo-scoreboard 行动项 / God's Eye ion token) 已按规则并入 problems 数组, 跨周不丢.",
+      "problem": "10 个新 skill 里 70% 仍集中在 research-agent 一个 profile — 与上周「skill 库向单一 profile 集中」是同一个问题, 本周没有恶化但也没改善. 另发现 my-pm cron 引用的 hermes-agent skill 只能嵌套路径命中, 裸名解析失败.",
+      "solution": "(1) 保留按用途分类的 D 段口径 (不按 profile 归类), 便于看出哪类能力过剩; (2) 修 skill 引用路径 — 把 hermes-agent 在 my-pm 顶层软链或改 cron 配置指向嵌套全名; (3) 下一季度做一次跨 profile skill 再平衡, 优先把研究类通用 skill 同步给 data-agent / qual-agent."
     }
   ],
   "problems": [
     {
-      "issue": "Hermes 百度网盘周备份连续 2 周上传失败 (10-24 / 10-31), 本地 533MB 归档已生成但从未上传, 且日志错误提示「bypy token may have expired」是误导 — 真实根因是脚本 bash 引号 bug, bypy token 本身有效",
+      "priority": "P0",
+      "project": "kiddo-scoreboard Fighter V2 e2e",
+      "issue": "11-07 pm-for-claude 派单的 Fighter V2 两个 stale spec 重锚 (world-map.spec.ts + shop.spec.ts) 被中断, 从未提交 — last_assistant 只剩 'Operation interrupted: waiting for model response (2.1s elapsed)'. 实测 git log 确认两个 spec 文件自 a43b1ba 起无任何新 commit, 且 status 干净说明改动也没留在工作区. 整个 fighter-v2 e2e 套件仍是红的.",
+      "solution": "(1) 重跑同一派单 (spec-only 改动, 不碰 src/); (2) 改用并行 CC=1 + 每个 stage 自己 commit 的姿势, 避开 2h 预算砍 commit; (3) 跑 npx playwright test tests/e2e/fighter-v2/ 确认 world-map + shop 两文件转绿再 commit.",
+      "time": "2026-11-07"
+    },
+    {
       "priority": "P1",
       "project": "pm-2 备份体系",
-      "solution": "(1) backup-hermes-weekly-baidu.sh:47 把 BYPY=\"...\" 改成 BYPY_PY + BYPY_SCRIPT 两个变量 (或用数组), 第 76 行不要整体引号包住整条命令; (2) 改完手动跑一次确认日志出现「upload OK」, 不要信 token 过期提示 — 已实测 bypy_direct.py info 正常返回 Quota 100GB / Used 74.6GB, token 有效; (3) 加断言: 上传失败时把归档大小 + quota 余量一起写日志, 避免下次再误诊; (4) 顺手修 daily backup 的 rsync「skills/ecc: unlinkat: Directory not empty」.",
-      "time": "2026-11-01"
+      "issue": "Hermes 百度网盘周备份连续 4 周上传失败 (10-17 / 10-24 / 10-31 / 11-07), 本地归档照常生成但从未上传 (最新 565MB). 日志的 'bypy token may have expired' 是纯误导 — 真实根因已实测确认: 脚本第 76 行写 `\"$BYPY\" upload ...`, 而 BYPY 变量本身含空格分隔的完整命令行, 加引号后 bash 把整串当成单个文件名 → 'No such file or directory', bypy 进程压根没启动. 去掉引号后 `bypy --help` 正常输出.",
+      "solution": "(1) 改第 76/80 行为 `$BYPY upload ...` (不加引号) 或拆成 BYPY_PY / BYPY_ARGS 数组; (2) 手动跑一次 `/Users/tidusmaomao/.hermes/hermes-agent/venv/bin/python /Users/tidusmaomao/.hermes/profiles/pm-2/scripts/bypy_direct.py -s 419430400 upload <archive> /baidu-hermes-backups/` 验证上传; (3) 顺手把日志里误导性的 'token may have expired' 改成真实错误原文.",
+      "time": "2026-11-07"
     },
     {
-      "issue": "kiddo-scoreboard Item #017 (打卡全完成 Bark 通知家长) 实施中断在未提交状态 — feature/017-parent-notify 分支 10 个文件全 uncommitted, code-agent session 断在「coin.ts helper for real N/N counts」且无完成报告",
       "priority": "P1",
-      "project": "Kiddo Scoreboard",
-      "solution": "(1) code-agent 续做 coin.ts 真实 N/N 计数 + route 挂载点, 跑 typecheck + 相关 e2e; (2) 走 Qual Agent 验证 → PM 合并的既有验收路径, 别在无验证状态下直接 commit; (3) 合并前确认 Bark device key 从哪来 — spec 已写好但推送需要 fei 侧一次性配置 device key, 否则上线即空转.",
-      "time": "2026-11-01"
+      "project": "kiddo-scoreboard nightly-todo",
+      "issue": "nightly-todo cron 的 commit 步骤已连续 8 晚被 2h 预算砍掉 (10-22 / 10-25 / 10-26 / 10-28 / 10-30 / 11-01 / 11-04 / 11-05), 每晚靠「抢救孤儿工作」把上一晚的代码补 commit 回来 — 已连续 6 晚记在 NIGHTLY-TODO.md 里. 副作用是 docs/NIGHTLY-TODO.md 状态漂移累积, 11-06 那晚专门花一轮修状态. 不是数据丢失, 是流程设计跟预算冲突.",
+      "solution": "(1) 并行 CC 降到 1, 或每个 CC stage 自己 commit (PM 只归档); (2) 每晚 cron 第一步先 `git status` 检查上轮孤儿改动, 有则先补 commit; (3) 两条 lineage (feat/fighter-v2-rpg vs main) 分叉 28/42 commits 且 NIGHTLY-TODO.md 互相缺记录, 需 fei 拍板做一次 reconcile merge.",
+      "time": "2026-11-07"
     },
     {
-      "issue": "research-agent 并行 subagent 调研有一轮静默丢结果 (end_reason=agent_close 且最后一句是「Let me do a final extraction round...」), 另「系列监控」cron 833249f7d65d 每周白跑一次报 Script not found",
-      "priority": "P2",
-      "project": "研究工具链可靠性",
-      "solution": "(1) 并行调研 subagent 必须在 prompt 里要求「结论写入文件 + 返回绝对路径」, PM 校验文件存在且非空再采信, 不看 exit status 就当成功; (2) 833249f7d65d 的 check_series_kv_cache.py 已被 content-series-monitoring skill 取代, 把 cron 指到新脚本或直接停掉这个失效 job.",
-      "time": "2026-11-01"
-    },
-    {
-      "issue": "成就墙 3D 展馆 40 枚奖牌里 6/40 仍是 demo 占位数据, 且服务只挂 Tailscale 内网 (100.91.140.82:8791), fei 在非 Tailscale 网络打不开",
-      "priority": "P2",
-      "project": "成就墙 3D 视觉管线",
-      "solution": "(1) 用 10-28 已跑通的「程序刻字」管线批量把 6 个 demo 奖牌换成真实成就定义, 补齐 40/40; (2) 静态产物挂 CF Pages 对外 (仓库已有 kiddo-scoreboard-cf-pages 惯例), 别把公网可达性绑在 Tailscale 上; (3) 视觉验收继续用 PIL 数值 + fei 目测双通道, vision 工具本周抽风 3 次, 不用烧轮次反复读图.",
-      "time": "2026-11-01"
-    },
-    {
-      "issue": "本周 40 个新装 skill 里 research-agent 独占 14 个, 而 data-agent / qual-agent / web-ui-designer 本周 0 session 0 skill — skill 库存在向单一 profile 过度集中与僵尸安装的倾向",
       "priority": "P2",
       "project": "PM 技能库治理",
-      "solution": "(1) PM 下次分发前先跑 profile 能力盘点, 找出装在没人用的 profile 上的 skill; (2) 延续本周的「按用途分发」原则 (跨 profile 装的同一 skill 算 1 个用途类别), 而不是按 profile 堆; (3) 顺带清理数据端垃圾 skill (本地 memory-cleanup 只清了 agentmemory, 没清 skill 目录).",
-      "time": "2026-11-01"
+      "issue": "本周 10 个新 skill 里 7 个仍集中在 research-agent 一个 profile (70%), my-pm 2 个, 其余 profile 零 — 与上周同一问题, 本周未恶化也未改善. 同时发现 my-pm 的 PM Memory Weekly Cleanup cron 配置里引用 `hermes-agent` 裸名, 但该 skill 只存在于 my-pm/skills/autonomous-ai-agents/hermes-agent 嵌套路径, 裸名解析失败 → cron 提示 'skills were listed for this job but could not be found and were skipped'.",
+      "solution": "(1) 把 hermes-agent 在 my-pm/skills/ 顶层建软链, 或把 cron 配置改成带路径的全名; (2) research-agent 同样检查 record-obsidian-base (只在 skills/creative/ 下) 的同类问题; (3) 下一个季度做一次跨 profile skill 再平衡, 优先把通用研究类 skill 同步给 data-agent / qual-agent.",
+      "time": "2026-11-08"
     },
     {
-      "issue": "God's Eye View 的 Cesium ion token 仍未配置 — .env 第 57 行 CESIUM_ION_TOKEN= 为空, Google Photorealistic 3D Tiles + Cesium World Terrain 无法加载, 地球只有 2D 底图 (flat globe). 每日 22:00 的自动配置 cron 已按 fei 指示暂停, 等 fei 在电脑前完成 ion 登录授权",
+      "priority": "P2",
+      "project": "Z-Library 每日管线",
+      "issue": "每日 0:00 的 Z-Library cron 队列 todo 段已空 (54 本全部下载完成), 但仍每日消耗一次完整 agent run, 产出只是「无新书」的空报告 — 7 天 7 次纯开销. 同类问题在 pm-2 health-vault 上更严重 (152 次/周). 不是故障, 是 cron 粒度没有随负载收敛.",
+      "solution": "(1) 把 Z-Library cron 降级为 no-agent 脚本模式 (跟 disk-space-daily-3am 同款), 只在 audit_remote2 报告 matched 数变化时才唤 agent; (2) 排查健康巡检类 hourly cron 的同样降级; (3) 保留现有 zlibrary-daily-download skill 作为 agent 唤起时的操作手册.",
+      "time": "2026-11-08"
+    },
+    {
       "priority": "P3",
       "project": "God's Eye View",
-      "solution": "fei 在 https://ion.cesium.com/tokens 用 Google 账号 cenfeihao@gmail.com 登录并复制 token；或自行写入 ~/workspace/gods-eye-view/.env 的 CESIUM_ION_TOKEN= 行 (保持 chmod 600)。之后跑 ~/workspace/gods-eye-view/set-ion-token.sh (已封装: 写 .env → 只杀 GEV 自己的 vite → 重启 → 验证 bundle), 再到 https://ion.cesium.com/assetdepot 把 Google Photorealistic 3D Tiles 加进 My Assets (免费 Community plan 必须, 否则地球仍是平的). 最后 npm run dev -- --host localhost --port 4173 打开 http://localhost:4173/ 实测确认 3D 地球 + 地形真的渲染出来.",
+      "issue": "God's Eye View 的 Cesium ion token 仍未配置 — .env 第 57 行 CESIUM_ION_TOKEN= 为空, Google Photorealistic 3D Tiles + Cesium World Terrain 无法加载, 地球只有 2D 底图. 已暂停每日 22:00 的自动配置 cron (2026-10-30), 等 fei 在电脑前完成 ion 登录授权. 上周状态本周无变化, 非阻塞任何下游.",
+      "solution": "fei 在 https://ion.cesium.com/tokens 用 Google 账号 cenfeihao@gmail.com 登录并复制 token, 或自行写入 ~/workspace/gods-eye-view/.env 的 CESIUM_ION_TOKEN= 行 (保持 chmod 600). 之后跑 ~/workspace/gods-eye-view/set-ion-token.sh, 再到 assetdepot 把 Google Photorealistic 3D Tiles 加进 My Assets (免费 Community plan 必须, 否则地球仍是平的), 最后 npm run dev -- --host localhost --port 4173 实测确认 3D 渲染.",
       "time": "2026-10-30"
     }
   ],
   "new_skills": {
-    "total_new": 40,
-    "total_patched": 1,
+    "total_new": 10,
     "bulk_events": [
       {
-        "date": "2026-10-26",
-        "purpose": "电商渠道自动化 (淘宝/闲鱼) — 打通桌面版重装、登录态判定、价格情报免登录抓取",
+        "date": "2026-11-03",
+        "profile": "research-agent",
+        "count": 5,
+        "category": "研究工具链与数据获取",
         "skills": [
-          "taobao-automation",
-          "xianyu-mcp-tools"
-        ]
-      },
-      {
-        "date": "2026-10-28",
-        "purpose": "AgentMemory 写入姿势修正 — REST helper + humanizer 中文版 + 本地记忆迁移",
-        "skills": [
-          "agentmemory-rest-helper",
-          "humanizer-zh",
-          "humanizer-2.5.1",
-          "local-tool-install",
-          "profile-skill-curation"
-        ]
-      },
-      {
-        "date": "2026-10-29",
-        "purpose": "AI 设计 skill 引入 + 跨 profile 安装工具链",
-        "skills": [
-          "web-access",
-          "web-acquisition",
-          "install-skill-to-agent-profile",
-          "zhangxuefeng-perspective",
-          "huashu-design"
-        ]
-      },
-      {
-        "date": "2026-10-30",
-        "purpose": "成就墙视觉管线 + 研究可信度工具 (行内出处角标 / 爬虫降级)",
-        "skills": [
-          "ai-image-asset-pipeline",
-          "single-file-web-showcase",
-          "web-research-fallbacks",
-          "inline-source-badges",
-          "research-toolchain-reliability"
-        ]
-      },
-      {
-        "date": "2026-10-31",
-        "purpose": "AI PPT 技能矩阵 (5 个) + 知识库审计/归档 + 图片文档 OCR 兜底",
-        "skills": [
-          "ppt-master",
-          "guizang-ppt-skill",
-          "pptx-generator",
-          "kb-data-integrity-audit",
-          "record-obsidian-base",
           "research",
-          "zlibrary-daily-download",
-          "image-only-document-extraction",
-          "hermes-skill-install-from-github",
-          "ai-infra-storage-vendor-strategy"
-        ]
+          "web-acquisition",
+          "research-toolchain-reliability",
+          "image-pdf-triage",
+          "nand-flash-research"
+        ],
+        "trigger": "批量安装 — 公众号抓取 + 图像 PDF OCR + NAND 调研 + 搜索工具链排障",
+        "impact": "研究 agent 从「一次性抓文章」升级成「有路由有排障有 OCR 兜底」的成体系管线"
       }
     ],
-    "by_profile": {
-      "_default_shared": [
-        "agentmemory-integration",
-        "agentmemory-rest-helper",
-        "guizang-ppt-skill",
-        "humanizer-zh",
-        "ppt-master",
-        "pptx-generator",
-        "zlibrary"
-      ],
-      "my-pm": [
-        "install-skill-to-agent-profile",
-        "taobao-automation",
-        "weekly-report",
-        "xianyu-mcp-tools"
-      ],
-      "pm-2": [
-        "health-vault",
-        "zhangxuefeng-perspective"
-      ],
-      "pm-for-claude": [
-        "ai-image-asset-pipeline",
-        "cc-pm-spawn-pitfalls",
-        "kiddo-scoreboard-ops",
-        "memory-cleanup",
-        "single-file-web-showcase",
-        "web-research-fallbacks"
-      ],
-      "research-agent": [
-        "ai-infra-storage-vendor-strategy",
-        "ai-memory-storage-tco-modeling",
-        "content-series-monitoring",
-        "html-ppt-deck-builder",
-        "image-pdf-triage",
-        "inline-source-badges",
-        "kb-data-integrity-audit",
-        "record-obsidian-base",
-        "research",
-        "research-toolchain-reliability",
-        "web-access",
-        "web-acquisition",
-        "web-outage-fallback-ladder",
-        "zlibrary-daily-download"
-      ],
-      "writing-agent": [
-        "deferred-work-tracking",
-        "hermes-skill-install-from-github",
-        "huashu-design",
-        "humanizer-2.5.1",
-        "image-only-document-extraction",
-        "local-tool-install",
-        "profile-skill-curation"
-      ]
-    },
     "all_skills_by_category": {
+      "运维与部署自动化": [
+        {
+          "skill": "dsh-harness-deployment",
+          "profile": "my-pm",
+          "mtime": "2026-11-04",
+          "desc": "Deploy DeepSeek Harness dsh with LLM providers and tunnel."
+        },
+        {
+          "skill": "home-network-diagnostics",
+          "profile": "my-pm",
+          "mtime": "2026-11-07",
+          "desc": "家庭网络/WiFi/摄像头卡顿排查。Use when WiFi 卡/转圈/摄像头离线/网络慢。"
+        }
+      ],
       "研究工具链与数据获取": [
+        {
+          "skill": "ai-infra-storage-vendor-strategy",
+          "profile": "research-agent",
+          "mtime": "2026-11-02",
+          "desc": "盘点 SSD 原厂如何应对 NV CMX / BlueField-4 / HBF / G3.5 等 AI 存储架构."
+        },
         {
           "skill": "image-pdf-triage",
           "profile": "research-agent",
-          "mtime": "2026-10-25"
-        },
-        {
-          "skill": "zlibrary",
-          "profile": "_default_shared",
-          "mtime": "2026-10-26"
-        },
-        {
-          "skill": "ai-memory-storage-tco-modeling",
-          "profile": "research-agent",
-          "mtime": "2026-10-27"
-        },
-        {
-          "skill": "web-outage-fallback-ladder",
-          "profile": "research-agent",
-          "mtime": "2026-10-27"
-        },
-        {
-          "skill": "content-series-monitoring",
-          "profile": "research-agent",
-          "mtime": "2026-10-28"
-        },
-        {
-          "skill": "web-access",
-          "profile": "research-agent",
-          "mtime": "2026-10-29"
-        },
-        {
-          "skill": "web-acquisition",
-          "profile": "research-agent",
-          "mtime": "2026-10-29"
-        },
-        {
-          "skill": "zhangxuefeng-perspective",
-          "profile": "pm-2",
-          "mtime": "2026-10-29"
-        },
-        {
-          "skill": "inline-source-badges",
-          "profile": "research-agent",
-          "mtime": "2026-10-30"
-        },
-        {
-          "skill": "research-toolchain-reliability",
-          "profile": "research-agent",
-          "mtime": "2026-10-30"
-        },
-        {
-          "skill": "web-research-fallbacks",
-          "profile": "pm-for-claude",
-          "mtime": "2026-10-30"
+          "mtime": "2026-11-03",
+          "desc": "Map image-only sources via contact sheets + vision: image-only PDFs, WeChat infographic carousels, PPT-photo sets."
         },
         {
           "skill": "kb-data-integrity-audit",
           "profile": "research-agent",
-          "mtime": "2026-10-31"
+          "mtime": "2026-11-02",
+          "desc": "Audit a SQLite KB on archive; verify archive completeness."
+        },
+        {
+          "skill": "nand-flash-research",
+          "profile": "research-agent",
+          "mtime": "2026-11-03",
+          "desc": "NAND Flash 调研采集工作流 — Samsung/KIOXIA/Hynix/Micron/WD/Solidigm SSD 与 Die 级参数、HBM/SSD 论文、A 股存储芯片板块映射"
         },
         {
           "skill": "research",
           "profile": "research-agent",
-          "mtime": "2026-10-31"
+          "mtime": "2026-11-03",
+          "desc": "Class-level research router for evidence-first web research, academic literature and manuscript work, market/domain investigation, difficult-source acquisition, and LLM architectur"
         },
+        {
+          "skill": "research-toolchain-reliability",
+          "profile": "research-agent",
+          "mtime": "2026-11-03",
+          "desc": "Web search returning 401/timeout? Diagnose DNS+VPN+key."
+        }
+      ],
+      "知识库与内容管线": [
         {
           "skill": "zlibrary-daily-download",
           "profile": "research-agent",
-          "mtime": "2026-10-31"
-        },
-        {
-          "skill": "ai-infra-storage-vendor-strategy",
-          "profile": "research-agent",
-          "mtime": "2026-11-01"
+          "mtime": "2026-11-06",
+          "desc": "Z-Library 每日自动下载任务 — 读取 zlibrary_pending.txt，对所有 status=pending 的书目执行下载、Lexile/AR 查询、阈值过滤、重命名、更新队列。触发场景：「Z-Library 每日下载 / 自动下载 pending 书籍 / zlibrary_daily.py / 批量下载绘本 / Lexile 分级过滤"
         }
       ],
-      "内容创作与视觉生成": [
-        {
-          "skill": "html-ppt-deck-builder",
-          "profile": "research-agent",
-          "mtime": "2026-10-26"
-        },
-        {
-          "skill": "humanizer-2.5.1",
-          "profile": "writing-agent",
-          "mtime": "2026-10-28"
-        },
-        {
-          "skill": "humanizer-zh",
-          "profile": "_default_shared",
-          "mtime": "2026-10-28"
-        },
-        {
-          "skill": "huashu-design",
-          "profile": "writing-agent",
-          "mtime": "2026-10-29"
-        },
-        {
-          "skill": "ai-image-asset-pipeline",
-          "profile": "pm-for-claude",
-          "mtime": "2026-10-30"
-        },
-        {
-          "skill": "single-file-web-showcase",
-          "profile": "pm-for-claude",
-          "mtime": "2026-10-30"
-        },
-        {
-          "skill": "guizang-ppt-skill",
-          "profile": "_default_shared",
-          "mtime": "2026-10-31"
-        },
-        {
-          "skill": "image-only-document-extraction",
-          "profile": "writing-agent",
-          "mtime": "2026-10-31"
-        },
-        {
-          "skill": "ppt-master",
-          "profile": "_default_shared",
-          "mtime": "2026-10-31"
-        },
-        {
-          "skill": "pptx-generator",
-          "profile": "_default_shared",
-          "mtime": "2026-10-31"
-        },
-        {
-          "skill": "record-obsidian-base",
-          "profile": "research-agent",
-          "mtime": "2026-10-31"
-        }
-      ],
-      "运维与部署自动化": [
-        {
-          "skill": "cc-pm-spawn-pitfalls",
-          "profile": "pm-for-claude",
-          "mtime": "2026-10-26"
-        },
-        {
-          "skill": "taobao-automation",
-          "profile": "my-pm",
-          "mtime": "2026-10-26"
-        },
-        {
-          "skill": "xianyu-mcp-tools",
-          "profile": "my-pm",
-          "mtime": "2026-10-26"
-        },
-        {
-          "skill": "health-vault",
-          "profile": "pm-2",
-          "mtime": "2026-10-27"
-        },
-        {
-          "skill": "kiddo-scoreboard-ops",
-          "profile": "pm-for-claude",
-          "mtime": "2026-10-28"
-        },
-        {
-          "skill": "local-tool-install",
-          "profile": "writing-agent",
-          "mtime": "2026-10-28"
-        },
-        {
-          "skill": "install-skill-to-agent-profile",
-          "profile": "my-pm",
-          "mtime": "2026-10-29"
-        },
-        {
-          "skill": "hermes-skill-install-from-github",
-          "profile": "writing-agent",
-          "mtime": "2026-10-31"
-        }
-      ],
-      "PM 工作流与记忆管理": [
-        {
-          "skill": "memory-cleanup",
-          "profile": "pm-for-claude",
-          "mtime": "2026-10-27"
-        },
-        {
-          "skill": "agentmemory-rest-helper",
-          "profile": "_default_shared",
-          "mtime": "2026-10-28"
-        },
-        {
-          "skill": "profile-skill-curation",
-          "profile": "writing-agent",
-          "mtime": "2026-10-28"
-        },
-        {
-          "skill": "deferred-work-tracking",
-          "profile": "writing-agent",
-          "mtime": "2026-10-30"
-        },
-        {
-          "skill": "weekly-report",
-          "profile": "my-pm",
-          "mtime": "2026-10-30"
-        },
+      "记忆与上下文管理": [
         {
           "skill": "agentmemory-integration",
           "profile": "_default_shared",
-          "mtime": "2026-10-31"
+          "mtime": "2026-11-08",
+          "desc": "Install + integrate + verify + migrate to [rohitg00/agentmemory](https://github.com/rohitg00/agentmemory) (22.7k⭐, Apache 2.0, npm `@agentmemory/mcp` + `@agentmemory/agentmemory`) "
         }
       ]
+    },
+    "notes": {
+      "运维与部署自动化": "dsh harness 部署 + 家庭 WiFi 排障, 把一次性操作变成可复用手册",
+      "研究工具链与数据获取": "公众号抓取 → 图像 PDF OCR → NAND/存储调研 → 工具链排障 打通一条可复用研究管线",
+      "知识库与内容管线": "Z-Library 每日跑批固化成 skill (preflight → 额度 → 分级 → 双向审计)",
+      "记忆与上下文管理": "agentmemory 集成 + 迁移, 跨 profile 记忆层标准化"
     }
   },
   "hot_topics": [
-    "⚠️ 百度网盘备份其实坏在 bash 引号 (不是 token 过期), 改一行就能恢复 — 要不要我直接把 backup-hermes-weekly-baidu.sh 的 BYPY 拆成两个变量并手动跑一次验证?",
-    "⚠️ kiddo-scoreboard Item #017 卡在未提交状态一周了 — 要不要 PM 直接续做 code-agent 那半截 (coin.ts N/N 计数 + route 挂载), 还是等 fei 给 Bark device key 再一起做?",
-    "🤔 3D 成就殿堂现在只挂 Tailscale, fei 换网络就看不到了 — 要不要顺手挂 CF Pages 让它公网可达?",
-    "🤔 本周 40 个新 skill, research-agent 一个 profile 吃掉 14 个, 另外三个 profile 整周没动 — 要不要做一次 skill 库跨 profile 再平衡?",
-    "📌 上周 P0 (rawSubitems 500) 本周已修并 commit, 可以从周报问题清单里划掉了 — 顺手更新一下 cron/todo/kiddo-scoreboard-pm-action-items.md 的状态吗?"
+    "⚠️ 百度网盘周备份的根因上周已定位 (bash 引号 `\"$BYPY\"` 把整条命令当成文件名), 本周 11-07 又失败了一次且还没改 — 要不要 PM 直接改脚本 + 手动跑一次上传验证?",
+    "⚠️ Fighter V2 两个 stale e2e spec 的重锚派单 11-07 被中断, 改动全丢 — 要不要 PM 重新派一次 (这次用并行 CC=1 + stage 内 commit 的姿势)?",
+    "🤔 nightly-todo 连续 8 晚 commit 被预算砍 — 结构性冲突不是偶发, 要不要把 commit 提到每个 CC stage 内部?",
+    "🤔 本周 10 个新 skill 70% 仍堆在 research-agent, 另外几个 profile 整周零动作 — 要不要做一次跨 profile 再平衡?",
+    "🤔 Z-Library 队列已空, 每日 agent run 只为产出一句「无新书」 — 要不要跟 health-vault 一起降级成 no-agent 脚本模式?",
+    "⚪ kiddo-scoreboard 不在 PM 主动范围 (fei 2026-06-14 明确), 其余 5 项开放行动项已归档在 cron/todo/kiddo-scoreboard-pm-action-items.md, 等 fei 主动说「开始做」才动.",
+    "⚪ God's Eye View 的 ion token 需要 fei 本人在 ion.cesium.com 登录拿, agent 无法代办 — P3 track 中, 本周无进展."
   ]
 }
